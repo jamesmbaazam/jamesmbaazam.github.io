@@ -1,0 +1,59 @@
+::: {.grid}
+
+::: {.g-col-4}
+![](picture.jpg){fig-align="left"}
+:::
+
+::: {.g-col-8}
+Hi there, I am a Research Software Engineer at the London School of Hygiene and Tropical 
+Medicine, working on the [Epiverse TRACE](https://github.com/epiverse-trace) Initiative, 
+which is a project to develop and maintain R packages for providing reproducible analytics 
+support during epidemics.
+
+I am mainly interested in developing models and methods and
+accompanying software to improve our understanding of how interventions impact disease
+spread.
+
+## What I do
+
+👨‍💼: Develop and maintain R packages for modelling infectious disease
+outbreaks, including:
+
+* simulating and analyzing transmission chains,
+
+* estimating time-varying reproduction numbers,
+
+* nowcasting and forecasting epidemiological counts. 
+
+🕐: Co-maintain the Carpentries course on [Data Analysis and Visualization in R for Ecologists](https://github.com/datacarpentry/R-ecology-lesson). 
+
+## Research Interests
+
+I have a PhD with a specialisation in outbreak response modelling and decision-making.
+I am interested in the development of models and methods to evaluate the impact
+of pharmaceutical and non-pharmaceutical interventions on the spread of infectious vaccine-preventable diseases. However, more broadly, I am interested in
+quantitative research that improves the health outcomes. 
+
+Additionally, I like contributing to and indulging in the literature on how
+to improve science, including science communication and science policy.
+
+## Continuing Professional Development
+
+📖: Reading [Regression and Other Stories](https://avehtari.github.io/ROS-Examples/index.html).
+
+🖥: Learning how to apply Bayesian data analysis to infectious disease nowcasting and forecasting through the [Statistical Rethinking book](https://www.youtube.com/playlist?list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus).
+
+## Collaborations
+
+I am interested in working with you on a mathematical or statistical method/model
+that improves how we do outbreak analytics.
+
+We can also discuss how to generalise it
+into a piece of software.
+
+Please get in touch through any of my linked contacts.
+I'm basically everywhere and tend to answer promptly.
+
+:::
+
+:::

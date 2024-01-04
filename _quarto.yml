@@ -1,0 +1,44 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Dr. James M. Azam"
+  reader-mode: true
+  search: true
+  page-navigation: true
+  back-to-top-navigation: true
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: research_projects.qmd
+        text: Research/Publications
+      - href: opensource_projects.qmd
+        text: Open-source Projects
+      - href: teaching.qmd
+        text: Teaching
+      - href: blogposts.qmd
+        text: Blog Posts
+    tools:
+      - icon: twitter
+        href: https://twitter.com/james_azam
+      - icon: github
+        href: https://github.com/jamesmbaazam
+      - icon: linkedin
+        href: https://www.linkedin.com/in/james-azam-phd-6b5b00176/
+      - icon: googlescholar
+        href: https://scholar.google.co.za/citations?user=IxRpXp8AAAAJ&hl=en
+      - icon: email
+        href: james.m.azam@gmail.com
+  twitter-card: true
+  open-graph: true
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+theme:
+  dark: darkly

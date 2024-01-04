@@ -1,0 +1,30 @@
+---
+title: "Teaching"
+---
+
+I don't currently teach as part of my duties but I can teach the following
+topics quite comfortably:
+
+* R programming from the basics to advanced topics (R package development, object-oriented programming)
+
+* Git/GitHub from the basics to intermediate/advanced (merging and rebasing, cherry-picking, etc)
+
+* Reproducible data analysis workflows
+
+* Various topics in mathematical/statistical/dynamical modelling of infectious diseases
+
+* Various topics in data analysis
+
+* Thesis and journal article writing techniques
+
+In the past, I've taught the following courses:
+
+* A shortcourse on [Introduction to R: Management, Exploration, and Communication
+of Data](https://www.sacema.org/opportunities/short-courses/) at the DSI-NRF
+Centre of Excellence in Epidemiological Modelling and Analysis (SACEMA) at
+Stellenbosch University in South Africa.
+
+* I also have a [YouTube channel](https://www.youtube.com/channel/UC2T5okssLdyVrMWHG1BBZnw) with
+over 3000 subscribers with videos like
+[this tutorial on Mendeley](https://www.youtube.com/watch?v=WWz8yrxNB74)
+amassing over 35, 000 views.
