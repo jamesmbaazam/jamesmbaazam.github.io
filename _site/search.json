@@ -1,0 +1,65 @@
+[
+  {
+    "objectID": "research_projects.html",
+    "href": "research_projects.html",
+    "title": "Research Projects",
+    "section": "",
+    "text": "Recently completed\n1️⃣: Azam, J.M., Pang, X., Are, E.B., Pulliam, J.R. and Ferrari, M.J., 2023. Modelling outbreak response impact in human vaccine-preventable diseases: A systematic review of differences in practices between collaboration types before COVID-19. Epidemics, p.100720.\n\n\nOngoing work\n1️⃣: Age-structured compartmental model for estimating the timing of detection of polio-related acute flaccid paralysis in South Africa (generalizable to other settings).\n2️⃣: A surveillance pipeline to detect changes in reported COVID-19 severity (case fatality, case hospitalization, and hospital fatality).\n3️⃣: A two-strain compartmental model for studying the impact of the timing of the emergence of variants on control strategies.\n\n\nBroad research interests\n1️⃣: Compartmental modelling of the impact of control measures against infectious diseases.\n2️⃣: (Bayesian) Models and methods for (near) real-time forecasting and nowcasting of infectious diseases.\nFind out more from my Google Scholar profile.\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "opensource_projects.html",
+    "href": "opensource_projects.html",
+    "title": "Open-source Projects",
+    "section": "",
+    "text": "The following are open-source projects that I lead or contribute to:\n\nepichains: a successor of bpmodels, which is an R package for analysing the distribution of the size and length of transmission chains.\nEpiNow2: An R package to estimate the time-varying reproduction number, growth rate, and doubling time using a range of open-source tools and best practices.\nepinowcast: An R package that provides flexible and efficient methods to gain situational awareness during outbreaks using currently available epidemiological observations and the reporting patterns of historical observations.\nEpiverse Initiative: An initiative that aims provide an integrated, generalisable, and scalable community-driven software ecosystem for outbreak analytics.\n\nFind my GitHub page here.\nI also,\n\nReview open source R code/packages for journals like the Journal of Open Source Software. Do reach out if you need my services.\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "teaching.html",
+    "href": "teaching.html",
+    "title": "Teaching",
+    "section": "",
+    "text": "I don’t currently teach as part of my duties but I can teach the following topics quite comfortably:\n\nR programming from the basics to advanced topics (R package development, object-oriented programming)\nGit/GitHub from the basics to intermediate/advanced (merging and rebasing, cherry-picking, etc)\nReproducible data analysis workflows\nVarious topics in mathematical/statistical/dynamical modelling of infectious diseases\nVarious topics in data analysis\nThesis and journal article writing techniques\n\nIn the past, I’ve taught the following courses:\n\nA shortcourse on Introduction to R: Management, Exploration, and Communication of Data at the DSI-NRF Centre of Excellence in Epidemiological Modelling and Analysis (SACEMA) at Stellenbosch University in South Africa.\nI also have a YouTube channel with over 3000 subscribers with videos like this tutorial on Mendeley amassing over 35, 000 views.\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "blogposts.html",
+    "href": "blogposts.html",
+    "title": "Blogposts",
+    "section": "",
+    "text": "Back to top"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Dr. James M. Azam",
+    "section": "",
+    "text": "Hi there, I am a Research Software Engineer at the London School of Hygiene and Tropical Medicine, working on the Epiverse TRACE Initiative, which is a project to develop and maintain R packages for providing reproducible analytics support during epidemics.\nI am mainly interested in developing models and methods and accompanying software to improve our understanding of how interventions impact disease spread.\n\n\n👨‍💼: Develop and maintain R packages for modelling infectious disease outbreaks, including:\n\nsimulating and analyzing transmission chains,\nestimating time-varying reproduction numbers,\nnowcasting and forecasting epidemiological counts.\n\n🕐: Co-maintain the Carpentries course on Data Analysis and Visualization in R for Ecologists.\n\n\n\nI have a PhD with a specialisation in outbreak response modelling and decision-making. I am interested in the development of models and methods to evaluate the impact of pharmaceutical and non-pharmaceutical interventions on the spread of infectious vaccine-preventable diseases. However, more broadly, I am interested in quantitative research that improves the health outcomes.\nAdditionally, I like contributing to and indulging in the literature on how to improve science, including science communication and science policy.\n\n\n\n📖: Reading Regression and Other Stories.\n🖥: Learning how to apply Bayesian data analysis to infectious disease nowcasting and forecasting through the Statistical Rethinking book.\n\n\n\nI am interested in working with you on a mathematical or statistical method/model that improves how we do outbreak analytics.\nWe can also discuss how to generalise it into a piece of software.\nPlease get in touch through any of my linked contacts. I’m basically everywhere and tend to answer promptly."
+  },
+  {
+    "objectID": "index.html#what-i-do",
+    "href": "index.html#what-i-do",
+    "title": "Dr. James M. Azam",
+    "section": "",
+    "text": "👨‍💼: Develop and maintain R packages for modelling infectious disease outbreaks, including:\n\nsimulating and analyzing transmission chains,\nestimating time-varying reproduction numbers,\nnowcasting and forecasting epidemiological counts.\n\n🕐: Co-maintain the Carpentries course on Data Analysis and Visualization in R for Ecologists."
+  },
+  {
+    "objectID": "index.html#research-interests",
+    "href": "index.html#research-interests",
+    "title": "Dr. James M. Azam",
+    "section": "",
+    "text": "I have a PhD with a specialisation in outbreak response modelling and decision-making. I am interested in the development of models and methods to evaluate the impact of pharmaceutical and non-pharmaceutical interventions on the spread of infectious vaccine-preventable diseases. However, more broadly, I am interested in quantitative research that improves the health outcomes.\nAdditionally, I like contributing to and indulging in the literature on how to improve science, including science communication and science policy."
+  },
+  {
+    "objectID": "index.html#continuing-professional-development",
+    "href": "index.html#continuing-professional-development",
+    "title": "Dr. James M. Azam",
+    "section": "",
+    "text": "📖: Reading Regression and Other Stories.\n🖥: Learning how to apply Bayesian data analysis to infectious disease nowcasting and forecasting through the Statistical Rethinking book."
+  },
+  {
+    "objectID": "index.html#collaborations",
+    "href": "index.html#collaborations",
+    "title": "Dr. James M. Azam",
+    "section": "",
+    "text": "I am interested in working with you on a mathematical or statistical method/model that improves how we do outbreak analytics.\nWe can also discuss how to generalise it into a piece of software.\nPlease get in touch through any of my linked contacts. I’m basically everywhere and tend to answer promptly."
+  }
+]

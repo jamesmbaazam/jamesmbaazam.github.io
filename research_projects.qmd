@@ -1,0 +1,38 @@
+---
+title: "Research Projects"
+---
+
+## Interests
+
+* Outbreak response analytics and decision-making:
+  
+  * Using compartmental modelling to quantify the impact of pharmaceutical and non-pharmaceutical interventions on the spread of an epidemic.
+  * Estimating the growth rate, time-varying reproduction number, and real-time infections from epidemiological counts using Bayesian methods and workflows from available R tools like [{EpiNow2}](https://epiforecasts.io/EpiNow2/dev/), [{epinowcast}](https://package.epinowcast.org/dev/), [{epidemia}](https://imperialcollegelondon.github.io/epidemia/index.html), and [{EpiEstim}](https://mrc-ide.github.io/EpiEstim/.).
+  * Investigating how modelling impacts public health decision-making.
+  * R package development (software engineering) for outbreak analytics; converting new/existing models and methods into reusable software.
+
+* Tools and pipelines for reproducible research.
+
+* Improving the practice of science and its communication.
+
+## Published
+
+You can find my published work on my [Google Scholar profile](https://scholar.google.co.za/citations?user=IxRpXp8AAAAJ&hl=en).
+
+## Recently published
+
+1️⃣: Azam, J.M., Pang, X., Are, E.B., Pulliam, J.R. and Ferrari, M.J., 2023. [Modelling outbreak response impact in human vaccine-preventable diseases: A systematic review of differences in practices between collaboration types before COVID-19](https://doi.org/10.1016/j.epidem.2023.100720). Epidemics, p.100720.
+
+## Ongoing work
+
+1️⃣: [Age-structured compartmental model](https://github.com/SACEMA/sa-polio-model) for 
+estimating the timing of detection of polio-related acute flaccid paralysis in South 
+Africa (generalizable to other settings).
+    
+2️⃣: [A surveillance pipeline](https://github.com/SACEMA/severity-monitoring) to detect 
+changes in reported COVID-19 severity (case fatality, case hospitalization, and 
+hospital fatality).
+    
+3️⃣: [A two-strain compartmental model](https://github.com/jamesmbaazam/two_strain_orv_model) 
+for studying the impact of the timing of the emergence of variants on control strategies.
+

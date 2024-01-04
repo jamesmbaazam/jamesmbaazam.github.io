@@ -1,0 +1,27 @@
+---
+title: "Open-source Projects"
+---
+
+The following are open-source projects that I lead or contribute to:
+
+* [epichains](https://github.com/epiverse-trace/epichains): a successor of [bpmodels](https://github.com/epiverse-trace/bpmodels), which is an R package
+for analysing the distribution of the size and length of transmission chains.
+
+* [EpiNow2](https://github.com/epiforecasts/EpiNow2): An R package to estimate
+the time-varying reproduction number, growth rate, and doubling time using a
+range of open-source tools and best practices.
+
+* [epinowcast](https://github.com/epinowcast/epinowcast): An R package
+that provides flexible and efficient methods to gain situational awareness during
+outbreaks using currently available epidemiological observations and the reporting patterns of historical observations.
+
+* [Epiverse Initiative](https://github.com/epiverse-trace/): An initiative that
+aims provide an integrated, generalisable, and scalable community-driven software
+ecosystem for outbreak analytics.
+
+Find my GitHub page [here](https://github.com/jamesmbaazam).
+
+I also,
+
+* Review open source R code/packages for journals like the Journal of Open
+Source Software. Do reach out if you need my services.
