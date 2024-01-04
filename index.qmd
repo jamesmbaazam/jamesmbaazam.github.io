@@ -6,7 +6,7 @@
 
 ::: {.g-col-8}
 Hi there, I am a Research Software Engineer at the London School of Hygiene and Tropical 
-Medicine, working on the [Epiverse TRACE](https://github.com/epiverse-trace) Initiative, 
+Medicine, working on the [Epiverse-TRACE](https://github.com/epiverse-trace) Initiative, 
 which is a project to develop and maintain R packages for providing reproducible analytics 
 support during epidemics.
 
@@ -19,11 +19,12 @@ spread.
 👨‍💼: Develop and maintain R packages for modelling infectious disease
 outbreaks, including:
 
-* simulating and analyzing transmission chains,
+* Simulating and analysing transmission chains ([{bpmodels}](https://epiverse-trace.github.io/bpmodels/), [{epichains}](https://epiverse-trace.github.io/epichains/)),
 
-* estimating time-varying reproduction numbers,
+* Estimating the time-varying reproduction number, growth rate, and real-time epidemiological counts ([{EpiNow2}](https://epiforecasts.io/EpiNow2/dev/))
 
-* nowcasting and forecasting epidemiological counts. 
+* Nowcasting and forecasting epidemiological counts that are biased by
+delays in reporting ([{epinowcast}](https://package.epinowcast.org/dev/)). 
 
 🕐: Co-maintain the Carpentries course on [Data Analysis and Visualization in R for Ecologists](https://github.com/datacarpentry/R-ecology-lesson). 
 
