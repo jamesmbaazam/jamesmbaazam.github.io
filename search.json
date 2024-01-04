@@ -1,5 +1,19 @@
 [
   {
+    "objectID": "blogposts.html",
+    "href": "blogposts.html",
+    "title": "Blogposts",
+    "section": "",
+    "text": "Back to top"
+  },
+  {
+    "objectID": "opensource_projects.html",
+    "href": "opensource_projects.html",
+    "title": "Open-source Projects",
+    "section": "",
+    "text": "The following are open-source projects that I lead or contribute to:\n\nepichains: a successor of bpmodels, which is an R package for analysing the distribution of the size and length of transmission chains.\nEpiNow2: An R package to estimate the time-varying reproduction number, growth rate, and doubling time using a range of open-source tools and best practices.\nepinowcast: An R package that provides flexible and efficient methods to gain situational awareness during outbreaks using currently available epidemiological observations and the reporting patterns of historical observations.\nEpiverse Initiative: An initiative that aims provide an integrated, generalisable, and scalable community-driven software ecosystem for outbreak analytics.\n\nFind my GitHub page here.\nI also,\n\nReview open source R code/packages for journals like the Journal of Open Source Software. Do reach out if you need my services.\n\n\n\n\n Back to top"
+  },
+  {
     "objectID": "research_projects.html",
     "href": "research_projects.html",
     "title": "Research Projects",
@@ -35,27 +49,6 @@
     "text": "Ongoing work\n1️⃣: Age-structured compartmental model for estimating the timing of detection of polio-related acute flaccid paralysis in South Africa (generalizable to other settings).\n2️⃣: A surveillance pipeline to detect changes in reported COVID-19 severity (case fatality, case hospitalization, and hospital fatality).\n3️⃣: A two-strain compartmental model for studying the impact of the timing of the emergence of variants on control strategies."
   },
   {
-    "objectID": "opensource_projects.html",
-    "href": "opensource_projects.html",
-    "title": "Open-source Projects",
-    "section": "",
-    "text": "The following are open-source projects that I lead or contribute to:\n\nepichains: a successor of bpmodels, which is an R package for analysing the distribution of the size and length of transmission chains.\nEpiNow2: An R package to estimate the time-varying reproduction number, growth rate, and doubling time using a range of open-source tools and best practices.\nepinowcast: An R package that provides flexible and efficient methods to gain situational awareness during outbreaks using currently available epidemiological observations and the reporting patterns of historical observations.\nEpiverse Initiative: An initiative that aims provide an integrated, generalisable, and scalable community-driven software ecosystem for outbreak analytics.\n\nFind my GitHub page here.\nI also,\n\nReview open source R code/packages for journals like the Journal of Open Source Software. Do reach out if you need my services.\n\n\n\n\n Back to top"
-  },
-  {
-    "objectID": "teaching.html",
-    "href": "teaching.html",
-    "title": "Teaching",
-    "section": "",
-    "text": "I don’t currently teach as part of my duties but I can teach the following topics quite comfortably:\n\nR programming from the basics to advanced topics (R package development, object-oriented programming)\nGit/GitHub from the basics to intermediate/advanced (merging and rebasing, cherry-picking, etc)\nReproducible data analysis workflows\nVarious topics in mathematical/statistical/dynamical modelling of infectious diseases\nVarious topics in data analysis\nThesis and journal article writing techniques\n\nIn the past, I’ve taught the following courses:\n\nA shortcourse on Introduction to R: Management, Exploration, and Communication of Data at the DSI-NRF Centre of Excellence in Epidemiological Modelling and Analysis (SACEMA) at Stellenbosch University in South Africa.\nI also have a YouTube channel with over 3000 subscribers with videos like this tutorial on Mendeley amassing over 35, 000 views.\n\n\n\n\n Back to top"
-  },
-  {
-    "objectID": "blogposts.html",
-    "href": "blogposts.html",
-    "title": "Blogposts",
-    "section": "",
-    "text": "Back to top"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Dr. James M. Azam",
@@ -89,5 +82,12 @@
     "title": "Dr. James M. Azam",
     "section": "",
     "text": "I am interested in working with you on a mathematical or statistical method/model that improves how we do outbreak analytics.\nWe can also discuss how to generalise it into a piece of software.\nPlease get in touch through any of my linked contacts. I’m basically everywhere and tend to answer promptly."
+  },
+  {
+    "objectID": "teaching.html",
+    "href": "teaching.html",
+    "title": "Teaching",
+    "section": "",
+    "text": "I don’t currently teach as part of my duties but I can teach the following topics quite comfortably:\n\nR programming from the basics to advanced topics (R package development, object-oriented programming)\nGit/GitHub from the basics to intermediate/advanced (merging and rebasing, cherry-picking, etc)\nReproducible data analysis workflows\nVarious topics in mathematical/statistical/dynamical modelling of infectious diseases\nVarious topics in data analysis\nThesis and journal article writing techniques\n\nIn the past, I’ve taught the following courses:\n\nA shortcourse on Introduction to R: Management, Exploration, and Communication of Data at the DSI-NRF Centre of Excellence in Epidemiological Modelling and Analysis (SACEMA) at Stellenbosch University in South Africa.\nI also have a YouTube channel with over 3000 subscribers with videos like this tutorial on Mendeley amassing over 35, 000 views.\n\n\n\n\n Back to top"
   }
 ]
