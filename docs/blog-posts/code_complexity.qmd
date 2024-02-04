@@ -1,0 +1,31 @@
+# Tips to reducing code complexity
+
+Code becomes complex in the technical sense whenever you introduce some kind of branching in how the function works. This starts with an if/else statement and gets worse as you nest more if/else and boolean logic.
+
+- Refactor to simplify/remove complex branching logic
+- Consider logic at the level of the key outcomes of a function:
+  - What do you expect the function to do and based on what combination of inputs and intermediate checks? use one if per expectation.
+  - When should it terminate?
+  - Extract boolean operations into variables
+- Remove code that never gets executed (checks on computed quantities, etc)
+- Reduce duplication; Combine common tasks into one function
+- Prefer [decorator](https://en.wikipedia.org/wiki/Decorator_pattern) and [strategy](https://en.wikipedia.org/wiki/Strategy_pattern) patterns over `if` and `switch` statements.
+- Avoid using boolean flags in function arguments to change how a function behaves. Instead, create separate functions.
+- Use descriptive variables and function names to make the code more readable
+- `switch` statements can be used to replaced nested `if` statements
+
+## Relevant links
+
+- <https://blog.codacy.com/reduce-cyclomatic-complexity>
+- <https://www.blueoptima.com/best-practices-for-reducing-cyclomatic-complexity-in-your-code/>
+- A [StackOverflow walkthrough](https://stackoverflow.com/questions/17927835/how-could-i-reduce-the-cyclomatic-complexity) of a refactoring example.
+- [How to reduce cyclomatic complexity and make code more readable](https://kasp9023.medium.com/how-to-make-your-code-more-readable-focus-on-the-happy-path-and-reduce-cyclomatic-complexity-66802b8897b5)
+
+## Coding strategies
+
+- [The happy path](https://en.wikipedia.org/wiki/Happy_path)
+- [Decorator pattern](https://en.wikipedia.org/wiki/Decorator_pattern)
+- [Strategy pattern](https://en.wikipedia.org/wiki/Strategy_pattern)
+- [Design Patterns](https://en.wikipedia.org/wiki/Design_Patterns)
+-
+

@@ -89,5 +89,47 @@
     "title": "Dr. James M. Azam",
     "section": "",
     "text": "I am interested in working with you on a mathematical or statistical method/model that improves how we do outbreak analytics.\nWe can also discuss how to generalise it into a piece of software.\nPlease get in touch through any of my linked contacts. I’m basically everywhere and tend to answer promptly."
+  },
+  {
+    "objectID": "blogposts/intro_to_sequence_function.html",
+    "href": "blogposts/intro_to_sequence_function.html",
+    "title": "The sequence() function",
+    "section": "",
+    "text": "In the past, when I’ve tried to generate sequences of numbers from each element of a vector, I’ve used a combination of the lapply() or sapply() and seq_len() functions. In a recent refactoring exercise, a colleague, Hugo Gruson pointed me to the sequence() function, which does the same job but in a terse manner.\nFor example, the following code generates a sequence of numbers from each element of a vector:\nunlist(sapply(c(1, 3, 2), function(x) seq_len(x)))\n\n[1] 1 1 2 3 1 2\nThe sequence() function is a simple function that can be used to generate sequences of numbers from each element of a vector. It provides a more concise way to generate sequences of numbers from each element of a vector while providing control over the starting and ending values of the sequence and the intervals in-between."
+  },
+  {
+    "objectID": "blogposts/intro_to_sequence_function.html#syntax",
+    "href": "blogposts/intro_to_sequence_function.html#syntax",
+    "title": "The sequence() function",
+    "section": "Syntax",
+    "text": "Syntax\n\nsequence(nvec, from = 1, to = 1, along.with = NULL)\n\nFor example, the following code generates a sequence of numbers from each element of a vector:\n\nsequence(c(1, 3, 2))\n\n[1] 1 1 2 3 1 2\n\n\nBy default, the from and to arguments are set to 1. The along.with argument is used to specify the length of the sequence."
+  },
+  {
+    "objectID": "blogposts/intro_to_sequence_function.html#example",
+    "href": "blogposts/intro_to_sequence_function.html#example",
+    "title": "The sequence() function",
+    "section": "Example",
+    "text": "Example\n\nsequence(c(1, 3, 2))\n\n[1] 1 1 2 3 1 2\n\n\nBeyond the defaults, the from and to arguments can be used to specify the starting and ending values of the sequence. The along.with argument can be used to specify the length of the sequence.\n\nsequence(c(1, 3, 2), from = 2, to = 5)\n\n[1] 2 2 3 4 2 3\n\n\nIn the above example, the sequence starts at 2 and ends at 5. The along.with argument is used to specify the length of the sequence."
+  },
+  {
+    "objectID": "blogposts/01-sequence_function/index.html",
+    "href": "blogposts/01-sequence_function/index.html",
+    "title": "The sequence() function",
+    "section": "",
+    "text": "Note\n\n\n\nYou may know about seq(), seq_len(), and seq_along(), but have you ever heard of sequence()?\nI am inspired by Maëlle Salmon’s Useful R functions series to share useful R functions that help me to write terse code as I come across them.\nIn the past, when I’ve tried to generate sequences of numbers from each element of a vector, I’ve used a combination of the unlist(), lapply() and seq_len() functions.\nmy_vec &lt;- c(1, 3, 2)\nmy_vec_sequence &lt;- unlist(lapply(my_vec, seq_len))\nmy_vec_sequence\n\n[1] 1 1 2 3 1 2\nRecently, I was pointed to the sequence() function, which performs the same operation in a terse way.\nThe sequence() function is a simple function that can be used to generate sequences of numbers from each element of a vector. It provides control over the starting and ending values of the sequence and the intervals to be used."
+  },
+  {
+    "objectID": "blogposts/01-sequence_function/index.html#syntax",
+    "href": "blogposts/01-sequence_function/index.html#syntax",
+    "title": "The sequence() function",
+    "section": "Syntax",
+    "text": "Syntax\n\nsequence(nvec, from = 1, to = 1, along.with = NULL)"
+  },
+  {
+    "objectID": "blogposts/01-sequence_function/index.html#examples",
+    "href": "blogposts/01-sequence_function/index.html#examples",
+    "title": "The sequence() function",
+    "section": "Examples",
+    "text": "Examples\nLet’s use sequence() to generate a sequence of numbers from each element of a vector. Note that by default, the from and to arguments are set to 1. The along.with argument is used to specify the length of the sequence.\n\nmy_seq &lt;- sequence(c(1, 3, 2))\nmy_seq\n\n[1] 1 1 2 3 1 2\n\n\nBeyond the defaults, the from and to arguments can be used to specify the starting and ending values of the sequence. Let’s generate a sequence from the vector c(1, 3, 2), starting at 2 and ending at 5 for each element.\n\nmy_seq &lt;- sequence(c(1, 3, 2), from = 2, to = 5)\nmy_seq\n\n[1] 2 2 3 4 2 3"
   }
 ]
