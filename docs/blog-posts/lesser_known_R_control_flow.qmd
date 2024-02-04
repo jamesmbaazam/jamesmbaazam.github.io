@@ -1,0 +1,88 @@
+# Reading Notes from Advanced R
+
+## Chapter 5: Control flow
+
+Here, I'm mostly focussing on lesser known issues with `if()`, `ifelse()`, and `switch()` and how they can be powerful or a source of bugs in code.
+
+### Lesser known factos about if() vs ifelse()
+
+- Notes from the help file of `ifelse()`:
+  - If `yes` or `no` are too short, their elements are recycled.
+  - Missing values in test give missing values in the result, e.g., `ifelse(NA, 1, 2)` will return NA instead of 1.
+  - "The mode of the result may depend on the value of test (see the examples), and the class attribute (see oldClass) of the result is taken from test and may be inappropriate for the values selected from yes and no."
+    - Testing with `NA` returns a logical value: `ifelse(NA, 1, 2) |> class()
+[1] "logical"`
+- A key difference between `if` and `ifelse` is that `if` only takes an argument of length 1 while `ifelse` is vectorized and can take vectors of length > 1.
+  - `if` will throw a warning if the length of the argument is greater than 1 and use only the first argument. This is especially bad in production code because it can lead to silent errors and bugs.
+  - Fix this setting the system environment variable `Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "true")` so that it throws an error instead of a warning when the length of the argument is greater than 1.
+- Single argument `if` statements invisibly return `NULL`. This can be used to write terse code or can be a source of bugs if you forget to assign the result to a variable.
+
+### switch()
+
+- The last component of a `switch()` should always throw an error, otherwise unmatched inputs will invisibly return `NULL`.
+- If multiple inputs have the same output, you can leave the right hand side of `=` empty and the input will “fall through” to the next value.
+
+```r
+legs <- function(x) {
+  switch(x,
+    cow = ,
+    horse = ,
+    dog = 4,
+    human = ,
+    chicken = 2,
+    plant = 0,
+    stop("Unknown input")
+  )
+}
+legs("cow")
+#> [1] 4
+legs("dog")
+#> [1] 4
+```
+
+- `switch()` works best with with character inputs:
+  - numeric inputs to `switch()` are harder to read, and have undesirable failure modes if the inputs are not a whole number.
+
+### for loops
+
+- There are two ways to terminate a for loop early:
+  - `next` exits the current iteration.
+  - `break` exits the entire for loop.
+
+```r
+for (i in 1:10) {
+  if (i %% 2 == 0) next
+  print(i)
+}
+```
+
+```r
+for (i in 1:10) {
+  if (i == 5) break
+  print(i)
+}
+```
+
+- When iterating over S3 vectors with a for loop, index the elements with `[[]]` because loops typically strip the attributes.
+
+Instead of:
+
+```r
+xs <- as.Date(c("2020-01-01", "2010-01-01"))
+for (x in xs) {
+  print(x)
+}
+#> [1] 18262
+#> [1] 14610
+```
+Do
+
+```r
+xs <- as.Date(c("2020-01-01", "2010-01-01"))
+for (x in xs) {
+  print(xs[[x]])
+}
+```
+
+- You can rewrite any `for` loop to use `while` instead, and you can rewrite any `while` loop to use `repeat`, but the converses are not true. Hence, `while` is more flexible than `for`, and `repeat` is more flexible than `while`.
+- It’s good practice, however, to use the least-flexible solution to a problem, so you should use `for` wherever possible.
