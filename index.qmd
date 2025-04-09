@@ -1,7 +1,7 @@
 ::: {.grid}
 
 ::: {.g-col-4}
-![](picture.jpg){fig-align="left"}
+![](images/picture.jpg){fig-align="left"}
 :::
 
 ::: {.g-col-8}
@@ -30,22 +30,39 @@ delays in reporting ([{epinowcast}](https://package.epinowcast.org/dev/)).
 
 🕐: I previously co-maintained the Carpentries course on [Data Analysis and Visualization in R for Ecologists](https://github.com/datacarpentry/R-ecology-lesson). 
 
-## Continuing Professional Development
+## How we can work together
 
-📖: Reading [Regression and Other Stories](https://avehtari.github.io/ROS-Examples/index.html).
+I am interested in working with you on a mathematical or statistical method/model that improves how we do outbreak analytics.
 
-🖥: Learning how to apply Bayesian data analysis to infectious disease nowcasting and forecasting through the [Statistical Rethinking book](https://www.youtube.com/playlist?list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus).
+We can also discuss how to generalise it into a piece of software.
 
-## Collaborations
+Please get in touch through any of my linked contacts (icons on top right). I'm basically everywhere and tend to answer promptly.
 
-I am interested in working with you on a mathematical or statistical method/model
-that improves how we do outbreak analytics.
+## How I'm Sharpening My Skills
 
-We can also discuss how to generalise it
-into a piece of software.
+🖥: Learning:
 
-Please get in touch through any of my linked contacts.
-I'm basically everywhere and tend to answer promptly.
+  - Forecasting principles and methods:
+  
+    - Book: [Forecasting: Principles and Practice (3rd ed)](https://otexts.com/fpp3/).
+    
+    - Course: [Nowcasting and forecasting infectious disease dynamics](https://nfidd.github.io/nfidd/).
+    
+  - Bayesian data analysis:
+  
+    - Book: [Statistical Rethinking book](https://www.youtube.com/playlist?list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus).
+    
+  - Open source software development:
+  
+    - [Working in Public: The Making and Maintenance of Open Source Software](https://www.amazon.co.uk/Working-Public-Making-Maintenance-Software/dp/0578675862).
+    
+  - [Practical MLOps: Operationalizing Machine Learning Models](https://www.amazon.co.uk/Practical-MLOps-Operationalizing-Machine-Learning/dp/1098103017)
+
+📖: Casual Reading:
+
+  - [The 5 Elements of Effective Thinking](https://www.amazon.co.uk/5-Elements-Effective-Thinking/dp/0691156662) by Edward Burger and Michael Starbird.
+  
+  - [The Art of Explanation: How to Communicate with Clarity and Confidence](https://www.amazon.co.uk/Art-Explanation-Communicate-Clarity-Confidence/dp/1472298446) by Ros Atkins.
 
 :::
 
