@@ -2,16 +2,6 @@
 title: "Open-source Projects"
 ---
 
-::: {.grid}
-
-::: {.g-col-4}
-[![](images/epichains_logo.svg){width=50%}](https://epiverse-trace.github.io/epichains/)
-[![](images/EpiNow2_logo.png){width=50%}](https://epiforecasts.io/EpiNow2)
-[![](images/epinowcast_logo.png){width=50%}](https://package.epinowcast.org/)
-[![](images/primarycensored_logo.png){width=50%}](https://primarycensored.epinowcast.org/)
-:::
-
-::: {.g-col-8}
 The following are open-source projects that I lead or contribute to:
 
 * [epichains](https://github.com/epiverse-trace/epichains): a successor of [bpmodels](https://github.com/epiverse-trace/bpmodels), which is an R package
@@ -35,7 +25,3 @@ I also,
 
 * Review open source R code/packages for journals like the Journal of Open
 Source Software. Do reach out if you need my services.
-
-:::
-
-:::
