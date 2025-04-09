@@ -42,3 +42,6 @@ format:
 
 theme:
   dark: darkly
+
+filters:
+  - auto-dark
