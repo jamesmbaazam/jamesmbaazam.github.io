@@ -19,24 +19,16 @@ spread.
 👨‍💼: Develop and maintain R packages for modelling infectious disease
 outbreaks, including:
 
-* Simulating and analysing transmission chains ([{bpmodels}](https://epiverse-trace.github.io/bpmodels/), [{epichains}](https://epiverse-trace.github.io/epichains/)),
+* Simulating and analysing transmission chains ([{epichains}](https://epiverse-trace.github.io/epichains/), [{bpmodels}](https://epiverse-trace.github.io/bpmodels/)),
 
 * Estimating the time-varying reproduction number, growth rate, and real-time epidemiological counts ([{EpiNow2}](https://epiforecasts.io/EpiNow2/dev/))
 
 * Nowcasting and forecasting epidemiological counts that are biased by
 delays in reporting ([{epinowcast}](https://package.epinowcast.org/dev/)). 
 
-🕐: Co-maintain the Carpentries course on [Data Analysis and Visualization in R for Ecologists](https://github.com/datacarpentry/R-ecology-lesson). 
+👨‍💼: Conduct research on infectious disease modelling (see Research tab).
 
-## Research Interests
-
-I have a PhD with a specialisation in outbreak response modelling and decision-making.
-I am interested in the development of models and methods to evaluate the impact
-of pharmaceutical and non-pharmaceutical interventions on the spread of infectious vaccine-preventable diseases. However, more broadly, I am interested in
-quantitative research that improves the health outcomes. 
-
-Additionally, I like contributing to and indulging in the literature on how
-to improve science, including science communication and science policy.
+🕐: I previously co-maintained the Carpentries course on [Data Analysis and Visualization in R for Ecologists](https://github.com/datacarpentry/R-ecology-lesson). 
 
 ## Continuing Professional Development
 
