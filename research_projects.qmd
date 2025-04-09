@@ -1,27 +1,58 @@
 ---
-title: "Research Projects"
+title: "Research"
 ---
 
-## Interests
+```{r packages, include=FALSE, message=FALSE, warning=FALSE}
+library("scholar")
+library("dplyr")
+library("DT")
+```
 
-* Outbreak response analytics and decision-making:
-  
-  * Using compartmental modelling to quantify the impact of pharmaceutical and non-pharmaceutical interventions on the spread of an epidemic.
-  * Estimating the growth rate, time-varying reproduction number, and real-time infections from epidemiological counts using Bayesian methods and workflows from available R tools like [{EpiNow2}](https://epiforecasts.io/EpiNow2/dev/), [{epinowcast}](https://package.epinowcast.org/dev/), [{epidemia}](https://imperialcollegelondon.github.io/epidemia/index.html), and [{EpiEstim}](https://mrc-ide.github.io/EpiEstim/.).
-  * Investigating how modelling impacts public health decision-making.
-  * R package development (software engineering) for outbreak analytics; converting new/existing models and methods into reusable software.
+## Research Interests
 
-* Tools and pipelines for reproducible research.
+I hold a PhD specialising in outbreak response modelling and decision-making. My work focuses on developing methods and open-source tools to evaluate the impact of pharmaceutical and non-pharmaceutical interventions on the spread of vaccine-preventable diseases.
 
-* Improving the practice of science and its communication.
+**Key interests:**
 
-## Published
+- Compartmental modelling to quantify intervention impacts during epidemics.
+- Real-time forecasting and nowcasting of infections and $R_t$ using Bayesian methods with tools like [EpiNow2](https://epiforecasts.io/EpiNow2/dev/), [epinowcast](https://package.epinowcast.org/dev/), [epidemia](https://imperialcollegelondon.github.io/epidemia/index.html), and [EpiEstim](https://mrc-ide.github.io/EpiEstim/).
+- Building reproducible pipelines and open source packages for outbreak analytics and model implementation.
+- Improving science research culture.
+
+## Published work
 
 You can find my published work on my [Google Scholar profile](https://scholar.google.co.za/citations?user=IxRpXp8AAAAJ&hl=en).
 
-## Recently published
+### Recent work
 
-1️⃣: Azam, J.M., Pang, X., Are, E.B., Pulliam, J.R. and Ferrari, M.J., 2023. [Modelling outbreak response impact in human vaccine-preventable diseases: A systematic review of differences in practices between collaboration types before COVID-19](https://doi.org/10.1016/j.epidem.2023.100720). Epidemics, p.100720.
+```{r pubs-table, echo=FALSE, message=FALSE, warning=FALSE}
+# My scholar id
+id <- "IxRpXp8AAAAJ"
+# Get the profile
+my_profile <- scholar::get_profile(id)
+# Get publications
+pubs <- scholar::get_publications(id)
+# Sort by year
+pubs <- pubs |> dplyr::arrange(desc(year))
+# Get the first 5 publications
+recent_pubs <- pubs |>
+  dplyr::select(title, author, year, journal) |> 
+  dplyr::slice_head(n = 5)
+DT::datatable(recent_pubs)
+```
+
+### Top 5 most cited publications
+
+```{r top-cited-pubs, echo=FALSE, message=FALSE, warning=FALSE}
+# Get the top 5 most cited publications
+# Sort by year
+pubs <- pubs |> dplyr::arrange(desc(cites))
+# Get the first 5 publications
+most_cited <- pubs |>
+  dplyr::select(title, author, year, journal, cites) |> 
+  dplyr::slice_head(n = 5)
+DT::datatable(most_cited)
+```
 
 ## Ongoing work
 
