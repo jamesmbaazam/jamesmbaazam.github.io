@@ -57,8 +57,6 @@ DT::datatable(most_cited)
 ## Ongoing research work
 
 - [Evaluating the tradeoffs of using temporally aggregated data for epidemiological forecasts: a case study of COVID-19 in South Africa](https://github.com/tatendashoko/now-fore-cast).
-- [A surveillance pipeline](https://github.com/SACEMA/severity-monitoring) to detect changes in reported COVID-19 severity (case fatality, case hospitalization, and hospital fatality).
-- [Age-structured compartmental model](https://github.com/SACEMA/sa-polio-model) for estimating the timing of detection of polio-related acute flaccid paralysis in South Africa (generalizable to other settings).
 - [A two-strain compartmental model](https://github.com/jamesmbaazam/two_strain_orv_model) 
 for studying the impact of the timing of the emergence of variants on control strategies.
 
