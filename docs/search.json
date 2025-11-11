@@ -1,31 +1,59 @@
 [
   {
-    "objectID": "research_projects.html",
-    "href": "research_projects.html",
-    "title": "Research",
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Blog",
     "section": "",
-    "text": "I hold a PhD specialising in outbreak response modelling and decision-making. My work focuses on developing methods and open-source tools to evaluate the impact of pharmaceutical and non-pharmaceutical interventions on the spread of vaccine-preventable diseases.\nKey interests:\n\nCompartmental modelling to quantify intervention impacts during epidemics.\nReal-time forecasting and nowcasting of infections and \\(R_t\\) using Bayesian methods with tools like EpiNow2, epinowcast, epidemia, and EpiEstim.\nBuilding reproducible pipelines and open source packages for outbreak analytics and model implementation.\nImproving science research culture."
+    "text": "Julia vs. R (in my beginner’s opinion)\n\n\n\n\n\n\nR\n\n\njulia\n\n\n\n\n\n\n\n\n\nNov 8, 2025\n\n\nJames Mba Azam\n\n\n\n\n\n\nNo matching items\n\n Back to top"
   },
   {
-    "objectID": "research_projects.html#research-interests",
-    "href": "research_projects.html#research-interests",
-    "title": "Research",
+    "objectID": "blog/julia-sugar-vs-r/index.html",
+    "href": "blog/julia-sugar-vs-r/index.html",
+    "title": "Julia vs. R (in my beginner’s opinion)",
     "section": "",
-    "text": "I hold a PhD specialising in outbreak response modelling and decision-making. My work focuses on developing methods and open-source tools to evaluate the impact of pharmaceutical and non-pharmaceutical interventions on the spread of vaccine-preventable diseases.\nKey interests:\n\nCompartmental modelling to quantify intervention impacts during epidemics.\nReal-time forecasting and nowcasting of infections and \\(R_t\\) using Bayesian methods with tools like EpiNow2, epinowcast, epidemia, and EpiEstim.\nBuilding reproducible pipelines and open source packages for outbreak analytics and model implementation.\nImproving science research culture."
+    "text": "I’ve heard a lot of good things about the julia programming language over the last several years, but I’ve not bothered to learn it yet. Usually, my principle is that I only learn a new language or tool (or stack as the cool guys would call it) when I need it but not because everyone is raving about it.\nThe appealing features of julia that I hear a lot about are its computational speed (apparrently as fast as C/C++!), composability thorough multiple dispatch (wth is even that!!!), reproducibility features, and readability (easier syntax).\nThese are all attractive features that I want to harness moving forward, so a natural thing to do is to compare it to languages that I’m more familiar with.\nIn this post, I do a quick and dirty comparison of julia to R. This is not novel as others have written about it123, including the official comparison by the julia folks. However, this is my own way of learning as I go, so forgive me if none of this is new to you but I’d still love to hear your thoughts.\nIs there anything non-factual or unfair about my comparisons? Do share your thoughts below or wherever I shared this post."
   },
   {
-    "objectID": "research_projects.html#published-work",
-    "href": "research_projects.html#published-work",
-    "title": "Research",
-    "section": "Published work",
-    "text": "Published work\nYou can find my published work on my Google Scholar profile.\n\nRecent work\n\n\n\n\n\n\n\n\nTop 5 most cited publications"
+    "objectID": "blog/julia-sugar-vs-r/index.html#autoprinting-on-assignment",
+    "href": "blog/julia-sugar-vs-r/index.html#autoprinting-on-assignment",
+    "title": "Julia vs. R (in my beginner’s opinion)",
+    "section": "Autoprinting on assignment",
+    "text": "Autoprinting on assignment\nIn julia, objects are auto-printed when created but you can suppress it by ending the line with ; like other programming languages. In R, objects have to be printed explicitly.\n\n\n\nJulia\n\nname = \"James\";\noranges = 3;\nmangoes = 2;\n\"$name bought $oranges oranges and $mangoes mangoes\"\n\n\"James bought 3 oranges and 2 mangoes\"\n\n\n\n\n\nR\n\nname &lt;- \"James\" # Not printed\n# You have to explicitly print the object by calling it or passing it to print\nname\n\n[1] \"James\"\n\nprint(name)\n\n[1] \"James\"\n\n\n\n\nMy judgment\nI find julia’s feature a little annoying especially for data science projects."
   },
   {
-    "objectID": "research_projects.html#ongoing-research-work",
-    "href": "research_projects.html#ongoing-research-work",
-    "title": "Research",
-    "section": "Ongoing research work",
-    "text": "Ongoing research work\n\nEvaluating the tradeoffs of using temporally aggregated data for epidemiological forecasts: a case study of COVID-19 in South Africa.\nA surveillance pipeline to detect changes in reported COVID-19 severity (case fatality, case hospitalization, and hospital fatality).\nAge-structured compartmental model for estimating the timing of detection of polio-related acute flaccid paralysis in South Africa (generalizable to other settings).\nA two-strain compartmental model for studying the impact of the timing of the emergence of variants on control strategies."
+    "objectID": "blog/julia-sugar-vs-r/index.html#string-interpolation",
+    "href": "blog/julia-sugar-vs-r/index.html#string-interpolation",
+    "title": "Julia vs. R (in my beginner’s opinion)",
+    "section": "String interpolation",
+    "text": "String interpolation\nIn julia, you can insert/interpolate variables into a string using the $ sign. You can do the same in R either using inbuilt functions like paste(), paste0(), sprintf(), or with external packages such as the {glue} R package.\n\n\n\nJulia\n\nname = \"James\";\noranges = 3;\nmangoes = 2;\n\"$name bought $oranges oranges and $mangoes mangoes\"\n\n\"James bought 3 oranges and 2 mangoes\"\n\n\n\n\n\nR\n\nname &lt;- \"James\"\noranges &lt;- 3\nmangoes &lt;- 2\nsprintf(\"%s bought %s oranges and %s mangoes\", name, oranges, mangoes)\n\n[1] \"James bought 3 oranges and 2 mangoes\"\n\npaste(name, \"bought\", oranges, \"oranges\", \"and\", mangoes, \"mangoes\")\n\n[1] \"James bought 3 oranges and 2 mangoes\"\n\n\n\n\nMy judgment\nUsing paste() or paste0 can be a bit tedious but sprintf() is definitely a nice contender. Overall, julia is still easier to type."
+  },
+  {
+    "objectID": "blog/julia-sugar-vs-r/index.html#nexted-for-loops",
+    "href": "blog/julia-sugar-vs-r/index.html#nexted-for-loops",
+    "title": "Julia vs. R (in my beginner’s opinion)",
+    "section": "Nexted for loops",
+    "text": "Nexted for loops\nSay I want to populate a matrix where each element is the sum of its row and column indices.\n\n\n\nJulia\n\nA = 3;\nB = 3;\nM = [i+j for i in 1:A, j in 1:B]\n\n3×3 Matrix{Int64}:\n 2  3  4\n 3  4  5\n 4  5  6\n\n\n\n\n\nR\n\n\nR\n\nA &lt;- 3\nB &lt;- 3\nM &lt;- matrix(\n  0,\n  nrow = A,\n  ncol = B\n)\n\nfor (i in 1:A) {\n  for (j in 1:B) {\n    M[i, j] &lt;- i + j\n  }\n}\n\nprint(M)\n\n     [,1] [,2] [,3]\n[1,]    2    3    4\n[2,]    3    4    5\n[3,]    4    5    6\n\n\n\n\nMy judgment\nThe array comprehension method in julia makes it incredibly easy to write complicated nested for loops, so julia wins here again."
+  },
+  {
+    "objectID": "blog/julia-sugar-vs-r/index.html#inbuilt-reproducibility-features",
+    "href": "blog/julia-sugar-vs-r/index.html#inbuilt-reproducibility-features",
+    "title": "Julia vs. R (in my beginner’s opinion)",
+    "section": "Inbuilt Reproducibility features",
+    "text": "Inbuilt Reproducibility features\n\n\n\nJulia\nJulia has inbuilt functionalities to create a project-specific Manifest.toml for pinning the packages and versions used. This great for reproducibility and portability purposes. You can also create a Project.toml file to store information about the project.\nIn your command line, type (sequentially)\n\n]\nactivate &lt;path-to-project&gt; # take snapshot of a project\n\n\n\n\nR\nR has no inbuilt functionalities for this. You can, however, use packages such as {renv} to pin your package versions for reproducibility.\n\nif (!require(renv)) install.packages(\"renv\")\nlibrary(renv)\nrenv::activate()\n\n\n\nMy judgment\nIt’s quite clear that having to choose a package that works for you with minimal cognitive load is quite daunting for a new/intermediate user of R. Moreover, you also have to worry about the version of the package used for taking the snapshot itself. All these make it a little less desirable. Julia’s inbuilt features for snapshoting a project make it more desirable for conducting reproducible research."
+  },
+  {
+    "objectID": "blog/julia-sugar-vs-r/index.html#package-ecosystem-and-community",
+    "href": "blog/julia-sugar-vs-r/index.html#package-ecosystem-and-community",
+    "title": "Julia vs. R (in my beginner’s opinion)",
+    "section": "Package ecosystem and community",
+    "text": "Package ecosystem and community\n\n\nR\nR has the tidyverse and other communities who have spent dedicated time developing transformational packages. The community is relatively large with an uncountable number of packages for doing data statistics, data science, and even general purpose programming including web development.\n\n\n\n\njulia\nJulia is a much younger language but that is not always a bad thing. Being a more recent language means the core developers have the opportunity to incorporate features from existing languages in order to give secondary developers and users a better experience."
+  },
+  {
+    "objectID": "blog/julia-sugar-vs-r/index.html#footnotes",
+    "href": "blog/julia-sugar-vs-r/index.html#footnotes",
+    "title": "Julia vs. R (in my beginner’s opinion)",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nCoursera: Julia vs. R: What’s the Difference?↩︎\nFirst Impressions of Julia from an R User↩︎\nNoteworthy differences from R in the Julia Official docs↩︎"
   },
   {
     "objectID": "opensource_projects.html",
@@ -40,13 +68,6 @@
     "title": "Teaching",
     "section": "",
     "text": "I don’t currently teach as part of my duties but I can teach the following topics quite comfortably:\n\nR programming from the basics to advanced topics (R package development, object-oriented programming)\nGit/GitHub from the basics to intermediate/advanced (merging and rebasing, cherry-picking, etc)\nReproducible data analysis workflows\nVarious topics in mathematical/statistical/dynamical modelling of infectious diseases\nVarious topics in data analysis\nThesis and journal article writing techniques\n\nIn the past, I’ve taught the following courses:\n\nA shortcourse on Introduction to R: Management, Exploration, and Communication of Data at the DSI-NRF Centre of Excellence in Epidemiological Modelling and Analysis (SACEMA) at Stellenbosch University in South Africa.\nI also have a YouTube channel with over 3000 subscribers with videos like this tutorial on Mendeley amassing over 35, 000 views.\n\n\n\n\n Back to top"
-  },
-  {
-    "objectID": "blogposts.html",
-    "href": "blogposts.html",
-    "title": "Blogposts",
-    "section": "",
-    "text": "Back to top"
   },
   {
     "objectID": "index.html",
@@ -75,5 +96,40 @@
     "title": "Dr. James M. Azam",
     "section": "",
     "text": "🖥: Learning:\n\nForecasting principles and methods:\n\nBook: Forecasting: Principles and Practice (3rd ed).\nCourse: Nowcasting and forecasting infectious disease dynamics.\n\nBayesian data analysis:\n\nBook: Statistical Rethinking book.\n\nOpen source software development:\n\nWorking in Public: The Making and Maintenance of Open Source Software.\n\nPractical MLOps: Operationalizing Machine Learning Models\n\n📖: Casual Reading:\n\nThe 5 Elements of Effective Thinking by Edward Burger and Michael Starbird.\nThe Art of Explanation: How to Communicate with Clarity and Confidence by Ros Atkins."
+  },
+  {
+    "objectID": "research_projects.html",
+    "href": "research_projects.html",
+    "title": "Research",
+    "section": "",
+    "text": "I hold a PhD specialising in outbreak response modelling and decision-making. My work focuses on developing methods and open-source tools to evaluate the impact of pharmaceutical and non-pharmaceutical interventions on the spread of vaccine-preventable diseases.\nKey interests:\n\nCompartmental modelling to quantify intervention impacts during epidemics.\nReal-time forecasting and nowcasting of infections and \\(R_t\\) using Bayesian methods with tools like EpiNow2, epinowcast, epidemia, and EpiEstim.\nBuilding reproducible pipelines and open source packages for outbreak analytics and model implementation.\nImproving science research culture."
+  },
+  {
+    "objectID": "research_projects.html#research-interests",
+    "href": "research_projects.html#research-interests",
+    "title": "Research",
+    "section": "",
+    "text": "I hold a PhD specialising in outbreak response modelling and decision-making. My work focuses on developing methods and open-source tools to evaluate the impact of pharmaceutical and non-pharmaceutical interventions on the spread of vaccine-preventable diseases.\nKey interests:\n\nCompartmental modelling to quantify intervention impacts during epidemics.\nReal-time forecasting and nowcasting of infections and \\(R_t\\) using Bayesian methods with tools like EpiNow2, epinowcast, epidemia, and EpiEstim.\nBuilding reproducible pipelines and open source packages for outbreak analytics and model implementation.\nImproving science research culture."
+  },
+  {
+    "objectID": "research_projects.html#published-work",
+    "href": "research_projects.html#published-work",
+    "title": "Research",
+    "section": "Published work",
+    "text": "Published work\nYou can find my published work on my Google Scholar profile.\n\nRecent work\n\n\n\n\n\n\n\n\nTop 5 most cited publications"
+  },
+  {
+    "objectID": "research_projects.html#ongoing-research-work",
+    "href": "research_projects.html#ongoing-research-work",
+    "title": "Research",
+    "section": "Ongoing research work",
+    "text": "Ongoing research work\n\nEvaluating the tradeoffs of using temporally aggregated data for epidemiological forecasts: a case study of COVID-19 in South Africa.\nA surveillance pipeline to detect changes in reported COVID-19 severity (case fatality, case hospitalization, and hospital fatality).\nAge-structured compartmental model for estimating the timing of detection of polio-related acute flaccid paralysis in South Africa (generalizable to other settings).\nA two-strain compartmental model for studying the impact of the timing of the emergence of variants on control strategies."
+  },
+  {
+    "objectID": "blog/julia-sugar-vs-r/index.html#package-management",
+    "href": "blog/julia-sugar-vs-r/index.html#package-management",
+    "title": "Julia vs. R (in my beginner’s opinion)",
+    "section": "Package management",
+    "text": "Package management\n\n\n\nR\nWhen you try to load a package that’s not yet been installed, R’s error message could be more informative by informing you if the package exists but not installed.\n“there is no package called …”. Is not really a useful error message especially for beginners.\n\n\n\nR package loading error\n\n\n\n\n\nJulia\nJulia has a more informative package loading error because it checks the registry to see if the package exists and gives you a simple walkthrough to install it.\n\n\n\nJulia package loading error"
   }
 ]

@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Dr. James M. Azam</title>
+<link>https://jamesmbaazam.github.io/blog.html</link>
+<atom:link href="https://jamesmbaazam.github.io/blog.xml" rel="self" type="application/rss+xml"/>
+<description>Learnings from my day to day experiences</description>
+<generator>quarto-1.5.43</generator>
+<lastBuildDate>Sat, 08 Nov 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Julia vs. R (in my beginner’s opinion)</title>
+  <dc:creator>James Mba Azam</dc:creator>
+  <link>https://jamesmbaazam.github.io/blog/julia-sugar-vs-r/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I’ve heard a lot of good things about the <a href="https://julialang.org/">julia programming language</a> over the last several years, but I’ve not bothered to learn it yet. Usually, my principle is that I only learn a new language or tool (or stack as the cool guys would call it) when I need it but not because everyone is raving about it.</p>
+<p>The appealing features of julia that I hear a lot about are its computational speed (apparrently as fast as C/C++!), composability thorough <a href="https://en.wikipedia.org/wiki/Multiple_dispatch">multiple dispatch</a> (wth is even that!!!), reproducibility features, and readability (easier syntax).</p>
+<p>These are all attractive features that I want to harness moving forward, so a natural thing to do is to compare it to languages that I’m more familiar with.</p>
+<p>In this post, I do a quick and dirty comparison of julia to R. This is not novel as others have written about it<sup>1</sup><sup>2</sup><sup>3</sup>, including <a href="https://docs.julialang.org/en/v1/manual/noteworthy-differences/#Noteworthy-differences-from-R">the official comparison</a> by the julia folks. However, this is my own way of learning as I go, so forgive me if none of this is new to you but I’d still love to hear your thoughts.</p>
+<p>Is there anything non-factual or unfair about my comparisons? Do share your thoughts below or wherever I shared this post.</p>
+<section id="autoprinting-on-assignment" class="level2">
+<h2 class="anchored" data-anchor-id="autoprinting-on-assignment">Autoprinting on assignment</h2>
+<p>In julia, objects are auto-printed when created but you can suppress it by ending the line with <code>;</code> like other programming languages. In R, objects have to be printed explicitly.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<section id="julia" class="level3">
+<h3 class="anchored" data-anchor-id="julia">Julia</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1">name <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"James"</span>;</span>
+<span id="cb1-2">oranges <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>;</span>
+<span id="cb1-3">mangoes <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>;</span>
+<span id="cb1-4"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>name<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> bought </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>oranges<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> oranges and </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>mangoes<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> mangoes"</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>"James bought 3 oranges and 2 mangoes"</code></pre>
+</div>
+</div>
+</section>
+</div><div class="column" style="width:50%;">
+<section id="r" class="level3">
+<h3 class="anchored" data-anchor-id="r">R</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">name <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"James"</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Not printed</span></span>
+<span id="cb3-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># You have to explicitly print the object by calling it or passing it to print</span></span>
+<span id="cb3-3">name</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "James"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">print</span>(name)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "James"</code></pre>
+</div>
+</div>
+</section>
+</div><section id="my-judgment" class="level3">
+<h3 class="anchored" data-anchor-id="my-judgment">My judgment</h3>
+<p>I find julia’s feature a little annoying especially for data science projects.</p>
+</section>
+</div>
+</section>
+<section id="string-interpolation" class="level2">
+<h2 class="anchored" data-anchor-id="string-interpolation">String interpolation</h2>
+<p>In julia, you can insert/interpolate variables into a string using the <code>$</code> sign. You can do the same in R either using inbuilt functions like <code>paste()</code>, <code>paste0()</code>, <code>sprintf()</code>, or with external packages such as the <code>{glue}</code> R package.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<section id="julia-1" class="level3">
+<h3 class="anchored" data-anchor-id="julia-1">Julia</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1">name <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"James"</span>;</span>
+<span id="cb7-2">oranges <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>;</span>
+<span id="cb7-3">mangoes <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>;</span>
+<span id="cb7-4"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>name<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> bought </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>oranges<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> oranges and </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>mangoes<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> mangoes"</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>"James bought 3 oranges and 2 mangoes"</code></pre>
+</div>
+</div>
+</section>
+</div><div class="column" style="width:50%;">
+<section id="r-1" class="level3">
+<h3 class="anchored" data-anchor-id="r-1">R</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">name <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"James"</span></span>
+<span id="cb9-2">oranges <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span></span>
+<span id="cb9-3">mangoes <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span>
+<span id="cb9-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sprintf</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"%s bought %s oranges and %s mangoes"</span>, name, oranges, mangoes)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "James bought 3 oranges and 2 mangoes"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste</span>(name, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bought"</span>, oranges, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"oranges"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"and"</span>, mangoes, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"mangoes"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "James bought 3 oranges and 2 mangoes"</code></pre>
+</div>
+</div>
+</section>
+</div><section id="my-judgment-1" class="level3">
+<h3 class="anchored" data-anchor-id="my-judgment-1">My judgment</h3>
+<p>Using <code>paste()</code> or <code>paste0</code> can be a bit tedious but <code>sprintf()</code> is definitely a nice contender. Overall, julia is still easier to type.</p>
+</section>
+</div>
+</section>
+<section id="nexted-for-loops" class="level2">
+<h2 class="anchored" data-anchor-id="nexted-for-loops">Nexted <code>for</code> loops</h2>
+<p>Say I want to populate a matrix where each element is the sum of its row and column indices.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<section id="julia-2" class="level3">
+<h3 class="anchored" data-anchor-id="julia-2">Julia</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1">A <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>;</span>
+<span id="cb13-2">B <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>;</span>
+<span id="cb13-3">M <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [i<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>j for i <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span>A, j <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span>B]</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3×3 Matrix{Int64}:
+ 2  3  4
+ 3  4  5
+ 4  5  6</code></pre>
+</div>
+</div>
+</section>
+</div><div class="column" style="width:50%;">
+<section id="r-2" class="level3">
+<h3 class="anchored" data-anchor-id="r-2">R</h3>
+</section>
+<section id="r-3" class="level3">
+<h3 class="anchored" data-anchor-id="r-3">R</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1">A <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span></span>
+<span id="cb15-2">B <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span></span>
+<span id="cb15-3">M <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">matrix</span>(</span>
+<span id="cb15-4">  <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,</span>
+<span id="cb15-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">nrow =</span> A,</span>
+<span id="cb15-6">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ncol =</span> B</span>
+<span id="cb15-7">)</span>
+<span id="cb15-8"></span>
+<span id="cb15-9"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span>A) {</span>
+<span id="cb15-10">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> (j <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span>B) {</span>
+<span id="cb15-11">    M[i, j] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> i <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> j</span>
+<span id="cb15-12">  }</span>
+<span id="cb15-13">}</span>
+<span id="cb15-14"></span>
+<span id="cb15-15"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">print</span>(M)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]    2    3    4
+[2,]    3    4    5
+[3,]    4    5    6</code></pre>
+</div>
+</div>
+</section>
+</div><section id="my-judgment-2" class="level3">
+<h3 class="anchored" data-anchor-id="my-judgment-2">My judgment</h3>
+<p>The array comprehension method in julia makes it incredibly easy to write complicated nested for loops, so julia wins here again.</p>
+</section>
+</div>
+</section>
+<section id="inbuilt-reproducibility-features" class="level2">
+<h2 class="anchored" data-anchor-id="inbuilt-reproducibility-features">Inbuilt Reproducibility features</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<section id="julia-3" class="level3">
+<h3 class="anchored" data-anchor-id="julia-3">Julia</h3>
+<p>Julia has inbuilt functionalities to create a project-specific <code>Manifest.toml</code> for pinning the packages and versions used. This great for reproducibility and portability purposes. You can also create a <code>Project.toml</code> file to store information about the project.</p>
+<p>In your command line, type (sequentially)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1">]</span>
+<span id="cb17-2">activate <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span>path<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>to<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>project<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># take snapshot of a project</span></span></code></pre></div>
+</div>
+</section>
+</div><div class="column" style="width:50%;">
+<section id="r-4" class="level3">
+<h3 class="anchored" data-anchor-id="r-4">R</h3>
+<p>R has no inbuilt functionalities for this. You can, however, use packages such as <code>{renv}</code> to pin your package versions for reproducibility.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> (<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">require</span>(renv)) <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">install.packages</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"renv"</span>)</span>
+<span id="cb18-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(renv)</span>
+<span id="cb18-3">renv<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">activate</span>()</span></code></pre></div>
+</div>
+</section>
+</div><section id="my-judgment-3" class="level3">
+<h3 class="anchored" data-anchor-id="my-judgment-3">My judgment</h3>
+<p>It’s quite clear that having to choose a package that works for you with minimal cognitive load is quite daunting for a new/intermediate user of R. Moreover, you also have to worry about the version of the package used for taking the snapshot itself. All these make it a little less desirable. Julia’s inbuilt features for snapshoting a project make it more desirable for conducting reproducible research.</p>
+</section>
+</div>
+</section>
+<div class="columns">
+<section id="package-ecosystem-and-community" class="level2">
+<h2 class="anchored" data-anchor-id="package-ecosystem-and-community">Package ecosystem and community</h2>
+<div class="columns" width="50%">
+<section id="r-5" class="level3">
+<h3 class="anchored" data-anchor-id="r-5">R</h3>
+<p>R has the tidyverse and other communities who have spent dedicated time developing transformational packages. The community is relatively large with an uncountable number of packages for doing data statistics, data science, and even general purpose programming including web development.</p>
+</section>
+</div>
+<div class="columns" width="50%">
+<section id="julia-4" class="level3">
+<h3 class="anchored" data-anchor-id="julia-4">julia</h3>
+<p>Julia is a much younger language but that is not always a bad thing. Being a more recent language means the core developers have the opportunity to incorporate features from existing languages in order to give secondary developers and users a better experience.</p>
+</section>
+</div>
+</section>
+</div>
+<section id="package-management" class="level2">
+<h2 class="anchored" data-anchor-id="package-management">Package management</h2>
+<div class="columns">
+<div class="columns" width="50%">
+<section id="r-6" class="level3">
+<h3 class="anchored" data-anchor-id="r-6">R</h3>
+<p>When you try to load a package that’s not yet been installed, R’s error message could be more informative by informing you if the package exists but not installed.</p>
+<p>“there is no package called …”. Is not really a useful error message especially for beginners.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jamesmbaazam.github.io/blog/julia-sugar-vs-r/R_package_error_message.png" class="img-fluid figure-img"></p>
+<figcaption>R package loading error</figcaption>
+</figure>
+</div>
+</section>
+</div><div class="columns" width="50%">
+<section id="julia-5" class="level3">
+<h3 class="anchored" data-anchor-id="julia-5">Julia</h3>
+<p>Julia has a more informative package loading error because it checks the registry to see if the package exists and gives you a simple walkthrough to install it.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jamesmbaazam.github.io/blog/julia-sugar-vs-r/Julia_package_error_message.png" class="img-fluid figure-img"></p>
+<figcaption>Julia package loading error</figcaption>
+</figure>
+</div>
+</section>
+</div>
+</div>
+
+
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p><a href="https://www.coursera.org/articles/julia-vs-r">Coursera: Julia vs.&nbsp;R: What’s the Difference?</a>↩︎</p></li>
+<li id="fn2"><p><a href="https://mdneuzerling.com/post/first-impressions-of-julia-from-an-r-user/">First Impressions of Julia from an R User</a>↩︎</p></li>
+<li id="fn3"><p><a href="https://docs.julialang.org/en/v1/manual/noteworthy-differences/#Noteworthy-differences-from-R">Noteworthy differences from R in the Julia Official docs</a>↩︎</p></li>
+</ol>
+</section></div> ]]></description>
+  <category>R</category>
+  <category>julia</category>
+  <guid>https://jamesmbaazam.github.io/blog/julia-sugar-vs-r/</guid>
+  <pubDate>Sat, 08 Nov 2025 00:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>
