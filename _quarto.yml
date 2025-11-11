@@ -4,11 +4,16 @@ project:
 
 website:
   title: "Dr. James M. Azam"
+  site-url: https://jamesmbaazam.github.io
+  description: "Learnings from my day to day experiences"
   reader-mode: true
   search: true
   page-navigation: true
   back-to-top-navigation: true
   navbar:
+    right:
+      - icon: rss
+      - href: index.xml
     left:
       - href: index.qmd
         text: Home
@@ -18,8 +23,8 @@ website:
         text: Open-source Projects
       - href: teaching.qmd
         text: Teaching
-      - href: blogposts.qmd
-        text: Blog Posts
+      - href: blog.qmd
+        text: Blog
     tools:
       - icon: twitter
         href: https://twitter.com/james_azam
