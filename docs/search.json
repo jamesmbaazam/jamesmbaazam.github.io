@@ -4,70 +4,63 @@
     "href": "blog.html",
     "title": "Blog",
     "section": "",
-    "text": "Julia vs. R (in my beginner’s opinion)\n\n\n\n\n\n\nR\n\n\njulia\n\n\n\n\n\n\n\n\n\nNov 8, 2025\n\n\nJames Mba Azam\n\n\n\n\n\n\nNo matching items\n\n Back to top"
+    "text": "How to evaluate the ‘goodness of fit’ of an EpiNow2 model run\n\n\n\n\n\n\nforecasting\n\n\nEpiNow2\n\n\nBayesian Analysis\n\n\nReproduction numbers\n\n\nR\n\n\nStan\n\n\n\n\n\n\n\n\n\nNov 8, 2025\n\n\nJames Mba Azam\n\n\n\n\n\n\nNo matching items\n\n Back to top"
   },
   {
-    "objectID": "blog/julia-sugar-vs-r/index.html",
-    "href": "blog/julia-sugar-vs-r/index.html",
-    "title": "Julia vs. R (in my beginner’s opinion)",
+    "objectID": "blog/epinow2-eval-guide/index.html",
+    "href": "blog/epinow2-eval-guide/index.html",
+    "title": "How to evaluate the ‘goodness of fit’ of an EpiNow2 model run",
     "section": "",
-    "text": "I’ve heard a lot of good things about the julia programming language over the last several years, but I’ve not bothered to learn it yet. Usually, my principle is that I only learn a new language or tool (or stack as the cool guys would call it) when I need it but not because everyone is raving about it.\nThe appealing features of julia that I hear a lot about are its computational speed (apparrently as fast as C/C++!), composability thorough multiple dispatch (wth is even that!!!), reproducibility features, and readability (easier syntax).\nThese are all attractive features that I want to harness moving forward, so a natural thing to do is to compare it to languages that I’m more familiar with.\nIn this post, I do a quick and dirty comparison of julia to R. This is not novel as others have written about it123, including the official comparison by the julia folks. However, this is my own way of learning as I go, so forgive me if none of this is new to you but I’d still love to hear your thoughts.\nIs there anything non-factual or unfair about my comparisons? Do share your thoughts below or wherever I shared this post."
+    "text": "library(EpiNow2)\nlibrary(posterior)\nlibrary(bayesplot)\nlibrary(data.table)\nlibrary(scoringutils)\nlibrary(dplyr)\nlibrary(ggplot2)"
   },
   {
-    "objectID": "blog/julia-sugar-vs-r/index.html#autoprinting-on-assignment",
-    "href": "blog/julia-sugar-vs-r/index.html#autoprinting-on-assignment",
-    "title": "Julia vs. R (in my beginner’s opinion)",
-    "section": "Autoprinting on assignment",
-    "text": "Autoprinting on assignment\nIn julia, objects are auto-printed when created but you can suppress it by ending the line with ; like other programming languages. In R, objects have to be printed explicitly.\n\n\n\nJulia\n\nname = \"James\";\noranges = 3;\nmangoes = 2;\n\"$name bought $oranges oranges and $mangoes mangoes\"\n\n\"James bought 3 oranges and 2 mangoes\"\n\n\n\n\n\nR\n\nname &lt;- \"James\" # Not printed\n# You have to explicitly print the object by calling it or passing it to print\nname\n\n[1] \"James\"\n\nprint(name)\n\n[1] \"James\"\n\n\n\n\nMy judgment\nI find julia’s feature a little annoying especially for data science projects."
+    "objectID": "blog/epinow2-eval-guide/index.html#introduction",
+    "href": "blog/epinow2-eval-guide/index.html#introduction",
+    "title": "How to evaluate the ‘goodness of fit’ of an EpiNow2 model run",
+    "section": "Introduction",
+    "text": "Introduction\nThis is a quick guide on how to assess or evaluate the output of an EpiNow2 model run.\n\n\n\n\n\n\nEpiNow2 uses a Stan backend\n\n\n\n\n\n{EpiNow2} uses Stan in the backend for model specification, fitting, and inference.\nThis means that the model fit can be assessed using the same tools and techniques used for any Stan model. The EpiNow2 package provides a convenient interface to run the models, but the underlying model is a Stan model.\nThe returned fit object is either a &lt;stanfit&gt; or CmdStanModel object, depending on the backend ({rstan} or {cmdstanr}) used. For example, you can use the {bayesplot} and {posterior} packages to visualize and summarize the model diagnostics.\n\n\n\nEvaluating or assessing an {EpiNow2} model fit requires a holistic approach involving evaluating the MCMC diagnostics as well as the performance of the forecast against observed data. We will therefore proceed in that regard here.\nLet’s start by setting up and running an example model, assessing the MCMC diagnostics, and then evaluating the forecast performance."
   },
   {
-    "objectID": "blog/julia-sugar-vs-r/index.html#string-interpolation",
-    "href": "blog/julia-sugar-vs-r/index.html#string-interpolation",
-    "title": "Julia vs. R (in my beginner’s opinion)",
-    "section": "String interpolation",
-    "text": "String interpolation\nIn julia, you can insert/interpolate variables into a string using the $ sign. You can do the same in R either using inbuilt functions like paste(), paste0(), sprintf(), or with external packages such as the {glue} R package.\n\n\n\nJulia\n\nname = \"James\";\noranges = 3;\nmangoes = 2;\n\"$name bought $oranges oranges and $mangoes mangoes\"\n\n\"James bought 3 oranges and 2 mangoes\"\n\n\n\n\n\nR\n\nname &lt;- \"James\"\noranges &lt;- 3\nmangoes &lt;- 2\nsprintf(\"%s bought %s oranges and %s mangoes\", name, oranges, mangoes)\n\n[1] \"James bought 3 oranges and 2 mangoes\"\n\npaste(name, \"bought\", oranges, \"oranges\", \"and\", mangoes, \"mangoes\")\n\n[1] \"James bought 3 oranges and 2 mangoes\"\n\n\n\n\nMy judgment\nUsing paste() or paste0 can be a bit tedious but sprintf() is definitely a nice contender. Overall, julia is still easier to type."
+    "objectID": "blog/epinow2-eval-guide/index.html#running-an-example-model",
+    "href": "blog/epinow2-eval-guide/index.html#running-an-example-model",
+    "title": "How to evaluate the ‘goodness of fit’ of an EpiNow2 model run",
+    "section": "Running an example model",
+    "text": "Running an example model\n\nInput preparation\nThis will involve: loading required packages, setting up the model parameters, and running the model.\n\n# Set number of cores for parallel processing.\noptions(mc.cores = min(4, parallel::detectCores() - 1))\n\n\n# Set example generation time, incubation period, and reporting delay. In practice, these should use estimates from the literature or be estimated from data.\ngeneration_time &lt;- Gamma(\n    shape = Normal(1.3, 0.3),\n    rate = Normal(0.37, 0.09),\n    max = 14\n)\n\nincubation_period &lt;- LogNormal(\n    meanlog = Normal(1.6, 0.06),\n    sdlog = Normal(0.4, 0.07),\n    max = 14\n)\nreporting_delay &lt;- LogNormal(mean = 2, sd = 1, max = 10)\n\n# Use example case data.\n\nreported_cases &lt;- example_confirmed[1:60]\n\n# Plot the data\ncases_plots &lt;- ggplot(reported_cases, aes(x = date, y = confirm)) +\n    geom_col() +\n    labs(title = \"Confirmed cases\", x = \"Date\", y = \"Cases\") +\n    theme_minimal()\n\ncases_plots\n\n\n\n\n\n\n\n\n\n\nFitting the model\nEstimate Rt and nowcast/forecast cases by date of infection.\n\nout &lt;- epinow(\n    data = reported_cases,\n    generation_time = gt_opts(generation_time),\n    rt = rt_opts(prior = LogNormal(mean = 2, sd = 0.1)),\n    delays = delay_opts(incubation_period + reporting_delay)\n)\n\nLogging threshold set at INFO for the name logger\nWriting EpiNow2 logs to the console and:\n'/var/folders/vr/dn4r1_zj417drd1zr9301trw0000gp/T//RtmpMm2rHx/regional-epinow/2020-04-21.log'.\nLogging threshold set at INFO for the name logger\nWriting EpiNow2.epinow logs to the console and:\n'/var/folders/vr/dn4r1_zj417drd1zr9301trw0000gp/T//RtmpMm2rHx/epinow/2020-04-21.log'.\n\n# Plot the model fit\nplot(out)"
   },
   {
-    "objectID": "blog/julia-sugar-vs-r/index.html#nexted-for-loops",
-    "href": "blog/julia-sugar-vs-r/index.html#nexted-for-loops",
-    "title": "Julia vs. R (in my beginner’s opinion)",
-    "section": "Nexted for loops",
-    "text": "Nexted for loops\nSay I want to populate a matrix where each element is the sum of its row and column indices.\n\n\n\nJulia\n\nA = 3;\nB = 3;\nM = [i+j for i in 1:A, j in 1:B]\n\n3×3 Matrix{Int64}:\n 2  3  4\n 3  4  5\n 4  5  6\n\n\n\n\n\nR\n\n\nR\n\nA &lt;- 3\nB &lt;- 3\nM &lt;- matrix(\n  0,\n  nrow = A,\n  ncol = B\n)\n\nfor (i in 1:A) {\n  for (j in 1:B) {\n    M[i, j] &lt;- i + j\n  }\n}\n\nprint(M)\n\n     [,1] [,2] [,3]\n[1,]    2    3    4\n[2,]    3    4    5\n[3,]    4    5    6\n\n\n\n\nMy judgment\nThe array comprehension method in julia makes it incredibly easy to write complicated nested for loops, so julia wins here again."
+    "objectID": "blog/epinow2-eval-guide/index.html#assessing-model-diagnostics",
+    "href": "blog/epinow2-eval-guide/index.html#assessing-model-diagnostics",
+    "title": "How to evaluate the ‘goodness of fit’ of an EpiNow2 model run",
+    "section": "Assessing model diagnostics",
+    "text": "Assessing model diagnostics\nWe’ll first extract the Stan fit object and compute diagnostics. The epinow() function returns a list of model outputs, including the Stan fit object. This is what we need to assess the model fit. Stan provides diagnostic metrics to assess the model fit, convergence, etc. which we’ll use to assess the model fit. The Stan ecosystem has a rich set of tools for diagnosing model fit, including the bayesplot and posterior packages. These tools provide a way to visualize and summarize the model diagnostics. For an indepth look at MCMC diagnostics, for example, see the bayesplot R package vignette on visual MCMC diagnostics. You can also do posterior predictive checks using the bayesplot package.\nDiagnostics include:\n\nDivergent transitions. These should be minimized; ideally 0. Divergent transitions can be improved by tuning Stan controls like adapt_delta, max_treedepth, and stepsize in stan_opts(). If there are divergent transitions, increase adapt_delta (e.g., 0.95 or 0.99). See an in‑depth explanation at https://mc-stan.org/learn-stan/diagnostics-warnings.html.\nRhat. These should be close to 1 indicating good mixing. Rhat values should be less than 1.05 (See ?rstan::Rhat).\nTreedepth. This should be low; high values indicate potential issues with the model.\nESS values. These should be high; low values indicate insufficient sampling. In particular, both bulk‑ESS and tail‑ESS should be at least ~100 per chain to ensure reliable posterior quantile estimates (see ?rstan::ess_bulk).\n\n\nfit &lt;- out$estimates$fit\n\nnp &lt;- bayesplot::nuts_params(fit)\ndivergence_data &lt;- subset(np, Parameter == \"divergent__\")\ntreedepth_data &lt;- subset(np, Parameter == \"treedepth__\")\n\nposterior_summary &lt;- posterior::summarize_draws(\n    fit, c(posterior::default_convergence_measures(), \"ess_basic\")\n) |&gt; subset(variable != \"lp__\")\n\nfit_ess_basic &lt;- min(posterior_summary$ess_basic, na.rm = TRUE)\nfit_ess_bulk &lt;- min(posterior_summary$ess_bulk, na.rm = TRUE)\nfit_ess_tail &lt;- min(posterior_summary$ess_tail, na.rm = TRUE)\n\ndiagnostics &lt;- data.table(\n    \"samples\" = nrow(np) / length(unique(np$Parameter)),\n    \"max_rhat\" = round(max(posterior_summary$rhat, na.rm = TRUE), 3),\n    \"divergent_transitions\" = sum(divergence_data$Value),\n    \"per_divergent_transitions\" = mean(divergence_data$Value),\n    \"max_treedepth\" = max(treedepth_data$Value),\n    \"ess_basic\" = fit_ess_basic,\n    \"ess_bulk\" = fit_ess_bulk,\n    \"ess_tail\" = fit_ess_tail\n)\n\ndiagnostics[, no_at_max_treedepth :=\n                sum(treedepth_data$Value == max_treedepth)\n][, per_at_max_treedepth := no_at_max_treedepth / samples]\n\nknitr::kable(diagnostics)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nsamples\nmax_rhat\ndivergent_transitions\nper_divergent_transitions\nmax_treedepth\ness_basic\ness_bulk\ness_tail\nno_at_max_treedepth\nper_at_max_treedepth\n\n\n\n\n2000\n1.01\n0\n0\n9\n1325.989\n1277.945\n1109.327\n837\n0.4185"
   },
   {
-    "objectID": "blog/julia-sugar-vs-r/index.html#inbuilt-reproducibility-features",
-    "href": "blog/julia-sugar-vs-r/index.html#inbuilt-reproducibility-features",
-    "title": "Julia vs. R (in my beginner’s opinion)",
-    "section": "Inbuilt Reproducibility features",
-    "text": "Inbuilt Reproducibility features\n\n\n\nJulia\nJulia has inbuilt functionalities to create a project-specific Manifest.toml for pinning the packages and versions used. This great for reproducibility and portability purposes. You can also create a Project.toml file to store information about the project.\nIn your command line, type (sequentially)\n\n]\nactivate &lt;path-to-project&gt; # take snapshot of a project\n\n\n\n\nR\nR has no inbuilt functionalities for this. You can, however, use packages such as {renv} to pin your package versions for reproducibility.\n\nif (!require(renv)) install.packages(\"renv\")\nlibrary(renv)\nrenv::activate()\n\n\n\nMy judgment\nIt’s quite clear that having to choose a package that works for you with minimal cognitive load is quite daunting for a new/intermediate user of R. Moreover, you also have to worry about the version of the package used for taking the snapshot itself. All these make it a little less desirable. Julia’s inbuilt features for snapshoting a project make it more desirable for conducting reproducible research."
+    "objectID": "blog/epinow2-eval-guide/index.html#evaluating-forecast-performance",
+    "href": "blog/epinow2-eval-guide/index.html#evaluating-forecast-performance",
+    "title": "How to evaluate the ‘goodness of fit’ of an EpiNow2 model run",
+    "section": "Evaluating forecast performance",
+    "text": "Evaluating forecast performance\nForecast performance can be evaluated by comparing the forecast of reported cases with the observed cases using Proper Scoring Rules(Gneiting and Raftery 2007; Carvalho 2016) such as the Continuous Ranked Probability Score (CRPS) and Weighted Interval Score (WIS). These are available via the scoringutils::score() function.\nThe scoringutils::score() function requires a dataset that contains at least the following columns:\n\ndate: the date of the forecast\nprediction: forecast values\ntrue_value: the observed values\nquantile: If evaluating quantiles, the quantile of the forecasted values (e.g., median, lower and upper bounds), in ascending order.\n\nLet’s extract and prepare the forecasts and corresponding observed cases for the evaluation.\nEpiNow2’s epinow() function returns a list of model outputs in the raw and several summarised formats for various use cases. In particular, there are time series of “infections”, “reported_cases”, “growth_rate”, and “R”, all grouped into “estimate”, “estimate based on partial data”, and “forecast”.\nHere, we’re interested in the “forecast” type of the “reported_cases” variable, including the median and quantiles (lower and upper bounds).\n\n# Extract the forecasts\nforecasts &lt;- out$estimates$summarised[variable == \"reported_cases\"][type == \"forecast\", ] %&gt;% \n    select(-c(mean, sd, variable, strat, type))\n\nLet’s also extract the corresponding subset of the observed data.\n\n# Extract observed cases for the same period\nobs_data &lt;- example_confirmed[date &gt;= min(forecasts$date) & date &lt;= max(forecasts$date)]\n\nNow, let’s combine the extracted forecasts with the observed data and clean up the quantiles into a format suitable for use with scoringutils. We will be cleaning them up because the forecasts data.table labels the quantiles as lower_20, upper_20, etc., where the number indicates the quantile level (e.g., 50% for the median), but that is not compatible with scoringutils.\n\n# Combine forecasts with observed cases\neval_dt &lt;- merge(forecasts, obs_data, by = \"date\")[, true_value := confirm][, confirm := NULL]\n\n# Melt the data to long format\ncols_to_melt &lt;- c(\"median\", grep(\"^(lower|upper)_\", names(eval_dt), value = TRUE))\neval_long &lt;- melt(\n    eval_dt,\n    id.vars = setdiff(names(eval_dt), cols_to_melt),\n    measure.vars = cols_to_melt,\n    variable.name = \"prediction\",\n    value.name = \"value\"\n)\n\n# Prepare the evaluation data\neval_long[, quantile := fifelse(\n  prediction == \"median\", 0.5,\n  fifelse(\n    grepl(\"^lower_\", prediction),\n    (1 - as.numeric(sub(\"lower_\", \"\", prediction)) / 100) / 2,\n    fifelse(\n      grepl(\"^upper_\", prediction),\n      (1 + as.numeric(sub(\"upper_\", \"\", prediction)) / 100) / 2,\n      NA_real_\n    )\n  )\n)][, prediction := value][, value := NULL]\n\nWarning in fifelse(grepl(\"^lower_\", prediction), (1 - as.numeric(sub(\"lower_\",\n: NAs introduced by coercion\n\n\nWarning in fifelse(grepl(\"^upper_\", prediction), (1 + as.numeric(sub(\"upper_\",\n: NAs introduced by coercion\n\n# Sort the data by quantile\nsetorder(eval_long, quantile) %&gt;% \n    head(10)\n\n          date true_value prediction quantile\n        &lt;Date&gt;      &lt;num&gt;      &lt;num&gt;    &lt;num&gt;\n 1: 2020-04-22       2729    1526.00     0.05\n 2: 2020-04-23       3370    1623.90     0.05\n 3: 2020-04-24       2646    1911.95     0.05\n 4: 2020-04-25       3021    1599.00     0.05\n 5: 2020-04-26       2357    1701.95     0.05\n 6: 2020-04-27       2324    1507.00     0.05\n 7: 2020-04-28       1739    1237.85     0.05\n 8: 2020-04-22       2729    1895.00     0.25\n 9: 2020-04-23       3370    2056.75     0.25\n10: 2020-04-24       2646    2420.00     0.25\n\n\nNow we can use the scoringutils package to compute and summarise the scores. By default, a range of scores will be computed, including the interval_score, dispersion, underprediction, overprediction, coverage_deviation, bias, and ae_median.\n\n# Mainly uses the scoringutils package\nscored_scores &lt;- eval_long[, quantile_level := quantile][, quantile := NULL][, model := \"EpiNow2\"] |&gt; # align names to scoringutils preference\n    as_forecast_quantile(observed  = \"true_value\", predicted = \"prediction\") |&gt; \n    score() %&gt;%\n    summarise_scores()\n\nWarning: ! Computation for `interval_coverage_90` failed. Error: ! To compute the\n  interval coverage for an interval range of \"90%\", the 0.05 and 0.95 quantiles\n  are required.\n\nknitr::kable(scored_scores, digits = 3)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmodel\nwis\noverprediction\nunderprediction\ndispersion\nbias\ninterval_coverage_50\nae_median\n\n\n\n\nEpiNow2\n313.898\n33.963\n150.892\n129.043\n-0.143\n0.571\n444.286"
   },
   {
-    "objectID": "blog/julia-sugar-vs-r/index.html#package-ecosystem-and-community",
-    "href": "blog/julia-sugar-vs-r/index.html#package-ecosystem-and-community",
-    "title": "Julia vs. R (in my beginner’s opinion)",
-    "section": "Package ecosystem and community",
-    "text": "Package ecosystem and community\n\n\nR\nR has the tidyverse and other communities who have spent dedicated time developing transformational packages. The community is relatively large with an uncountable number of packages for doing data statistics, data science, and even general purpose programming including web development.\n\n\n\n\njulia\nJulia is a much younger language but that is not always a bad thing. Being a more recent language means the core developers have the opportunity to incorporate features from existing languages in order to give secondary developers and users a better experience."
+    "objectID": "blog/epinow2-eval-guide/index.html#interpretation-of-scores",
+    "href": "blog/epinow2-eval-guide/index.html#interpretation-of-scores",
+    "title": "How to evaluate the ‘goodness of fit’ of an EpiNow2 model run",
+    "section": "Interpretation of scores",
+    "text": "Interpretation of scores\nThe table above provides a summary of the forecast performance by metrics. Note that it is not difficult to interpret the scores currently as they are not relative to other models. A proper comparison can only be done against other models.\n\n\n\n\n\n\nComparing against a baseline model\n\n\n\nA common practice is to have a baseline model (Stapper and Funk 2025), such as a naive model, and compare the scores of your model against it."
   },
   {
-    "objectID": "blog/julia-sugar-vs-r/index.html#footnotes",
-    "href": "blog/julia-sugar-vs-r/index.html#footnotes",
-    "title": "Julia vs. R (in my beginner’s opinion)",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nCoursera: Julia vs. R: What’s the Difference?↩︎\nFirst Impressions of Julia from an R User↩︎\nNoteworthy differences from R in the Julia Official docs↩︎"
+    "objectID": "blog/epinow2-eval-guide/index.html#future-updates",
+    "href": "blog/epinow2-eval-guide/index.html#future-updates",
+    "title": "How to evaluate the ‘goodness of fit’ of an EpiNow2 model run",
+    "section": "Future updates",
+    "text": "Future updates\nIn future updates, I will explore more advanced techniques for model diagnostics and evaluation, including posterior predictive checks, cross-validation, and more using packages like loo, shinystan, and bayesplot"
   },
   {
-    "objectID": "opensource_projects.html",
-    "href": "opensource_projects.html",
-    "title": "Open-source Projects",
-    "section": "",
-    "text": "The following are open-source projects that I lead or contribute to:\n\nepichains: a successor of bpmodels, which is an R package for analysing the distribution of the size and length of transmission chains.\nEpiNow2: An R package to estimate the time-varying reproduction number, growth rate, and doubling time using a range of open-source tools and best practices.\nepinowcast: An R package that provides flexible and efficient methods to gain situational awareness during outbreaks using currently available epidemiological observations and the reporting patterns of historical observations.\nEpiverse Initiative: An initiative that aims provide an integrated, generalisable, and scalable community-driven software ecosystem for outbreak analytics.\n\nFind my GitHub page here.\nI also,\n\nReview open source R code/packages for journals like the Journal of Open Source Software. Do reach out if you need my services.\n\n\n\n\n\n\n Back to top"
-  },
-  {
-    "objectID": "teaching.html",
-    "href": "teaching.html",
-    "title": "Teaching",
-    "section": "",
-    "text": "I don’t currently teach as part of my duties but I can teach the following topics quite comfortably:\n\nR programming from the basics to advanced topics (R package development, object-oriented programming)\nGit/GitHub from the basics to intermediate/advanced (merging and rebasing, cherry-picking, etc)\nReproducible data analysis workflows\nVarious topics in mathematical/statistical/dynamical modelling of infectious diseases\nVarious topics in data analysis\nThesis and journal article writing techniques\n\nIn the past, I’ve taught the following courses:\n\nA shortcourse on Introduction to R: Management, Exploration, and Communication of Data at the DSI-NRF Centre of Excellence in Epidemiological Modelling and Analysis (SACEMA) at Stellenbosch University in South Africa.\nI also have a YouTube channel with over 3000 subscribers with videos like this tutorial on Mendeley amassing over 35, 000 views.\n\n\n\n\n Back to top"
+    "objectID": "blog/epinow2-eval-guide/index.html#resources",
+    "href": "blog/epinow2-eval-guide/index.html#resources",
+    "title": "How to evaluate the ‘goodness of fit’ of an EpiNow2 model run",
+    "section": "Resources",
+    "text": "Resources\nAs this is a simple and basic guide, I’ll direct you to the following resources for more in-depth information on model diagnostics and forecast evaluation.\n\nStan’s guide on How to Diagnose and Resolve Convergence Problems\nUnderstanding, evaluating, and improving forecasts of infectious disease burden open course.\nscoringutils R package documentation\nscoringRules R package documentation"
   },
   {
     "objectID": "index.html",
@@ -98,6 +91,20 @@
     "text": "🖥: Learning:\n\nForecasting principles and methods:\n\nBook: Forecasting: Principles and Practice (3rd ed).\nCourse: Nowcasting and forecasting infectious disease dynamics.\n\nBayesian data analysis:\n\nBook: Statistical Rethinking book.\n\nOpen source software development:\n\nWorking in Public: The Making and Maintenance of Open Source Software.\n\nPractical MLOps: Operationalizing Machine Learning Models\n\n📖: Casual Reading:\n\nThe 5 Elements of Effective Thinking by Edward Burger and Michael Starbird.\nThe Art of Explanation: How to Communicate with Clarity and Confidence by Ros Atkins."
   },
   {
+    "objectID": "teaching.html",
+    "href": "teaching.html",
+    "title": "Teaching",
+    "section": "",
+    "text": "I don’t currently teach as part of my duties but I can teach the following topics quite comfortably:\n\nR programming from the basics to advanced topics (R package development, object-oriented programming)\nGit/GitHub from the basics to intermediate/advanced (merging and rebasing, cherry-picking, etc)\nReproducible data analysis workflows\nVarious topics in mathematical/statistical/dynamical modelling of infectious diseases\nVarious topics in data analysis\nThesis and journal article writing techniques\n\nIn the past, I’ve taught the following courses:\n\nA shortcourse on Introduction to R: Management, Exploration, and Communication of Data at the DSI-NRF Centre of Excellence in Epidemiological Modelling and Analysis (SACEMA) at Stellenbosch University in South Africa.\nI also have a YouTube channel with over 3000 subscribers with videos like this tutorial on Mendeley amassing over 35, 000 views.\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "opensource_projects.html",
+    "href": "opensource_projects.html",
+    "title": "Open-source Projects",
+    "section": "",
+    "text": "The following are open-source projects that I lead or contribute to:\n\nepichains: a successor of bpmodels, which is an R package for analysing the distribution of the size and length of transmission chains.\nEpiNow2: An R package to estimate the time-varying reproduction number, growth rate, and doubling time using a range of open-source tools and best practices.\nepinowcast: An R package that provides flexible and efficient methods to gain situational awareness during outbreaks using currently available epidemiological observations and the reporting patterns of historical observations.\nEpiverse Initiative: An initiative that aims provide an integrated, generalisable, and scalable community-driven software ecosystem for outbreak analytics.\n\nFind my GitHub page here.\nI also,\n\nReview open source R code/packages for journals like the Journal of Open Source Software. Do reach out if you need my services.\n\n\n\n\n\n\n Back to top"
+  },
+  {
     "objectID": "research_projects.html",
     "href": "research_projects.html",
     "title": "Research",
@@ -124,12 +131,5 @@
     "title": "Research",
     "section": "Ongoing research work",
     "text": "Ongoing research work\n\nEvaluating the tradeoffs of using temporally aggregated data for epidemiological forecasts: a case study of COVID-19 in South Africa.\nA surveillance pipeline to detect changes in reported COVID-19 severity (case fatality, case hospitalization, and hospital fatality).\nAge-structured compartmental model for estimating the timing of detection of polio-related acute flaccid paralysis in South Africa (generalizable to other settings).\nA two-strain compartmental model for studying the impact of the timing of the emergence of variants on control strategies."
-  },
-  {
-    "objectID": "blog/julia-sugar-vs-r/index.html#package-management",
-    "href": "blog/julia-sugar-vs-r/index.html#package-management",
-    "title": "Julia vs. R (in my beginner’s opinion)",
-    "section": "Package management",
-    "text": "Package management\n\n\n\nR\nWhen you try to load a package that’s not yet been installed, R’s error message could be more informative by informing you if the package exists but not installed.\n“there is no package called …”. Is not really a useful error message especially for beginners.\n\n\n\nR package loading error\n\n\n\n\n\nJulia\nJulia has a more informative package loading error because it checks the registry to see if the package exists and gives you a simple walkthrough to install it.\n\n\n\nJulia package loading error"
   }
 ]
