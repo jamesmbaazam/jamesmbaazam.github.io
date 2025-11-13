@@ -15,6 +15,15 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v5
 
+      - name: Install system dependencies for R
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            libglpk-dev libglpk40 \
+            libxml2-dev libssl-dev libcurl4-openssl-dev \
+            build-essential
+
       - uses: quarto-dev/quarto-actions/setup@v2
         with:
           version: pre-release
@@ -22,9 +31,6 @@ jobs:
       - uses: r-lib/actions/setup-r@v2
 
       - uses: r-lib/actions/setup-renv@v2
-      
-      - name: Install GLPK for igraph
-        run: sudo apt-get update && sudo apt-get install -y libglpk40
 
       - name: Render & Publish to GitHub Pages
         uses: quarto-dev/quarto-actions/publish@v2
