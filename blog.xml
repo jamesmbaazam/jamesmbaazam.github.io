@@ -1,0 +1,995 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Dr. James M. Azam</title>
+<link>https://jamesmbaazam.github.io/blog.html</link>
+<atom:link href="https://jamesmbaazam.github.io/blog.xml" rel="self" type="application/rss+xml"/>
+<description>Learnings from my day to day experiences</description>
+<generator>quarto-1.9.11</generator>
+<lastBuildDate>Sat, 08 Nov 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>How to evaluate the ‘goodness of fit’ of an EpiNow2 model run</title>
+  <dc:creator>James Mba Azam</dc:creator>
+  <link>https://jamesmbaazam.github.io/blog/epinow2-eval-guide/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(EpiNow2)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(posterior)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(bayesplot)</span>
+<span id="cb1-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(data.table)</span>
+<span id="cb1-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(scoringutils)</span>
+<span id="cb1-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(dplyr)</span>
+<span id="cb1-7"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggplot2)</span></code></pre></div></div>
+</div>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This is a quick guide on how to assess or evaluate the output of an EpiNow2 model run.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>EpiNow2 uses a <a href="https://mc-stan.org/">Stan</a> backend
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>{EpiNow2}</code> uses <a href="https://mc-stan.org/">Stan</a> in the backend for model specification, fitting, and inference.</p>
+<p>This means that the model fit can be assessed using the same tools and techniques used for any Stan model. The EpiNow2 package provides a convenient interface to run the models, but the underlying model is a Stan model.</p>
+<p>The returned <code>fit</code> object is either a <a href="https://mc-stan.org/rstan/reference/stanfit-class.html"><code>&lt;stanfit&gt;</code></a> or <a href="https://mc-stan.org/cmdstanr/reference/CmdStanModel.html"><code>CmdStanModel</code></a> object, depending on the backend (<a href="https://mc-stan.org/rstan/index.html"><code>{rstan}</code></a> or <a href="https://mc-stan.org/cmdstanr/index.html"><code>{cmdstanr}</code></a>) used. For example, you can use the <a href="https://mc-stan.org/bayesplot/reference/bayesplot-package.html"><code>{bayesplot}</code></a> and <a href="https://mc-stan.org/posterior/"><code>{posterior}</code></a> packages to visualize and summarize the model diagnostics.</p>
+</div>
+</div>
+</div>
+<p>Evaluating or assessing an <code>{EpiNow2}</code> model fit requires a holistic approach involving evaluating the MCMC diagnostics as well as the performance of the forecast against observed data. We will therefore proceed in that regard here.</p>
+<p>Let’s start by setting up and running an example model, assessing the MCMC diagnostics, and then evaluating the forecast performance.</p>
+</section>
+<section id="running-an-example-model" class="level2">
+<h2 class="anchored" data-anchor-id="running-an-example-model">Running an example model</h2>
+<section id="input-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="input-preparation">Input preparation</h3>
+<p>This will involve: loading required packages, setting up the model parameters, and running the model.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Set number of cores for parallel processing.</span></span>
+<span id="cb2-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">options</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mc.cores =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">min</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>, parallel<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">detectCores</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>))</span>
+<span id="cb2-3"></span>
+<span id="cb2-4"></span>
+<span id="cb2-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Set example generation time, incubation period, and reporting delay. In practice, these should use estimates from the literature or be estimated from data.</span></span>
+<span id="cb2-6">generation_time <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Gamma</span>(</span>
+<span id="cb2-7">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">shape =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Normal</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.3</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.3</span>),</span>
+<span id="cb2-8">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rate =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Normal</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.37</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.09</span>),</span>
+<span id="cb2-9">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">max =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">14</span></span>
+<span id="cb2-10">)</span>
+<span id="cb2-11"></span>
+<span id="cb2-12">incubation_period <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">LogNormal</span>(</span>
+<span id="cb2-13">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">meanlog =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Normal</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.6</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.06</span>),</span>
+<span id="cb2-14">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sdlog =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Normal</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.4</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.07</span>),</span>
+<span id="cb2-15">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">max =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">14</span></span>
+<span id="cb2-16">)</span>
+<span id="cb2-17">reporting_delay <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">LogNormal</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mean =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">max =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>)</span>
+<span id="cb2-18"></span>
+<span id="cb2-19"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Use example case data.</span></span>
+<span id="cb2-20"></span>
+<span id="cb2-21">reported_cases <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> example_confirmed[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">60</span>]</span>
+<span id="cb2-22"></span>
+<span id="cb2-23"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Plot the data</span></span>
+<span id="cb2-24">cases_plots <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(reported_cases, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> date, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> confirm)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-25">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_col</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-26">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Confirmed cases"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Date"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Cases"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-27">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>()</span>
+<span id="cb2-28"></span>
+<span id="cb2-29">cases_plots</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://jamesmbaazam.github.io/blog/epinow2-eval-guide/index_files/figure-html/model-setup-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="fitting-the-model" class="level3">
+<h3 class="anchored" data-anchor-id="fitting-the-model">Fitting the model</h3>
+<p>Estimate Rt and nowcast/forecast cases by date of infection.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">out <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">epinow</span>(</span>
+<span id="cb3-2">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> reported_cases,</span>
+<span id="cb3-3">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">generation_time =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gt_opts</span>(generation_time),</span>
+<span id="cb3-4">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rt =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rt_opts</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">prior =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">LogNormal</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mean =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.1</span>)),</span>
+<span id="cb3-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">delays =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">delay_opts</span>(incubation_period <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> reporting_delay)</span>
+<span id="cb3-6">)</span></code></pre></div></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Logging threshold set at INFO for the name logger
+Writing EpiNow2 logs to the console and:
+'/var/folders/vr/dn4r1_zj417drd1zr9301trw0000gp/T//RtmpMm2rHx/regional-epinow/2020-04-21.log'.
+Logging threshold set at INFO for the name logger
+Writing EpiNow2.epinow logs to the console and:
+'/var/folders/vr/dn4r1_zj417drd1zr9301trw0000gp/T//RtmpMm2rHx/epinow/2020-04-21.log'.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Plot the model fit</span></span>
+<span id="cb5-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot</span>(out)</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://jamesmbaazam.github.io/blog/epinow2-eval-guide/index_files/figure-html/run-epinow-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="assessing-model-diagnostics" class="level2">
+<h2 class="anchored" data-anchor-id="assessing-model-diagnostics">Assessing model diagnostics</h2>
+<p>We’ll first extract the Stan fit object and compute diagnostics. The <code>epinow()</code> function returns a list of model outputs, including the Stan fit object. This is what we need to assess the model fit. Stan provides diagnostic metrics to assess the model fit, convergence, etc. which we’ll use to assess the model fit. The Stan ecosystem has a rich set of tools for diagnosing model fit, including the <code>bayesplot</code> and <code>posterior</code> packages. These tools provide a way to visualize and summarize the model diagnostics. For an indepth look at MCMC diagnostics, for example, see the bayesplot R package vignette on <a href="https://mc-stan.org/bayesplot/articles/visual-mcmc-diagnostics.html">visual MCMC diagnostics</a>. You can also do <a href="https://mc-stan.org/bayesplot/articles/graphical-ppcs.html">posterior predictive checks</a> using the <code>bayesplot</code> package.</p>
+<p>Diagnostics include:</p>
+<ul>
+<li><strong>Divergent transitions</strong>. These should be minimized; ideally 0. Divergent transitions can be improved by tuning Stan controls like <code>adapt_delta</code>, <code>max_treedepth</code>, and <code>stepsize</code> in <code>stan_opts()</code>. If there are divergent transitions, increase <code>adapt_delta</code> (e.g., 0.95 or 0.99). See an in‑depth explanation at <a href="https://mc-stan.org/learn-stan/diagnostics-warnings.html" class="uri">https://mc-stan.org/learn-stan/diagnostics-warnings.html</a>.</li>
+<li><strong>Rhat</strong>. These should be close to 1 indicating good mixing. Rhat values should be less than 1.05 (See <code>?rstan::Rhat</code>).</li>
+<li><strong>Treedepth</strong>. This should be low; high values indicate potential issues with the model.</li>
+<li><strong>ESS values</strong>. These should be high; low values indicate insufficient sampling. In particular, both bulk‑ESS and tail‑ESS should be at least ~100 per chain to ensure reliable posterior quantile estimates (see <code>?rstan::ess_bulk</code>).</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">fit <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> out<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>estimates<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>fit</span>
+<span id="cb6-2"></span>
+<span id="cb6-3">np <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> bayesplot<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">nuts_params</span>(fit)</span>
+<span id="cb6-4">divergence_data <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">subset</span>(np, Parameter <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"divergent__"</span>)</span>
+<span id="cb6-5">treedepth_data <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">subset</span>(np, Parameter <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"treedepth__"</span>)</span>
+<span id="cb6-6"></span>
+<span id="cb6-7">posterior_summary <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> posterior<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarize_draws</span>(</span>
+<span id="cb6-8">    fit, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(posterior<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">default_convergence_measures</span>(), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ess_basic"</span>)</span>
+<span id="cb6-9">) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">subset</span>(variable <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lp__"</span>)</span>
+<span id="cb6-10"></span>
+<span id="cb6-11">fit_ess_basic <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">min</span>(posterior_summary<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>ess_basic, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span>
+<span id="cb6-12">fit_ess_bulk <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">min</span>(posterior_summary<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>ess_bulk, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span>
+<span id="cb6-13">fit_ess_tail <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">min</span>(posterior_summary<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>ess_tail, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span>
+<span id="cb6-14"></span>
+<span id="cb6-15">diagnostics <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.table</span>(</span>
+<span id="cb6-16">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"samples"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">nrow</span>(np) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unique</span>(np<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>Parameter)),</span>
+<span id="cb6-17">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"max_rhat"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">max</span>(posterior_summary<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>rhat, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>),</span>
+<span id="cb6-18">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"divergent_transitions"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(divergence_data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>Value),</span>
+<span id="cb6-19">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"per_divergent_transitions"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(divergence_data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>Value),</span>
+<span id="cb6-20">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"max_treedepth"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">max</span>(treedepth_data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>Value),</span>
+<span id="cb6-21">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ess_basic"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> fit_ess_basic,</span>
+<span id="cb6-22">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ess_bulk"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> fit_ess_bulk,</span>
+<span id="cb6-23">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ess_tail"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> fit_ess_tail</span>
+<span id="cb6-24">)</span>
+<span id="cb6-25"></span>
+<span id="cb6-26">diagnostics[, no_at_max_treedepth <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">=</span></span>
+<span id="cb6-27">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(treedepth_data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>Value <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> max_treedepth)</span>
+<span id="cb6-28">][, per_at_max_treedepth <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">=</span> no_at_max_treedepth <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> samples]</span>
+<span id="cb6-29"></span>
+<span id="cb6-30">knitr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">kable</span>(diagnostics)</span></code></pre></div></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 14%">
+<col style="width: 17%">
+<col style="width: 9%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 13%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">samples</th>
+<th style="text-align: right;">max_rhat</th>
+<th style="text-align: right;">divergent_transitions</th>
+<th style="text-align: right;">per_divergent_transitions</th>
+<th style="text-align: right;">max_treedepth</th>
+<th style="text-align: right;">ess_basic</th>
+<th style="text-align: right;">ess_bulk</th>
+<th style="text-align: right;">ess_tail</th>
+<th style="text-align: right;">no_at_max_treedepth</th>
+<th style="text-align: right;">per_at_max_treedepth</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2000</td>
+<td style="text-align: right;">1.01</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">1325.989</td>
+<td style="text-align: right;">1277.945</td>
+<td style="text-align: right;">1109.327</td>
+<td style="text-align: right;">837</td>
+<td style="text-align: right;">0.4185</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="evaluating-forecast-performance" class="level2">
+<h2 class="anchored" data-anchor-id="evaluating-forecast-performance">Evaluating forecast performance</h2>
+<p>Forecast performance can be evaluated by comparing the forecast of reported cases with the observed cases using Proper Scoring Rules<span class="citation" data-cites="gneiting2007strictly carvalho2016overview">(Gneiting and Raftery 2007; Carvalho 2016)</span> such as the Continuous Ranked Probability Score (CRPS) and Weighted Interval Score (WIS). These are available via the <code>scoringutils::score()</code> function.</p>
+<p>The <code>scoringutils::score()</code> function requires a dataset that contains at least the following columns:</p>
+<ul>
+<li><code>date</code>: the date of the forecast</li>
+<li><code>prediction</code>: forecast values</li>
+<li><code>true_value</code>: the observed values</li>
+<li><code>quantile</code>: If evaluating quantiles, the quantile of the forecasted values (e.g., median, lower and upper bounds), in ascending order.</li>
+</ul>
+<p>Let’s extract and prepare the forecasts and corresponding observed cases for the evaluation.</p>
+<p>EpiNow2’s <code>epinow()</code> function returns a list of model outputs in the raw and several summarised formats for various use cases. In particular, there are time series of “infections”, “reported_cases”, “growth_rate”, and “R”, all grouped into “estimate”, “estimate based on partial data”, and “forecast”.</p>
+<p>Here, we’re interested in the “forecast” type of the “reported_cases” variable, including the median and quantiles (lower and upper bounds).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Extract the forecasts</span></span>
+<span id="cb7-2">forecasts <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> out<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>estimates<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>summarised[variable <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"reported_cases"</span>][type <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"forecast"</span>, ] <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb7-3">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(mean, sd, variable, strat, type))</span></code></pre></div></div>
+</div>
+<p>Let’s also extract the corresponding subset of the observed data.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Extract observed cases for the same period</span></span>
+<span id="cb8-2">obs_data <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> example_confirmed[date <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">min</span>(forecasts<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>date) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> date <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">max</span>(forecasts<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>date)]</span></code></pre></div></div>
+</div>
+<p>Now, let’s combine the extracted forecasts with the observed data and clean up the quantiles into a format suitable for use with <code>scoringutils</code>. We will be cleaning them up because the <code>forecasts</code> data.table labels the quantiles as <code>lower_20</code>, <code>upper_20</code>, etc., where the number indicates the quantile level (e.g., 50% for the median), but that is not compatible with <code>scoringutils</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Combine forecasts with observed cases</span></span>
+<span id="cb9-2">eval_dt <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">merge</span>(forecasts, obs_data, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"date"</span>)[, true_value <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">=</span> confirm][, confirm <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">=</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NULL</span>]</span>
+<span id="cb9-3"></span>
+<span id="cb9-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Melt the data to long format</span></span>
+<span id="cb9-5">cols_to_melt <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"median"</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">grep</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"^(lower|upper)_"</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">names</span>(eval_dt), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">value =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>))</span>
+<span id="cb9-6">eval_long <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">melt</span>(</span>
+<span id="cb9-7">    eval_dt,</span>
+<span id="cb9-8">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">id.vars =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">setdiff</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">names</span>(eval_dt), cols_to_melt),</span>
+<span id="cb9-9">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">measure.vars =</span> cols_to_melt,</span>
+<span id="cb9-10">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">variable.name =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"prediction"</span>,</span>
+<span id="cb9-11">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">value.name =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"value"</span></span>
+<span id="cb9-12">)</span>
+<span id="cb9-13"></span>
+<span id="cb9-14"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Prepare the evaluation data</span></span>
+<span id="cb9-15">eval_long[, quantile <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fifelse</span>(</span>
+<span id="cb9-16">  prediction <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"median"</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>,</span>
+<span id="cb9-17">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fifelse</span>(</span>
+<span id="cb9-18">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">grepl</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"^lower_"</span>, prediction),</span>
+<span id="cb9-19">    (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sub</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lower_"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span>, prediction)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>,</span>
+<span id="cb9-20">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fifelse</span>(</span>
+<span id="cb9-21">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">grepl</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"^upper_"</span>, prediction),</span>
+<span id="cb9-22">      (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sub</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"upper_"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span>, prediction)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>,</span>
+<span id="cb9-23">      <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA_real_</span></span>
+<span id="cb9-24">    )</span>
+<span id="cb9-25">  )</span>
+<span id="cb9-26">)][, prediction <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">=</span> value][, value <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">=</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NULL</span>]</span></code></pre></div></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in fifelse(grepl("^lower_", prediction), (1 - as.numeric(sub("lower_",
+: NAs introduced by coercion</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in fifelse(grepl("^upper_", prediction), (1 + as.numeric(sub("upper_",
+: NAs introduced by coercion</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Sort the data by quantile</span></span>
+<span id="cb12-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">setorder</span>(eval_long, quantile) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb12-3">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">head</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          date true_value prediction quantile
+        &lt;Date&gt;      &lt;num&gt;      &lt;num&gt;    &lt;num&gt;
+ 1: 2020-04-22       2729    1526.00     0.05
+ 2: 2020-04-23       3370    1623.90     0.05
+ 3: 2020-04-24       2646    1911.95     0.05
+ 4: 2020-04-25       3021    1599.00     0.05
+ 5: 2020-04-26       2357    1701.95     0.05
+ 6: 2020-04-27       2324    1507.00     0.05
+ 7: 2020-04-28       1739    1237.85     0.05
+ 8: 2020-04-22       2729    1895.00     0.25
+ 9: 2020-04-23       3370    2056.75     0.25
+10: 2020-04-24       2646    2420.00     0.25</code></pre>
+</div>
+</div>
+<p>Now we can use the <code>scoringutils</code> package to compute and summarise the scores. By default, a range of scores will be computed, including the interval_score, dispersion, underprediction, overprediction, coverage_deviation, bias, and ae_median.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Mainly uses the scoringutils package</span></span>
+<span id="cb14-2">scored_scores <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> eval_long[, quantile_level <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">=</span> quantile][, quantile <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">=</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NULL</span>][, model <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"EpiNow2"</span>] <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># align names to scoringutils preference</span></span>
+<span id="cb14-3">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as_forecast_quantile</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">observed  =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"true_value"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">predicted =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"prediction"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb14-4">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">score</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb14-5">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise_scores</span>()</span></code></pre></div></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: ! Computation for `interval_coverage_90` failed. Error: ! To compute the
+  interval coverage for an interval range of "90%", the 0.05 and 0.95 quantiles
+  are required.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1">knitr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">kable</span>(scored_scores, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">digits =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>)</span></code></pre></div></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 15%">
+<col style="width: 16%">
+<col style="width: 11%">
+<col style="width: 7%">
+<col style="width: 21%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">model</th>
+<th style="text-align: right;">wis</th>
+<th style="text-align: right;">overprediction</th>
+<th style="text-align: right;">underprediction</th>
+<th style="text-align: right;">dispersion</th>
+<th style="text-align: right;">bias</th>
+<th style="text-align: right;">interval_coverage_50</th>
+<th style="text-align: right;">ae_median</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">EpiNow2</td>
+<td style="text-align: right;">313.898</td>
+<td style="text-align: right;">33.963</td>
+<td style="text-align: right;">150.892</td>
+<td style="text-align: right;">129.043</td>
+<td style="text-align: right;">-0.143</td>
+<td style="text-align: right;">0.571</td>
+<td style="text-align: right;">444.286</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="interpretation-of-scores" class="level2">
+<h2 class="anchored" data-anchor-id="interpretation-of-scores">Interpretation of scores</h2>
+<p>The table above provides a summary of the forecast performance by metrics. Note that it is not difficult to interpret the scores currently as they are not relative to other models. A proper comparison can only be done against other models.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Comparing against a baseline model
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A common practice is to have a baseline model <span class="citation" data-cites="stapper2025mind">(Stapper and Funk 2025)</span>, such as a naive model, and compare the scores of your model against it.</p>
+</div>
+</div>
+</section>
+<section id="future-updates" class="level2">
+<h2 class="anchored" data-anchor-id="future-updates">Future updates</h2>
+<p>In future updates, I will explore more advanced techniques for model diagnostics and evaluation, including posterior predictive checks, cross-validation, and more using packages like <a href="https://mc-stan.org/loo/"><code>loo</code></a>, <a href="https://mc-stan.org/shinystan/">shinystan</a>, and <code>bayesplot</code></p>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<p>As this is a simple and basic guide, I’ll direct you to the following resources for more in-depth information on model diagnostics and forecast evaluation.</p>
+<ul>
+<li>Stan’s guide on <a href="https://mc-stan.org/learn-stan/diagnostics-warnings.html">How to Diagnose and Resolve Convergence Problems</a></li>
+<li><a href="nfidd.github.io/ueifid/">Understanding, evaluating, and improving forecasts of infectious disease burden</a> open course.</li>
+<li>scoringutils R package <a href="https://epiforecasts.io/scoringutils/">documentation</a></li>
+<li>scoringRules R package <a href="https://cran.r-project.org/web/packages/scoringRules/vignettes/article.pdf">documentation</a></li>
+</ul>
+</section>
+<section id="references" class="level2">
+
+
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<div id="ref-carvalho2016overview" class="csl-entry">
+Carvalho, Arthur. 2016. <span>“An Overview of Applications of Proper Scoring Rules.”</span> <em>Decision Analysis</em> 13 (4): 223–42.
+</div>
+<div id="ref-gneiting2007strictly" class="csl-entry">
+Gneiting, Tilmann, and Adrian E Raftery. 2007. <span>“Strictly Proper Scoring Rules, Prediction, and Estimation.”</span> <em>Journal of the American Statistical Association</em> 102 (477): 359–78.
+</div>
+<div id="ref-stapper2025mind" class="csl-entry">
+Stapper, Manuel, and Sebastian Funk. 2025. <span>“Mind the Baseline: The Hidden Impact of Reference Model Selection on Forecast Assessment.”</span> <em>medRxiv</em>, 2025–08.
+</div>
+</div></section></div> ]]></description>
+  <category>forecasting</category>
+  <category>EpiNow2</category>
+  <category>Bayesian Analysis</category>
+  <category>Reproduction numbers</category>
+  <category>R</category>
+  <category>Stan</category>
+  <guid>https://jamesmbaazam.github.io/blog/epinow2-eval-guide/</guid>
+  <pubDate>Sat, 08 Nov 2025 00:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>

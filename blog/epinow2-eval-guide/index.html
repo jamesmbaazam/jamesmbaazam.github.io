@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.11">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-11-08">
+
+<title>How to evaluate the ‘goodness of fit’ of an EpiNow2 model run – Dr. James M. Azam</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a5dfee7ccc7f20503a6465e15a2cff9c.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-a5cc9e99dca6daa9fc4f9db80b98b5ad.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a5dfee7ccc7f20503a6465e15a2cff9c.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-c00b42e811b0fd9a18ac62455ba22490.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-b6871152dc33c25e97e10f79624f84be.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-c00b42e811b0fd9a18ac62455ba22490.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/quarto-auto-dark-mode-1.0.0/auto-dark-mode.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="How to evaluate the ‘goodness of fit’ of an EpiNow2 model run – Dr.&nbsp;James M. Azam">
+<meta property="og:description" content="Learnings from my day to day experiences">
+<meta property="og:image" content="https://jamesmbaazam.github.io/blog/epinow2-eval-guide/index_files/figure-html/model-setup-1.png">
+<meta property="og:site_name" content="Dr. James M. Azam">
+<meta property="og:image:height" content="960">
+<meta property="og:image:width" content="1344">
+<meta name="twitter:title" content="How to evaluate the ‘goodness of fit’ of an EpiNow2 model run – Dr.&nbsp;James M. Azam">
+<meta name="twitter:description" content="Learnings from my day to day experiences">
+<meta name="twitter:image" content="https://jamesmbaazam.github.io/blog/epinow2-eval-guide/index_files/figure-html/model-setup-1.png">
+<meta name="twitter:image-height" content="960">
+<meta name="twitter:image-width" content="1344">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Dr.&nbsp;James M. Azam</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research_projects.html"> 
+<span class="menu-text">Research/Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../opensource_projects.html"> 
+<span class="menu-text">Open-source Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../index.xml"> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="https://twitter.com/james_azam" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
+    <a href="https://github.com/jamesmbaazam" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://www.linkedin.com/in/james-azam-phd-6b5b00176/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="https://scholar.google.co.za/citations?user=IxRpXp8AAAAJ&amp;hl=en" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-googlescholar"></i></a>
+    <a href="../../james.m.azam@gmail.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-email"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#running-an-example-model" id="toc-running-an-example-model" class="nav-link" data-scroll-target="#running-an-example-model">Running an example model</a>
+  <ul class="collapse">
+  <li><a href="#input-preparation" id="toc-input-preparation" class="nav-link" data-scroll-target="#input-preparation">Input preparation</a></li>
+  <li><a href="#fitting-the-model" id="toc-fitting-the-model" class="nav-link" data-scroll-target="#fitting-the-model">Fitting the model</a></li>
+  </ul></li>
+  <li><a href="#assessing-model-diagnostics" id="toc-assessing-model-diagnostics" class="nav-link" data-scroll-target="#assessing-model-diagnostics">Assessing model diagnostics</a></li>
+  <li><a href="#evaluating-forecast-performance" id="toc-evaluating-forecast-performance" class="nav-link" data-scroll-target="#evaluating-forecast-performance">Evaluating forecast performance</a></li>
+  <li><a href="#interpretation-of-scores" id="toc-interpretation-of-scores" class="nav-link" data-scroll-target="#interpretation-of-scores">Interpretation of scores</a></li>
+  <li><a href="#future-updates" id="toc-future-updates" class="nav-link" data-scroll-target="#future-updates">Future updates</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">How to evaluate the ‘goodness of fit’ of an EpiNow2 model run</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">forecasting</div>
+    <div class="quarto-category">EpiNow2</div>
+    <div class="quarto-category">Bayesian Analysis</div>
+    <div class="quarto-category">Reproduction numbers</div>
+    <div class="quarto-category">R</div>
+    <div class="quarto-category">Stan</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 8, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(EpiNow2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(posterior)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesplot)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scoringutils)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This is a quick guide on how to assess or evaluate the output of an EpiNow2 model run.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>EpiNow2 uses a <a href="https://mc-stan.org/">Stan</a> backend
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>{EpiNow2}</code> uses <a href="https://mc-stan.org/">Stan</a> in the backend for model specification, fitting, and inference.</p>
+<p>This means that the model fit can be assessed using the same tools and techniques used for any Stan model. The EpiNow2 package provides a convenient interface to run the models, but the underlying model is a Stan model.</p>
+<p>The returned <code>fit</code> object is either a <a href="https://mc-stan.org/rstan/reference/stanfit-class.html"><code>&lt;stanfit&gt;</code></a> or <a href="https://mc-stan.org/cmdstanr/reference/CmdStanModel.html"><code>CmdStanModel</code></a> object, depending on the backend (<a href="https://mc-stan.org/rstan/index.html"><code>{rstan}</code></a> or <a href="https://mc-stan.org/cmdstanr/index.html"><code>{cmdstanr}</code></a>) used. For example, you can use the <a href="https://mc-stan.org/bayesplot/reference/bayesplot-package.html"><code>{bayesplot}</code></a> and <a href="https://mc-stan.org/posterior/"><code>{posterior}</code></a> packages to visualize and summarize the model diagnostics.</p>
+</div>
+</div>
+</div>
+<p>Evaluating or assessing an <code>{EpiNow2}</code> model fit requires a holistic approach involving evaluating the MCMC diagnostics as well as the performance of the forecast against observed data. We will therefore proceed in that regard here.</p>
+<p>Let’s start by setting up and running an example model, assessing the MCMC diagnostics, and then evaluating the forecast performance.</p>
+</section>
+<section id="running-an-example-model" class="level2">
+<h2 class="anchored" data-anchor-id="running-an-example-model">Running an example model</h2>
+<section id="input-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="input-preparation">Input preparation</h3>
+<p>This will involve: loading required packages, setting up the model parameters, and running the model.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set number of cores for parallel processing.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">mc.cores =</span> <span class="fu">min</span>(<span class="dv">4</span>, parallel<span class="sc">::</span><span class="fu">detectCores</span>() <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Set example generation time, incubation period, and reporting delay. In practice, these should use estimates from the literature or be estimated from data.</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>generation_time <span class="ot">&lt;-</span> <span class="fu">Gamma</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="fu">Normal</span>(<span class="fl">1.3</span>, <span class="fl">0.3</span>),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">rate =</span> <span class="fu">Normal</span>(<span class="fl">0.37</span>, <span class="fl">0.09</span>),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="dv">14</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>incubation_period <span class="ot">&lt;-</span> <span class="fu">LogNormal</span>(</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">meanlog =</span> <span class="fu">Normal</span>(<span class="fl">1.6</span>, <span class="fl">0.06</span>),</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">sdlog =</span> <span class="fu">Normal</span>(<span class="fl">0.4</span>, <span class="fl">0.07</span>),</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="dv">14</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>reporting_delay <span class="ot">&lt;-</span> <span class="fu">LogNormal</span>(<span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">10</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Use example case data.</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>reported_cases <span class="ot">&lt;-</span> example_confirmed[<span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>]</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>cases_plots <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(reported_cases, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> confirm)) <span class="sc">+</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Confirmed cases"</span>, <span class="at">x =</span> <span class="st">"Date"</span>, <span class="at">y =</span> <span class="st">"Cases"</span>) <span class="sc">+</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>cases_plots</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/model-setup-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="fitting-the-model" class="level3">
+<h3 class="anchored" data-anchor-id="fitting-the-model">Fitting the model</h3>
+<p>Estimate Rt and nowcast/forecast cases by date of infection.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">epinow</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> reported_cases,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">generation_time =</span> <span class="fu">gt_opts</span>(generation_time),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">rt =</span> <span class="fu">rt_opts</span>(<span class="at">prior =</span> <span class="fu">LogNormal</span>(<span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="fl">0.1</span>)),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">delays =</span> <span class="fu">delay_opts</span>(incubation_period <span class="sc">+</span> reporting_delay)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Logging threshold set at INFO for the name logger
+Writing EpiNow2 logs to the console and:
+'/var/folders/vr/dn4r1_zj417drd1zr9301trw0000gp/T//RtmpMm2rHx/regional-epinow/2020-04-21.log'.
+Logging threshold set at INFO for the name logger
+Writing EpiNow2.epinow logs to the console and:
+'/var/folders/vr/dn4r1_zj417drd1zr9301trw0000gp/T//RtmpMm2rHx/epinow/2020-04-21.log'.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the model fit</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(out)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/run-epinow-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="assessing-model-diagnostics" class="level2">
+<h2 class="anchored" data-anchor-id="assessing-model-diagnostics">Assessing model diagnostics</h2>
+<p>We’ll first extract the Stan fit object and compute diagnostics. The <code>epinow()</code> function returns a list of model outputs, including the Stan fit object. This is what we need to assess the model fit. Stan provides diagnostic metrics to assess the model fit, convergence, etc. which we’ll use to assess the model fit. The Stan ecosystem has a rich set of tools for diagnosing model fit, including the <code>bayesplot</code> and <code>posterior</code> packages. These tools provide a way to visualize and summarize the model diagnostics. For an indepth look at MCMC diagnostics, for example, see the bayesplot R package vignette on <a href="https://mc-stan.org/bayesplot/articles/visual-mcmc-diagnostics.html">visual MCMC diagnostics</a>. You can also do <a href="https://mc-stan.org/bayesplot/articles/graphical-ppcs.html">posterior predictive checks</a> using the <code>bayesplot</code> package.</p>
+<p>Diagnostics include:</p>
+<ul>
+<li><strong>Divergent transitions</strong>. These should be minimized; ideally 0. Divergent transitions can be improved by tuning Stan controls like <code>adapt_delta</code>, <code>max_treedepth</code>, and <code>stepsize</code> in <code>stan_opts()</code>. If there are divergent transitions, increase <code>adapt_delta</code> (e.g., 0.95 or 0.99). See an in‑depth explanation at <a href="https://mc-stan.org/learn-stan/diagnostics-warnings.html" class="uri">https://mc-stan.org/learn-stan/diagnostics-warnings.html</a>.</li>
+<li><strong>Rhat</strong>. These should be close to 1 indicating good mixing. Rhat values should be less than 1.05 (See <code>?rstan::Rhat</code>).</li>
+<li><strong>Treedepth</strong>. This should be low; high values indicate potential issues with the model.</li>
+<li><strong>ESS values</strong>. These should be high; low values indicate insufficient sampling. In particular, both bulk‑ESS and tail‑ESS should be at least ~100 per chain to ensure reliable posterior quantile estimates (see <code>?rstan::ess_bulk</code>).</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> out<span class="sc">$</span>estimates<span class="sc">$</span>fit</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>np <span class="ot">&lt;-</span> bayesplot<span class="sc">::</span><span class="fu">nuts_params</span>(fit)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>divergence_data <span class="ot">&lt;-</span> <span class="fu">subset</span>(np, Parameter <span class="sc">==</span> <span class="st">"divergent__"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>treedepth_data <span class="ot">&lt;-</span> <span class="fu">subset</span>(np, Parameter <span class="sc">==</span> <span class="st">"treedepth__"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>posterior_summary <span class="ot">&lt;-</span> posterior<span class="sc">::</span><span class="fu">summarize_draws</span>(</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    fit, <span class="fu">c</span>(posterior<span class="sc">::</span><span class="fu">default_convergence_measures</span>(), <span class="st">"ess_basic"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">subset</span>(variable <span class="sc">!=</span> <span class="st">"lp__"</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>fit_ess_basic <span class="ot">&lt;-</span> <span class="fu">min</span>(posterior_summary<span class="sc">$</span>ess_basic, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>fit_ess_bulk <span class="ot">&lt;-</span> <span class="fu">min</span>(posterior_summary<span class="sc">$</span>ess_bulk, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>fit_ess_tail <span class="ot">&lt;-</span> <span class="fu">min</span>(posterior_summary<span class="sc">$</span>ess_tail, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>diagnostics <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"samples"</span> <span class="ot">=</span> <span class="fu">nrow</span>(np) <span class="sc">/</span> <span class="fu">length</span>(<span class="fu">unique</span>(np<span class="sc">$</span>Parameter)),</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"max_rhat"</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">max</span>(posterior_summary<span class="sc">$</span>rhat, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">3</span>),</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"divergent_transitions"</span> <span class="ot">=</span> <span class="fu">sum</span>(divergence_data<span class="sc">$</span>Value),</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"per_divergent_transitions"</span> <span class="ot">=</span> <span class="fu">mean</span>(divergence_data<span class="sc">$</span>Value),</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"max_treedepth"</span> <span class="ot">=</span> <span class="fu">max</span>(treedepth_data<span class="sc">$</span>Value),</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ess_basic"</span> <span class="ot">=</span> fit_ess_basic,</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ess_bulk"</span> <span class="ot">=</span> fit_ess_bulk,</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ess_tail"</span> <span class="ot">=</span> fit_ess_tail</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>diagnostics[, no_at_max_treedepth <span class="sc">:</span><span class="er">=</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>                <span class="fu">sum</span>(treedepth_data<span class="sc">$</span>Value <span class="sc">==</span> max_treedepth)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>][, per_at_max_treedepth <span class="sc">:</span><span class="er">=</span> no_at_max_treedepth <span class="sc">/</span> samples]</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(diagnostics)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 14%">
+<col style="width: 17%">
+<col style="width: 9%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 13%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">samples</th>
+<th style="text-align: right;">max_rhat</th>
+<th style="text-align: right;">divergent_transitions</th>
+<th style="text-align: right;">per_divergent_transitions</th>
+<th style="text-align: right;">max_treedepth</th>
+<th style="text-align: right;">ess_basic</th>
+<th style="text-align: right;">ess_bulk</th>
+<th style="text-align: right;">ess_tail</th>
+<th style="text-align: right;">no_at_max_treedepth</th>
+<th style="text-align: right;">per_at_max_treedepth</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2000</td>
+<td style="text-align: right;">1.01</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">1325.989</td>
+<td style="text-align: right;">1277.945</td>
+<td style="text-align: right;">1109.327</td>
+<td style="text-align: right;">837</td>
+<td style="text-align: right;">0.4185</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="evaluating-forecast-performance" class="level2">
+<h2 class="anchored" data-anchor-id="evaluating-forecast-performance">Evaluating forecast performance</h2>
+<p>Forecast performance can be evaluated by comparing the forecast of reported cases with the observed cases using Proper Scoring Rules<span class="citation" data-cites="gneiting2007strictly carvalho2016overview">(<a href="#ref-gneiting2007strictly" role="doc-biblioref">Gneiting and Raftery 2007</a>; <a href="#ref-carvalho2016overview" role="doc-biblioref">Carvalho 2016</a>)</span> such as the Continuous Ranked Probability Score (CRPS) and Weighted Interval Score (WIS). These are available via the <code>scoringutils::score()</code> function.</p>
+<p>The <code>scoringutils::score()</code> function requires a dataset that contains at least the following columns:</p>
+<ul>
+<li><code>date</code>: the date of the forecast</li>
+<li><code>prediction</code>: forecast values</li>
+<li><code>true_value</code>: the observed values</li>
+<li><code>quantile</code>: If evaluating quantiles, the quantile of the forecasted values (e.g., median, lower and upper bounds), in ascending order.</li>
+</ul>
+<p>Let’s extract and prepare the forecasts and corresponding observed cases for the evaluation.</p>
+<p>EpiNow2’s <code>epinow()</code> function returns a list of model outputs in the raw and several summarised formats for various use cases. In particular, there are time series of “infections”, “reported_cases”, “growth_rate”, and “R”, all grouped into “estimate”, “estimate based on partial data”, and “forecast”.</p>
+<p>Here, we’re interested in the “forecast” type of the “reported_cases” variable, including the median and quantiles (lower and upper bounds).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the forecasts</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>forecasts <span class="ot">&lt;-</span> out<span class="sc">$</span>estimates<span class="sc">$</span>summarised[variable <span class="sc">==</span> <span class="st">"reported_cases"</span>][type <span class="sc">==</span> <span class="st">"forecast"</span>, ] <span class="sc">%&gt;%</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(mean, sd, variable, strat, type))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Let’s also extract the corresponding subset of the observed data.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract observed cases for the same period</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>obs_data <span class="ot">&lt;-</span> example_confirmed[date <span class="sc">&gt;=</span> <span class="fu">min</span>(forecasts<span class="sc">$</span>date) <span class="sc">&amp;</span> date <span class="sc">&lt;=</span> <span class="fu">max</span>(forecasts<span class="sc">$</span>date)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Now, let’s combine the extracted forecasts with the observed data and clean up the quantiles into a format suitable for use with <code>scoringutils</code>. We will be cleaning them up because the <code>forecasts</code> data.table labels the quantiles as <code>lower_20</code>, <code>upper_20</code>, etc., where the number indicates the quantile level (e.g., 50% for the median), but that is not compatible with <code>scoringutils</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine forecasts with observed cases</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>eval_dt <span class="ot">&lt;-</span> <span class="fu">merge</span>(forecasts, obs_data, <span class="at">by =</span> <span class="st">"date"</span>)[, true_value <span class="sc">:</span><span class="er">=</span> confirm][, confirm <span class="sc">:</span><span class="er">=</span> <span class="cn">NULL</span>]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt the data to long format</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>cols_to_melt <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"median"</span>, <span class="fu">grep</span>(<span class="st">"^(lower|upper)_"</span>, <span class="fu">names</span>(eval_dt), <span class="at">value =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>eval_long <span class="ot">&lt;-</span> <span class="fu">melt</span>(</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    eval_dt,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">id.vars =</span> <span class="fu">setdiff</span>(<span class="fu">names</span>(eval_dt), cols_to_melt),</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">measure.vars =</span> cols_to_melt,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">variable.name =</span> <span class="st">"prediction"</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">value.name =</span> <span class="st">"value"</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare the evaluation data</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>eval_long[, quantile <span class="sc">:</span><span class="er">=</span> <span class="fu">fifelse</span>(</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  prediction <span class="sc">==</span> <span class="st">"median"</span>, <span class="fl">0.5</span>,</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fifelse</span>(</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"^lower_"</span>, prediction),</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">as.numeric</span>(<span class="fu">sub</span>(<span class="st">"lower_"</span>, <span class="st">""</span>, prediction)) <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fifelse</span>(</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">grepl</span>(<span class="st">"^upper_"</span>, prediction),</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>      (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">as.numeric</span>(<span class="fu">sub</span>(<span class="st">"upper_"</span>, <span class="st">""</span>, prediction)) <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>      <span class="cn">NA_real_</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>)][, prediction <span class="sc">:</span><span class="er">=</span> value][, value <span class="sc">:</span><span class="er">=</span> <span class="cn">NULL</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in fifelse(grepl("^lower_", prediction), (1 - as.numeric(sub("lower_",
+: NAs introduced by coercion</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in fifelse(grepl("^upper_", prediction), (1 + as.numeric(sub("upper_",
+: NAs introduced by coercion</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the data by quantile</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setorder</span>(eval_long, quantile) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          date true_value prediction quantile
+        &lt;Date&gt;      &lt;num&gt;      &lt;num&gt;    &lt;num&gt;
+ 1: 2020-04-22       2729    1526.00     0.05
+ 2: 2020-04-23       3370    1623.90     0.05
+ 3: 2020-04-24       2646    1911.95     0.05
+ 4: 2020-04-25       3021    1599.00     0.05
+ 5: 2020-04-26       2357    1701.95     0.05
+ 6: 2020-04-27       2324    1507.00     0.05
+ 7: 2020-04-28       1739    1237.85     0.05
+ 8: 2020-04-22       2729    1895.00     0.25
+ 9: 2020-04-23       3370    2056.75     0.25
+10: 2020-04-24       2646    2420.00     0.25</code></pre>
+</div>
+</div>
+<p>Now we can use the <code>scoringutils</code> package to compute and summarise the scores. By default, a range of scores will be computed, including the interval_score, dispersion, underprediction, overprediction, coverage_deviation, bias, and ae_median.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mainly uses the scoringutils package</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>scored_scores <span class="ot">&lt;-</span> eval_long[, quantile_level <span class="sc">:</span><span class="er">=</span> quantile][, quantile <span class="sc">:</span><span class="er">=</span> <span class="cn">NULL</span>][, model <span class="sc">:</span><span class="er">=</span> <span class="st">"EpiNow2"</span>] <span class="sc">|&gt;</span> <span class="co"># align names to scoringutils preference</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_forecast_quantile</span>(<span class="at">observed  =</span> <span class="st">"true_value"</span>, <span class="at">predicted =</span> <span class="st">"prediction"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">score</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise_scores</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: ! Computation for `interval_coverage_90` failed. Error: ! To compute the
+  interval coverage for an interval range of "90%", the 0.05 and 0.95 quantiles
+  are required.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(scored_scores, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 15%">
+<col style="width: 16%">
+<col style="width: 11%">
+<col style="width: 7%">
+<col style="width: 21%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">model</th>
+<th style="text-align: right;">wis</th>
+<th style="text-align: right;">overprediction</th>
+<th style="text-align: right;">underprediction</th>
+<th style="text-align: right;">dispersion</th>
+<th style="text-align: right;">bias</th>
+<th style="text-align: right;">interval_coverage_50</th>
+<th style="text-align: right;">ae_median</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">EpiNow2</td>
+<td style="text-align: right;">313.898</td>
+<td style="text-align: right;">33.963</td>
+<td style="text-align: right;">150.892</td>
+<td style="text-align: right;">129.043</td>
+<td style="text-align: right;">-0.143</td>
+<td style="text-align: right;">0.571</td>
+<td style="text-align: right;">444.286</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="interpretation-of-scores" class="level2">
+<h2 class="anchored" data-anchor-id="interpretation-of-scores">Interpretation of scores</h2>
+<p>The table above provides a summary of the forecast performance by metrics. Note that it is not difficult to interpret the scores currently as they are not relative to other models. A proper comparison can only be done against other models.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Comparing against a baseline model
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A common practice is to have a baseline model <span class="citation" data-cites="stapper2025mind">(<a href="#ref-stapper2025mind" role="doc-biblioref">Stapper and Funk 2025</a>)</span>, such as a naive model, and compare the scores of your model against it.</p>
+</div>
+</div>
+</section>
+<section id="future-updates" class="level2">
+<h2 class="anchored" data-anchor-id="future-updates">Future updates</h2>
+<p>In future updates, I will explore more advanced techniques for model diagnostics and evaluation, including posterior predictive checks, cross-validation, and more using packages like <a href="https://mc-stan.org/loo/"><code>loo</code></a>, <a href="https://mc-stan.org/shinystan/">shinystan</a>, and <code>bayesplot</code></p>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<p>As this is a simple and basic guide, I’ll direct you to the following resources for more in-depth information on model diagnostics and forecast evaluation.</p>
+<ul>
+<li>Stan’s guide on <a href="https://mc-stan.org/learn-stan/diagnostics-warnings.html">How to Diagnose and Resolve Convergence Problems</a></li>
+<li><a href="nfidd.github.io/ueifid/">Understanding, evaluating, and improving forecasts of infectious disease burden</a> open course.</li>
+<li>scoringutils R package <a href="https://epiforecasts.io/scoringutils/">documentation</a></li>
+<li>scoringRules R package <a href="https://cran.r-project.org/web/packages/scoringRules/vignettes/article.pdf">documentation</a></li>
+</ul>
+</section>
+<section id="references" class="level2">
+
+
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-carvalho2016overview" class="csl-entry" role="listitem">
+Carvalho, Arthur. 2016. <span>“An Overview of Applications of Proper Scoring Rules.”</span> <em>Decision Analysis</em> 13 (4): 223–42.
+</div>
+<div id="ref-gneiting2007strictly" class="csl-entry" role="listitem">
+Gneiting, Tilmann, and Adrian E Raftery. 2007. <span>“Strictly Proper Scoring Rules, Prediction, and Estimation.”</span> <em>Journal of the American Statistical Association</em> 102 (477): 359–78.
+</div>
+<div id="ref-stapper2025mind" class="csl-entry" role="listitem">
+Stapper, Manuel, and Sebastian Funk. 2025. <span>“Mind the Baseline: The Hidden Impact of Reference Model Selection on Forecast Assessment.”</span> <em>medRxiv</em>, 2025–08.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/jamesmbaazam\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
