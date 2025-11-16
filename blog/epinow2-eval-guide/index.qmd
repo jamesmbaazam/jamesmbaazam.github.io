@@ -1,5 +1,5 @@
 ---
-title: "How to evaluate the 'goodness of fit' of an EpiNow2 model run"
+title: "How to Validate Time-Varying Reproduction Number Estimation in EpiNow2: MCMC Diagnostics, Convergence, and Forecast Evaluation"
 author:
   - name: "James Mba Azam"
   - orcid: "0000-0001-5782-7330"
