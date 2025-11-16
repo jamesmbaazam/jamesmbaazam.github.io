@@ -39,7 +39,7 @@ library(ggplot2)
 
 ## Introduction
 
-This is a quick guide on how to assess or evaluate the output of an EpiNow2 model run.
+This is a comprehensive guide on validating time-varying reproduction number (Rt) estimates from EpiNow2 model runs. EpiNow2 is a Bayesian framework for estimating Rt—a key epidemiological metric indicating disease transmission dynamics—and generating forecasts of case counts. Rigorous validation of these estimates is essential for reliable inference and evidence-based decision-making in infectious disease surveillance and outbreak response.
 
 ::: {.callout-tip collapse="true"}
 
@@ -52,9 +52,9 @@ This means that the model fit can be assessed using the same tools and technique
 The returned `fit` object is either a [`<stanfit>`](https://mc-stan.org/rstan/reference/stanfit-class.html) or [`CmdStanModel`](https://mc-stan.org/cmdstanr/reference/CmdStanModel.html) object, depending on the backend ([`{rstan}`](https://mc-stan.org/rstan/index.html) or [`{cmdstanr}`](https://mc-stan.org/cmdstanr/index.html)) used. For example, you can use the [`{bayesplot}`](https://mc-stan.org/bayesplot/reference/bayesplot-package.html) and [`{posterior}`](https://mc-stan.org/posterior/) packages to visualize and summarize the model diagnostics.
 :::
 
-Evaluating or assessing an `{EpiNow2}` model fit requires a holistic approach involving evaluating the MCMC diagnostics as well as the performance of the forecast against observed data. We will therefore proceed in that regard here.
+Validating EpiNow2 Rt estimates requires a three-pillar approach: (1) **MCMC diagnostics** to ensure the Bayesian sampler has converged and is sampling efficiently from the posterior distribution, (2) **convergence checks** to verify reliable parameter estimates (via metrics like Rhat and effective sample size), and (3) **forecast evaluation** to assess predictive performance against observed data using proper scoring rules. This guide demonstrates each component using the Stan ecosystem's diagnostic tools (`bayesplot`, `posterior`) and the `scoringutils` package for forecast scoring.
 
-Let's start by setting up and running an example model, assessing the MCMC diagnostics, and then evaluating the forecast performance.
+We'll demonstrate this workflow by running an example EpiNow2 model for Rt estimation, examining MCMC diagnostics and convergence metrics, and evaluating forecast performance using proper scoring rules.
 
 ## Running an example model
 
