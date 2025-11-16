@@ -1,0 +1,75 @@
+---
+title: "Expertise"
+---
+
+## Current Research Focus
+
+My current work centers on two key areas:
+
+### Wastewater-Based Surveillance for Infectious Diseases
+
+I am analyzing the utility of wastewater surveillance for routine monitoring of multiple infectious diseases in South Africa. This work explores how environmental surveillance can complement traditional disease monitoring systems and provide early warning signals for public health action.
+
+### Polio Outbreak Risk Modeling
+
+I am developing mathematical and statistical models to map polio immunity and predict the risk of polio outbreaks across Africa. This is work in early stages.
+
+## Research Interests & Methods
+
+I hold a PhD specializing in outbreak response modeling and decision-making. My work focuses on developing methods and open-source tools to evaluate the impact of pharmaceutical and non-pharmaceutical interventions on the spread of vaccine-preventable diseases.
+
+**Key areas of expertise:**
+
+- **Compartmental modeling** to quantify intervention impacts during epidemics
+- **Real-time forecasting and nowcasting** of infections and $R_t$ using Bayesian methods with tools like [EpiNow2](https://epiforecasts.io/EpiNow2/dev/), [epinowcast](https://package.epinowcast.org/dev/), and [EpiEstim](https://mrc-ide.github.io/EpiEstim/)
+- **Reproducible pipelines** and open-source packages for outbreak analytics and model implementation
+- **Bayesian data analysis** for infectious disease problems
+- **Software development** for epidemiological applications
+
+## Other Ongoing Research Projects
+
+- [Evaluating the tradeoffs of using temporally aggregated data for epidemiological forecasts](https://github.com/epiforecasts/daily-vs-weekly-forecast-eval): A case study of COVID-19 in South Africa
+- [COVID-19 severity surveillance pipeline](https://github.com/SACEMA/severity-monitoring): Detecting changes in reported case fatality, case hospitalization, and hospital fatality rates
+- [Two-strain variant emergence model](https://github.com/jamesmbaazam/two_strain_orv_model): Studying the impact of the timing of variant emergence on control strategies
+
+## How I'm Sharpening My Skills
+
+🖥: **Currently learning:**
+
+  - Programming in [The Julia Porgramming Language](https://julialang.org/)
+  
+  - Forecasting principles and methods:
+
+    - Book: [Forecasting: Principles and Practice (3rd ed)](https://otexts.com/fpp3/)
+
+    - Course: [Nowcasting and forecasting infectious disease dynamics](https://nfidd.github.io/nfidd/)
+
+  - Bayesian data analysis:
+
+    - Book: [Statistical Rethinking](https://www.youtube.com/playlist?list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus)
+
+  - Open source software development:
+
+    - [Working in Public: The Making and Maintenance of Open Source Software](https://www.amazon.co.uk/Working-Public-Making-Maintenance-Software/dp/0578675862)
+
+    - [Practical MLOps: Operationalizing Machine Learning Models](https://www.amazon.co.uk/Practical-MLOps-Operationalizing-Machine-Learning/dp/1098103017)
+
+📖: **Casual reading:**
+
+  - [The 5 Elements of Effective Thinking](https://www.amazon.co.uk/5-Elements-Effective-Thinking/dp/0691156662) by Edward Burger and Michael Starbird
+
+  - [The Art of Explanation: How to Communicate with Clarity and Confidence](https://www.amazon.co.uk/Art-Explanation-Communicate-Clarity-Confidence/dp/1472298446) by Ros Atkins
+
+## Potential Collaborations
+
+I am interested in collaborating on mathematical or statistical methods and models that advance outbreak analytics. We can also explore how to translate these innovations into practical software tools.
+
+Please get in touch through any of my contacts below.
+
+## Contact Information
+
+Feel free to reach out through any of these channels:
+
+* **LinkedIn:** [James Azam, PhD](https://www.linkedin.com/in/james-azam-phd-6b5b00176/)
+* **Twitter:** [@james_azam](https://twitter.com/james_azam)
+* **GitHub:** [jamesmbaazam](https://github.com/jamesmbaazam)
