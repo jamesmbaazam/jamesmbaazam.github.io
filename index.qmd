@@ -5,64 +5,22 @@
 :::
 
 ::: {.g-col-8}
-Hi there, I am a Research Software Engineer at the London School of Hygiene and Tropical 
-Medicine, working on the [Epiverse-TRACE](https://github.com/epiverse-trace) Initiative, 
-which is a project to develop and maintain R packages for providing reproducible analytics 
-support during epidemics.
+Hi there, I am a Research Fellow at the London School of Hygiene and Tropical Medicine, based at the [Centre for Mathematical Modelling of Infectious Diseases (CMMID)](https://www.lshtm.ac.uk/research/centres/centre-mathematical-modelling-infectious-diseases), where I work with [Dr. Kathleen O'Reilly](https://www.lshtm.ac.uk/aboutus/people/oreilly.kathleen) on:
 
-I am mainly interested in developing models and methods and
-accompanying software to improve our understanding of how interventions impact disease
-spread.
+* **Analyzing the utility of wastewater surveillance** for routine monitoring of infectious diseases in South Africa
 
-## What I do
+* **Developing mathematical and statistical models** to predict the risk of polio outbreaks in Africa
 
-👨‍💼: Develop and maintain R packages for modelling infectious disease
-outbreaks, including:
+Previously, I was a [Research Software Engineer](https://www.nature.com/articles/d41586-022-01516-2) with the [Epiverse-TRACE Initiative](https://github.com/epiverse-trace), developing and maintaining R packages for reproducible analytics during epidemics.
 
-* Simulating and analysing transmission chains ([{epichains}](https://epiverse-trace.github.io/epichains/), [{bpmodels}](https://epiverse-trace.github.io/bpmodels/)),
+I am passionate about developing models, methods, and software that improve our understanding of disease transmission and enhance outbreak response.
 
-* Estimating the time-varying reproduction number, growth rate, and real-time epidemiological counts ([{EpiNow2}](https://epiforecasts.io/EpiNow2/dev/))
+## Education
 
-* Nowcasting and forecasting epidemiological counts that are biased by
-delays in reporting ([{epinowcast}](https://package.epinowcast.org/dev/)). 
-
-👨‍💼: Conduct research on infectious disease modelling (see Research tab).
-
-🕐: I previously co-maintained the Carpentries course on [Data Analysis and Visualization in R for Ecologists](https://github.com/datacarpentry/R-ecology-lesson). 
-
-## How we can work together
-
-I am interested in working with you on a mathematical or statistical method/model that improves how we do outbreak analytics.
-
-We can also discuss how to generalise it into a piece of software.
-
-Please get in touch through any of my linked contacts (icons on top right). I'm basically everywhere and tend to answer promptly.
-
-## How I'm Sharpening My Skills
-
-🖥: Learning:
-
-  - Forecasting principles and methods:
-  
-    - Book: [Forecasting: Principles and Practice (3rd ed)](https://otexts.com/fpp3/).
-    
-    - Course: [Nowcasting and forecasting infectious disease dynamics](https://nfidd.github.io/nfidd/).
-    
-  - Bayesian data analysis:
-  
-    - Book: [Statistical Rethinking book](https://www.youtube.com/playlist?list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus).
-    
-  - Open source software development:
-  
-    - [Working in Public: The Making and Maintenance of Open Source Software](https://www.amazon.co.uk/Working-Public-Making-Maintenance-Software/dp/0578675862).
-    
-  - [Practical MLOps: Operationalizing Machine Learning Models](https://www.amazon.co.uk/Practical-MLOps-Operationalizing-Machine-Learning/dp/1098103017)
-
-📖: Casual Reading:
-
-  - [The 5 Elements of Effective Thinking](https://www.amazon.co.uk/5-Elements-Effective-Thinking/dp/0691156662) by Edward Burger and Michael Starbird.
-  
-  - [The Art of Explanation: How to Communicate with Clarity and Confidence](https://www.amazon.co.uk/Art-Explanation-Communicate-Clarity-Confidence/dp/1472298446) by Ros Atkins.
+* **2022**: PhD Applied Mathematics, Stellenbosch University, South Africa
+* **2018**: MSc Mathematics, Stellenbosch University, South Africa
+* **2015**: MSc Mathematical Sciences, African Institute for Mathematical Sciences (AIMS), Senegal
+* **2013**: BSc Actuarial Science, Kwame Nkrumah University of Science and Technology, Ghana
 
 :::
 
