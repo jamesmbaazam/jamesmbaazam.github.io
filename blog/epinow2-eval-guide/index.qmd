@@ -7,9 +7,6 @@ bibliography: index.bib
 date: "2025-11-08"
 format:
   html:
-    theme:
-      light: lux
-      dark: cyborg
     toc: true
 execute:
   eval: true
