@@ -1,0 +1,42 @@
+---
+title: "Publications"
+---
+
+```{r packages, include=FALSE, message=FALSE, warning=FALSE}
+library("scholar")
+library("dplyr")
+library("DT")
+```
+
+You can find my published work on my [Google Scholar profile](https://scholar.google.co.za/citations?user=IxRpXp8AAAAJ&hl=en).
+
+## Recent work
+
+```{r pubs-table, echo=FALSE, message=FALSE, warning=FALSE}
+# My scholar id
+id <- "IxRpXp8AAAAJ"
+# Get the profile
+my_profile <- scholar::get_profile(id)
+# Get publications
+pubs <- scholar::get_publications(id)
+# Sort by year
+pubs <- pubs |> dplyr::arrange(desc(year))
+# Get the first 5 publications
+recent_pubs <- pubs |>
+  dplyr::select(title, author, year, journal) |>
+  dplyr::slice_head(n = 5)
+DT::datatable(recent_pubs)
+```
+
+## Top 5 most cited publications
+
+```{r top-cited-pubs, echo=FALSE, message=FALSE, warning=FALSE}
+# Get the top 5 most cited publications
+# Sort by year
+pubs <- pubs |> dplyr::arrange(desc(cites))
+# Get the first 5 publications
+most_cited <- pubs |>
+  dplyr::select(title, author, year, journal, cites) |>
+  dplyr::slice_head(n = 5)
+DT::datatable(most_cited)
+```

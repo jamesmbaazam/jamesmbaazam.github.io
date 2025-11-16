@@ -1,0 +1,99 @@
+---
+title: "Software & Teaching"
+---
+
+Below is a summary of my open source contributions. Find my GitHub page [here](https://github.com/jamesmbaazam).
+
+I also review open-source R code and packages for journals like the [**Journal of Open Source Software**](https://joss.theoj.org/).
+
+Do reach out if you need my services.
+
+## Open-Source Software
+
+::: {.grid}
+
+::: {.g-col-4}
+[![](images/epichains_logo.svg){width=50%}](https://epiverse-trace.github.io/epichains/)
+[![](images/EpiNow2_logo.png){width=50%}](https://epiforecasts.io/EpiNow2)
+[![](images/epinowcast_logo.png){width=50%}](https://package.epinowcast.org/)
+:::
+
+::: {.g-col-8}
+I lead and contribute to several open-source communities developing R packages for outbreak analytics. You can explore all my code on [GitHub](https://github.com/jamesmbaazam).
+
+### [Epiverse TRACE](https://github.com/epiverse-trace/)
+
+During my time as a Research Software Engineer with the Epiverse-TRACE Initiative, I:
+
+* Developed [**epichains**](https://github.com/epiverse-trace/epichains) as a successor of [**bpmodels**](https://github.com/epiverse-trace/bpmodels) for analyzing the distribution of the size and length of transmission chains
+
+* Co-maintained [**EpiNow2**](https://github.com/epiforecasts/EpiNow2) for estimating the time-varying reproduction number, growth rate, and doubling time using Bayesian methods
+
+### [epiforecasts community](https://github.com/epiforecasts)
+
+I contribute to:
+
+* [**EpiNow2**](https://github.com/epiforecasts/EpiNow2): Estimates the time-varying reproduction number, growth rate, and doubling time using a range of open-source tools and Bayesian methods
+
+* [**scoringutils**](https://github.com/epiforecasts/scoringutils): Tools for scoring and assessing predictions
+
+### [epinowcast community](https://github.com/epinowcast)
+
+I contribute to:
+
+* [**epinowcast**](https://github.com/epinowcast/epinowcast): Provides flexible and efficient methods for gaining situational awareness during outbreaks using currently available epidemiological observations and the reporting patterns of historical observations
+
+### [The Carpentries](https://github.com/carpentries)
+
+I briefly co-maintained the Carpentries course on [Data Analysis and Visualization in R for Ecologists](https://github.com/datacarpentry/R-ecology-lesson)
+
+:::
+
+:::
+
+## Teaching & Outreach
+
+### Current Teaching
+
+I am the **lead facilitator** for the Modelling for Pandemic Preparedness and Response (MPPR) modular shortcourse hosted by [The German-West African Centre for Global Health and Pandemic Prevention (G-WAC)](https://g-wac.org/) at the College of Health Sciences, Kwame Nkrumah University of Science and Technology (KNUST), Kumasi, Ghana.
+
+**Course Objectives/Learning Outcomes:**
+
+At the end of the course, participants are expected to:
+
+* Understand the concepts of infectious disease transmission and control
+* Enhance knowledge about data sources, data access, and data curation in (West) Africa
+* Design, implement and use context-specific mathematical models using the R programming language
+* Improve knowledge of communication about modeling output
+* Become part of a network of disease modelers with an interest in West Africa
+
+We have successfully delivered two iterations of this course in 2024 and 2025.
+
+I also maintain a [YouTube channel](https://www.youtube.com/channel/UC2T5okssLdyVrMWHG1BBZnw) with over 3,500 subscribers, featuring tutorials like [this Mendeley tutorial](https://www.youtube.com/watch?v=WWz8yrxNB74) with over 36,000 views.
+
+### Teaching Competencies
+
+* **Mathematical/statistical/dynamical modeling** of infectious diseases
+  - Introduction to Compartmental Models including methods for estimating the basic reproduction number. See example [materials](https://jamesmbaazam.github.io/intro-to-idd-modelling/).
+  - Model fitting techniques. See example [materials](https://jamesmbaazam.github.io/mppr_intro_to_model_fitting/#/title-slide).
+  - Basics of branching process models for infectious disease modelling
+  - Introduction to Bayesian Models for Infectious Disease Forecasting
+  - Developing generative Bayesian models for forecasting infectious diseases
+  - Forecast evaluation using metrics such as Proper Scoring Rules
+
+* **Reproducible data analysis workflows**
+  - **R programming** from the basics to advanced topics (package development, object-oriented programming)
+  - Research software/code development best practices
+  - Git/GitHub from the basics to intermediate/advanced (merging and rebasing, cherry-picking, etc.)
+  - R package development using software engineering industry standards
+  - Pipeline orchestration with [GNU make](https://www.gnu.org/software/make/) and the [targets](https://books.ropensci.org/targets/) R package
+  - Reproducible environments and research code portability ([docker](https://www.docker.com/), [renv](https://rstudio.github.io/renv/), etc)
+
+* **Evidence synthesis**
+  - Systematic/scoping review methods and free automation tools like Rayyan. See my [YouTube tutorials](https://www.youtube.com/watch?v=wyybhi4iL_M&list=PL_JK9Yk5mzB5sz8TIqv8dat5pf-ouMeyK)
+
+* **Thesis and journal article writing** techniques
+
+### Previous Teaching Experience
+
+* Short course on [Introduction to R: Management, Exploration, and Communication of Data](https://www.sacema.org/opportunities/short-courses/) at the DSI-NRF Centre of Excellence in Epidemiological Modelling and Analysis (SACEMA) at Stellenbosch University, South Africa
