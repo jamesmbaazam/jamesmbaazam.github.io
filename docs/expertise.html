@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Dr. James M. Azam – Blog</title>
+<title>Dr. James M. Azam – Expertise</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -69,35 +67,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -130,16 +99,18 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="styles.css">
-<link rel="alternate" type="application/rss+xml" title="Dr. James M. Azam" href="blog.xml" data-external="1"><meta property="og:title" content="Dr.&nbsp;James M. Azam - Blog">
+<meta property="og:title" content="Dr.&nbsp;James M. Azam - Expertise">
+<meta property="og:description" content="Learnings from my day to day experiences">
 <meta property="og:site_name" content="Dr. James M. Azam">
-<meta name="twitter:title" content="Dr.&nbsp;James M. Azam - Blog">
+<meta name="twitter:title" content="Dr.&nbsp;James M. Azam - Expertise">
+<meta name="twitter:description" content="Learnings from my day to day experiences">
 <meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -158,7 +129,7 @@ window.Quarto = {
 <span class="menu-text">About me</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./expertise.html"> 
+    <a class="nav-link active" href="./expertise.html" aria-current="page"> 
 <span class="menu-text">Expertise</span></a>
   </li>  
   <li class="nav-item">
@@ -170,7 +141,7 @@ window.Quarto = {
 <span class="menu-text">Software &amp; Teaching</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./blog.html" aria-current="page"> 
+    <a class="nav-link" href="./blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -197,94 +168,125 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Blog</h1>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta column-page-left">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Bayesian Analysis">Bayesian Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="EpiNow2">EpiNow2 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Reproduction numbers">Reproduction numbers <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Stan">Stan <span class="quarto-category-count">(1)</span></div><div class="category" data-category="forecasting">forecasting <span class="quarto-category-count">(1)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#current-research-focus" id="toc-current-research-focus" class="nav-link active" data-scroll-target="#current-research-focus">Current Research Focus</a>
+  <ul class="collapse">
+  <li><a href="#wastewater-based-surveillance-for-infectious-diseases" id="toc-wastewater-based-surveillance-for-infectious-diseases" class="nav-link" data-scroll-target="#wastewater-based-surveillance-for-infectious-diseases">Wastewater-Based Surveillance for Infectious Diseases</a></li>
+  <li><a href="#polio-outbreak-risk-modeling" id="toc-polio-outbreak-risk-modeling" class="nav-link" data-scroll-target="#polio-outbreak-risk-modeling">Polio Outbreak Risk Modeling</a></li>
+  </ul></li>
+  <li><a href="#research-interests-methods" id="toc-research-interests-methods" class="nav-link" data-scroll-target="#research-interests-methods">Research Interests &amp; Methods</a></li>
+  <li><a href="#other-ongoing-research-projects" id="toc-other-ongoing-research-projects" class="nav-link" data-scroll-target="#other-ongoing-research-projects">Other Ongoing Research Projects</a></li>
+  <li><a href="#how-im-sharpening-my-skills" id="toc-how-im-sharpening-my-skills" class="nav-link" data-scroll-target="#how-im-sharpening-my-skills">How I’m Sharpening My Skills</a></li>
+  <li><a href="#potential-collaborations" id="toc-potential-collaborations" class="nav-link" data-scroll-target="#potential-collaborations">Potential Collaborations</a></li>
+  <li><a href="#contact-information" id="toc-contact-information" class="nav-link" data-scroll-target="#contact-information">Contact Information</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Expertise</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
 
+<section id="current-research-focus" class="level2">
+<h2 class="anchored" data-anchor-id="current-research-focus">Current Research Focus</h2>
+<p>My current work centers on two key areas:</p>
+<section id="wastewater-based-surveillance-for-infectious-diseases" class="level3">
+<h3 class="anchored" data-anchor-id="wastewater-based-surveillance-for-infectious-diseases">Wastewater-Based Surveillance for Infectious Diseases</h3>
+<p>I am analyzing the utility of wastewater surveillance for routine monitoring of multiple infectious diseases in South Africa. This work explores how environmental surveillance can complement traditional disease monitoring systems and provide early warning signals for public health action.</p>
+</section>
+<section id="polio-outbreak-risk-modeling" class="level3">
+<h3 class="anchored" data-anchor-id="polio-outbreak-risk-modeling">Polio Outbreak Risk Modeling</h3>
+<p>I am developing mathematical and statistical models to map polio immunity and predict the risk of polio outbreaks across Africa. This is work in early stages.</p>
+</section>
+</section>
+<section id="research-interests-methods" class="level2">
+<h2 class="anchored" data-anchor-id="research-interests-methods">Research Interests &amp; Methods</h2>
+<p>I hold a PhD specializing in outbreak response modeling and decision-making. My work focuses on developing methods and open-source tools to evaluate the impact of pharmaceutical and non-pharmaceutical interventions on the spread of vaccine-preventable diseases.</p>
+<p><strong>Key areas of expertise:</strong></p>
+<ul>
+<li><strong>Compartmental modeling</strong> to quantify intervention impacts during epidemics</li>
+<li><strong>Real-time forecasting and nowcasting</strong> of infections and <span class="math inline">\(R_t\)</span> using Bayesian methods with tools like <a href="https://epiforecasts.io/EpiNow2/dev/">EpiNow2</a>, <a href="https://package.epinowcast.org/dev/">epinowcast</a>, and <a href="https://mrc-ide.github.io/EpiEstim/">EpiEstim</a></li>
+<li><strong>Reproducible pipelines</strong> and open-source packages for outbreak analytics and model implementation</li>
+<li><strong>Bayesian data analysis</strong> for infectious disease problems</li>
+<li><strong>Software development</strong> for epidemiological applications</li>
+</ul>
+</section>
+<section id="other-ongoing-research-projects" class="level2">
+<h2 class="anchored" data-anchor-id="other-ongoing-research-projects">Other Ongoing Research Projects</h2>
+<ul>
+<li><a href="https://github.com/epiforecasts/daily-vs-weekly-forecast-eval">Evaluating the tradeoffs of using temporally aggregated data for epidemiological forecasts</a>: A case study of COVID-19 in South Africa</li>
+<li><a href="https://github.com/SACEMA/severity-monitoring">COVID-19 severity surveillance pipeline</a>: Detecting changes in reported case fatality, case hospitalization, and hospital fatality rates</li>
+<li><a href="https://github.com/jamesmbaazam/two_strain_orv_model">Two-strain variant emergence model</a>: Studying the impact of the timing of variant emergence on control strategies</li>
+</ul>
+</section>
+<section id="how-im-sharpening-my-skills" class="level2">
+<h2 class="anchored" data-anchor-id="how-im-sharpening-my-skills">How I’m Sharpening My Skills</h2>
+<p>🖥: <strong>Currently learning:</strong></p>
+<ul>
+<li><p>Programming in <a href="https://julialang.org/">The Julia Porgramming Language</a></p></li>
+<li><p>Forecasting principles and methods:</p>
+<ul>
+<li><p>Book: <a href="https://otexts.com/fpp3/">Forecasting: Principles and Practice (3rd ed)</a></p></li>
+<li><p>Course: <a href="https://nfidd.github.io/nfidd/">Nowcasting and forecasting infectious disease dynamics</a></p></li>
+</ul></li>
+<li><p>Bayesian data analysis:</p>
+<ul>
+<li>Book: <a href="https://www.youtube.com/playlist?list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus">Statistical Rethinking</a></li>
+</ul></li>
+<li><p>Open source software development:</p>
+<ul>
+<li><p><a href="https://www.amazon.co.uk/Working-Public-Making-Maintenance-Software/dp/0578675862">Working in Public: The Making and Maintenance of Open Source Software</a></p></li>
+<li><p><a href="https://www.amazon.co.uk/Practical-MLOps-Operationalizing-Machine-Learning/dp/1098103017">Practical MLOps: Operationalizing Machine Learning Models</a></p></li>
+</ul></li>
+</ul>
+<p>📖: <strong>Casual reading:</strong></p>
+<ul>
+<li><p><a href="https://www.amazon.co.uk/5-Elements-Effective-Thinking/dp/0691156662">The 5 Elements of Effective Thinking</a> by Edward Burger and Michael Starbird</p></li>
+<li><p><a href="https://www.amazon.co.uk/Art-Explanation-Communicate-Clarity-Confidence/dp/1472298446">The Art of Explanation: How to Communicate with Clarity and Confidence</a> by Ros Atkins</p></li>
+</ul>
+</section>
+<section id="potential-collaborations" class="level2">
+<h2 class="anchored" data-anchor-id="potential-collaborations">Potential Collaborations</h2>
+<p>I am interested in collaborating on mathematical or statistical methods and models that advance outbreak analytics. We can also explore how to translate these innovations into practical software tools.</p>
+<p>Please get in touch through any of my contacts below.</p>
+</section>
+<section id="contact-information" class="level2">
+<h2 class="anchored" data-anchor-id="contact-information">Contact Information</h2>
+<p>Feel free to reach out through any of these channels:</p>
+<ul>
+<li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/james-azam-phd-6b5b00176/">James Azam, PhD</a></li>
+<li><strong>Twitter:</strong> <a href="https://twitter.com/james_azam"><span class="citation" data-cites="james_azam">@james_azam</span></a></li>
+<li><strong>GitHub:</strong> <a href="https://github.com/jamesmbaazam">jamesmbaazam</a></li>
+</ul>
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="forecasting,EpiNow2,Bayesian Analysis,Reproduction numbers,R,Stan" data-listing-date-sort="1762560000000" data-listing-file-modified-sort="1763315990775" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1383">
-<div class="thumbnail">
-<p><a href="./blog/epinow2-eval-guide/index.html" class="no-external"></a></p><a href="./blog/epinow2-eval-guide/index.html" class="no-external">
-<p class="card-img-top"><img src="blog/epinow2-eval-guide/index_files/figure-html/model-setup-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./blog/epinow2-eval-guide/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./blog/epinow2-eval-guide/index.html" class="no-external">How to evaluate the ‘goodness of fit’ of an EpiNow2 model run</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./blog/epinow2-eval-guide/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('forecasting'); return false;">
-forecasting
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('EpiNow2'); return false;">
-EpiNow2
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Bayesian Analysis'); return false;">
-Bayesian Analysis
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Reproduction numbers'); return false;">
-Reproduction numbers
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Stan'); return false;">
-Stan
-</div>
-</div>
-<div class="listing-description">
-<a href="./blog/epinow2-eval-guide/index.html" class="no-external">This is a quick guide on how to assess or evaluate the output of an EpiNow2 model run.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./blog/epinow2-eval-guide/index.html" class="no-external">
-<div class="listing-date">
-Nov 8, 2025
-</div>
-<div class="listing-author">
-James Mba Azam
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

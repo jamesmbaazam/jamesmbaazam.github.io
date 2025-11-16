@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Dr. James M. Azam – Blog</title>
+<title>Dr. James M. Azam – Publications</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -69,77 +67,31 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="site_libs/datatables-binding-0.34.0/datatables.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
-<link rel="alternate" type="application/rss+xml" title="Dr. James M. Azam" href="blog.xml" data-external="1"><meta property="og:title" content="Dr.&nbsp;James M. Azam - Blog">
+<meta property="og:title" content="Dr.&nbsp;James M. Azam - Publications">
+<meta property="og:description" content="Learnings from my day to day experiences">
 <meta property="og:site_name" content="Dr. James M. Azam">
-<meta name="twitter:title" content="Dr.&nbsp;James M. Azam - Blog">
+<meta name="twitter:title" content="Dr.&nbsp;James M. Azam - Publications">
+<meta name="twitter:description" content="Learnings from my day to day experiences">
 <meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -162,7 +114,7 @@ window.Quarto = {
 <span class="menu-text">Expertise</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./publications.html"> 
+    <a class="nav-link active" href="./publications.html" aria-current="page"> 
 <span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
@@ -170,7 +122,7 @@ window.Quarto = {
 <span class="menu-text">Software &amp; Teaching</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./blog.html" aria-current="page"> 
+    <a class="nav-link" href="./blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -197,94 +149,64 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Blog</h1>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta column-page-left">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Bayesian Analysis">Bayesian Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="EpiNow2">EpiNow2 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Reproduction numbers">Reproduction numbers <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Stan">Stan <span class="quarto-category-count">(1)</span></div><div class="category" data-category="forecasting">forecasting <span class="quarto-category-count">(1)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#recent-work" id="toc-recent-work" class="nav-link active" data-scroll-target="#recent-work">Recent work</a></li>
+  <li><a href="#top-5-most-cited-publications" id="toc-top-5-most-cited-publications" class="nav-link" data-scroll-target="#top-5-most-cited-publications">Top 5 most cited publications</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Publications</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
 
+<p>You can find my published work on my <a href="https://scholar.google.co.za/citations?user=IxRpXp8AAAAJ&amp;hl=en">Google Scholar profile</a>.</p>
+<section id="recent-work" class="level2">
+<h2 class="anchored" data-anchor-id="recent-work">Recent work</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-664aba6eb6cddb058065" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-664aba6eb6cddb058065">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5"],["Global burden of 292 causes of death in 204 countries and territories and 660 subnational locations, 1990–2023: a systematic analysis for the Global Burden of Disease Study 2023","Global age-sex-specific all-cause mortality and life expectancy estimates for 204 countries and territories and 660 subnational locations, 1950–2023: a demographic analysis for …","Global age-sex-specific all-cause mortality and life expectancy estimates for 204 countries and territories and 660 subnational locations, 1950–2023: a demographic analysis for …","Key considerations for retiring/superseding an R package","Global burden of bacterial antimicrobial resistance 1990–2021: a systematic analysis with forecasts to 2050"],["M Naghavi, HH Kyu, MA Aalipour, H Aalruz, HS Ababneh, BJ Abafita, ...","AE Schumacher, P Zheng, RM Barber, MA Aalipour, H Aalruz, ...","S Austin E, P Zheng, RM Barber, MA Aalipour, H Aalruz, HS Ababneh, ...","JM Azam, H Gruson, S Funk","M Naghavi, SE Vollset, KS Ikuta, LR Swetschinski, AP Gray, EE Wool, ..."],[2025,2025,2025,2025,2024],["The Lancet","The Lancet","Elsevier","https://doi.org/","The Lancet"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>title<\/th>\n      <th>author<\/th>\n      <th>year<\/th>\n      <th>journal<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"title","targets":1},{"name":"author","targets":2},{"name":"year","targets":3},{"name":"journal","targets":4}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="top-5-most-cited-publications" class="level2">
+<h2 class="anchored" data-anchor-id="top-5-most-cited-publications">Top 5 most cited publications</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-301cdf5074430ae81384" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-301cdf5074430ae81384">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5"],["Global burden of bacterial antimicrobial resistance 1990–2021: a systematic analysis with forecasts to 2050","Recommendations for empowering early career researchers to improve research culture and practice","Socioeconomic inequalities in food insecurity and malnutrition among under-five children: within and between-group inequalities in Zimbabwe","Global burden of 292 causes of death in 204 countries and territories and 660 subnational locations, 1990–2023: a systematic analysis for the Global Burden of Disease Study 2023","Global age-sex-specific all-cause mortality and life expectancy estimates for 204 countries and territories and 660 subnational locations, 1950–2023: a demographic analysis for …"],["M Naghavi, SE Vollset, KS Ikuta, LR Swetschinski, AP Gray, EE Wool, ...","BA Kent, C Holman, E Amoako, A Antonietti, JM Azam, H Ballhausen, ...","AT Lukwa, A Siya, KN Zablon, JM Azam, OA Alaba","M Naghavi, HH Kyu, MA Aalipour, H Aalruz, HS Ababneh, BJ Abafita, ...","AE Schumacher, P Zheng, RM Barber, MA Aalipour, H Aalruz, ..."],[2024,2022,2020,2025,2025],["The Lancet","PLoS Biology","BMC Public Health","The Lancet","The Lancet"],[1908,80,55,14,11]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>title<\/th>\n      <th>author<\/th>\n      <th>year<\/th>\n      <th>journal<\/th>\n      <th>cites<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"title","targets":1},{"name":"author","targets":2},{"name":"year","targets":3},{"name":"journal","targets":4},{"name":"cites","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="forecasting,EpiNow2,Bayesian Analysis,Reproduction numbers,R,Stan" data-listing-date-sort="1762560000000" data-listing-file-modified-sort="1763315990775" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1383">
-<div class="thumbnail">
-<p><a href="./blog/epinow2-eval-guide/index.html" class="no-external"></a></p><a href="./blog/epinow2-eval-guide/index.html" class="no-external">
-<p class="card-img-top"><img src="blog/epinow2-eval-guide/index_files/figure-html/model-setup-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./blog/epinow2-eval-guide/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./blog/epinow2-eval-guide/index.html" class="no-external">How to evaluate the ‘goodness of fit’ of an EpiNow2 model run</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./blog/epinow2-eval-guide/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('forecasting'); return false;">
-forecasting
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('EpiNow2'); return false;">
-EpiNow2
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Bayesian Analysis'); return false;">
-Bayesian Analysis
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Reproduction numbers'); return false;">
-Reproduction numbers
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Stan'); return false;">
-Stan
-</div>
-</div>
-<div class="listing-description">
-<a href="./blog/epinow2-eval-guide/index.html" class="no-external">This is a quick guide on how to assess or evaluate the output of an EpiNow2 model run.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./blog/epinow2-eval-guide/index.html" class="no-external">
-<div class="listing-date">
-Nov 8, 2025
-</div>
-<div class="listing-author">
-James Mba Azam
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
