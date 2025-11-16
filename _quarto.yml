@@ -16,13 +16,13 @@ website:
       - href: index.xml
     left:
       - href: index.qmd
-        text: Home
-      - href: research_projects.qmd
-        text: Research/Publications
-      - href: opensource_projects.qmd
-        text: Open-source Projects
-      - href: teaching.qmd
-        text: Teaching
+        text: About me
+      - href: expertise.qmd
+        text: Expertise
+      - href: publications.qmd
+        text: Publications
+      - href: software_teaching.qmd
+        text: Software & Teaching
       - href: blog.qmd
         text: Blog
     tools:
