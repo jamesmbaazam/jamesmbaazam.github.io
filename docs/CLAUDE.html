@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Dr. James M. Azam – Blog</title>
+<title>Dr. James M. Azam – claude</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -69,77 +101,21 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
-<link rel="alternate" type="application/rss+xml" title="Dr. James M. Azam" href="blog.xml" data-external="1"><meta property="og:title" content="Dr.&nbsp;James M. Azam - Blog">
+<meta property="og:title" content="Dr.&nbsp;James M. Azam">
+<meta property="og:description" content="Learnings from my day to day experiences">
 <meta property="og:site_name" content="Dr. James M. Azam">
-<meta name="twitter:title" content="Dr.&nbsp;James M. Azam - Blog">
+<meta name="twitter:title" content="Dr.&nbsp;James M. Azam">
+<meta name="twitter:description" content="Learnings from my day to day experiences">
 <meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -170,7 +146,7 @@ window.Quarto = {
 <span class="menu-text">Software &amp; Teaching</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./blog.html" aria-current="page"> 
+    <a class="nav-link" href="./blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -197,94 +173,151 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Blog</h1>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta column-page-left">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Bayesian Analysis">Bayesian Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="EpiNow2">EpiNow2 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Reproduction numbers">Reproduction numbers <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Stan">Stan <span class="quarto-category-count">(1)</span></div><div class="category" data-category="forecasting">forecasting <span class="quarto-category-count">(1)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#claude.md" id="toc-claude.md" class="nav-link active" data-scroll-target="#claude.md">CLAUDE.md</a>
+  <ul class="collapse">
+  <li><a href="#project-overview" id="toc-project-overview" class="nav-link" data-scroll-target="#project-overview">Project Overview</a></li>
+  <li><a href="#tech-stack" id="toc-tech-stack" class="nav-link" data-scroll-target="#tech-stack">Tech Stack</a></li>
+  <li><a href="#repository-structure" id="toc-repository-structure" class="nav-link" data-scroll-target="#repository-structure">Repository Structure</a></li>
+  <li><a href="#development-commands" id="toc-development-commands" class="nav-link" data-scroll-target="#development-commands">Development Commands</a>
+  <ul class="collapse">
+  <li><a href="#preview-the-website-locally" id="toc-preview-the-website-locally" class="nav-link" data-scroll-target="#preview-the-website-locally">Preview the website locally</a></li>
+  <li><a href="#render-the-entire-website" id="toc-render-the-entire-website" class="nav-link" data-scroll-target="#render-the-entire-website">Render the entire website</a></li>
+  <li><a href="#render-a-specific-page" id="toc-render-a-specific-page" class="nav-link" data-scroll-target="#render-a-specific-page">Render a specific page</a></li>
+  <li><a href="#working-with-r-dependencies" id="toc-working-with-r-dependencies" class="nav-link" data-scroll-target="#working-with-r-dependencies">Working with R dependencies</a></li>
+  </ul></li>
+  <li><a href="#blog-post-structure" id="toc-blog-post-structure" class="nav-link" data-scroll-target="#blog-post-structure">Blog Post Structure</a></li>
+  <li><a href="#publishing-workflow" id="toc-publishing-workflow" class="nav-link" data-scroll-target="#publishing-workflow">Publishing Workflow</a></li>
+  <li><a href="#key-configuration-details" id="toc-key-configuration-details" class="nav-link" data-scroll-target="#key-configuration-details">Key Configuration Details</a></li>
+  <li><a href="#important-notes" id="toc-important-notes" class="nav-link" data-scroll-target="#important-notes">Important Notes</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 
 
 
+<section id="claude.md" class="level1">
+<h1>CLAUDE.md</h1>
+<p>This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.</p>
+<section id="project-overview" class="level2">
+<h2 class="anchored" data-anchor-id="project-overview">Project Overview</h2>
+<p>This is a personal academic/professional website built with Quarto. The site showcases research, publications, open-source projects, teaching materials, and blog posts related to infectious disease modeling and epidemiological analytics.</p>
+<p>The site is published at https://jamesmbaazam.github.io using GitHub Pages.</p>
+</section>
+<section id="tech-stack" class="level2">
+<h2 class="anchored" data-anchor-id="tech-stack">Tech Stack</h2>
+<ul>
+<li><strong>Quarto</strong>: Static site generator for the website</li>
+<li><strong>R</strong>: Primary programming language for blog posts and computational content</li>
+<li><strong>renv</strong>: R package dependency management</li>
+<li><strong>GitHub Actions</strong>: CI/CD pipeline for automated publishing</li>
+</ul>
+</section>
+<section id="repository-structure" class="level2">
+<h2 class="anchored" data-anchor-id="repository-structure">Repository Structure</h2>
+<ul>
+<li><code>_quarto.yml</code>: Main Quarto configuration file</li>
+<li><code>index.qmd</code>: Homepage</li>
+<li><code>blog.qmd</code>: Blog listing page</li>
+<li><code>blog/</code>: Individual blog posts (each in its own subdirectory with <code>index.qmd</code>)
+<ul>
+<li><code>blog/epinow2-eval-guide/</code>: Guide on evaluating EpiNow2 model runs</li>
+<li><code>blog/julia-sugar-vs-r/</code>: Comparison of Julia and R syntax</li>
+</ul></li>
+<li><code>research_projects.qmd</code>: Research and publications page</li>
+<li><code>opensource_projects.qmd</code>: Open-source projects page</li>
+<li><code>teaching.qmd</code>: Teaching materials page</li>
+<li><code>images/</code>: Static images for the site</li>
+<li><code>styles.css</code>: Custom CSS styles</li>
+<li><code>_extensions/</code>: Quarto extensions (e.g., auto-dark mode)</li>
+<li><code>docs/</code>: Output directory for rendered site (published to GitHub Pages)</li>
+<li><code>renv/</code>: R package environment (managed by renv)</li>
+<li><code>renv.lock</code>: Locked R package dependencies</li>
+</ul>
+</section>
+<section id="development-commands" class="level2">
+<h2 class="anchored" data-anchor-id="development-commands">Development Commands</h2>
+<section id="preview-the-website-locally" class="level3">
+<h3 class="anchored" data-anchor-id="preview-the-website-locally">Preview the website locally</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="render-the-entire-website" class="level3">
+<h3 class="anchored" data-anchor-id="render-the-entire-website">Render the entire website</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="render-a-specific-page" class="level3">
+<h3 class="anchored" data-anchor-id="render-a-specific-page">Render a specific page</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render index.qmd</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render blog/epinow2-eval-guide/index.qmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="working-with-r-dependencies" class="level3">
+<h3 class="anchored" data-anchor-id="working-with-r-dependencies">Working with R dependencies</h3>
+<p>Initialize or restore R environment:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In R console</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Install new R packages:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In R console</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"package_name"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()  <span class="co"># Update renv.lock after installing</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="blog-post-structure" class="level2">
+<h2 class="anchored" data-anchor-id="blog-post-structure">Blog Post Structure</h2>
+<p>Blog posts are written in Quarto markdown (<code>.qmd</code>) files located in subdirectories under <code>blog/</code>. Each post typically includes:</p>
+<ul>
+<li>YAML frontmatter with metadata (title, author, date, categories, ORCID)</li>
+<li>R code chunks (often with caching enabled via <code>freeze: true</code> for computationally intensive content)</li>
+<li>Categories include: forecasting, EpiNow2, Bayesian Analysis, Reproduction numbers, R, Stan, Julia</li>
+</ul>
+<p>Blog posts often use R packages like: - EpiNow2 (epidemiological nowcasting/forecasting) - data.table, dplyr (data manipulation) - ggplot2 (visualization) - bayesplot, posterior (Bayesian analysis) - scoringutils (forecast evaluation)</p>
+</section>
+<section id="publishing-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="publishing-workflow">Publishing Workflow</h2>
+<p>The site is automatically built and published to GitHub Pages on every push to <code>main</code> branch via <code>.github/workflows/quarto-publish.yml</code>. The workflow:</p>
+<ol type="1">
+<li>Sets up Quarto (pre-release version)</li>
+<li>Sets up R</li>
+<li>Restores R environment using renv</li>
+<li>Installs system dependency (GLPK for igraph package)</li>
+<li>Renders and publishes to <code>gh-pages</code> branch</li>
+</ol>
+</section>
+<section id="key-configuration-details" class="level2">
+<h2 class="anchored" data-anchor-id="key-configuration-details">Key Configuration Details</h2>
+<ul>
+<li><strong>Output directory</strong>: <code>docs/</code> (configured in <code>_quarto.yml</code>)</li>
+<li><strong>R version</strong>: 4.5.1 (as specified in <code>renv.lock</code>)</li>
+<li><strong>Theme</strong>: cosmo (light), darkly (dark mode)</li>
+<li><strong>Auto-dark filter</strong>: Automatically switches between light/dark themes</li>
+<li><strong>Site navigation</strong>: Top navbar with Home, Research, Open-source Projects, Teaching, Blog</li>
+<li><strong>Social links</strong>: Twitter, GitHub, LinkedIn, Google Scholar, Email</li>
+</ul>
+</section>
+<section id="important-notes" class="level2">
+<h2 class="anchored" data-anchor-id="important-notes">Important Notes</h2>
+<ul>
+<li>The site uses <code>renv</code> for R package management. Always run <code>renv::restore()</code> when setting up a new environment.</li>
+<li>Blog posts with computationally intensive code use <code>freeze: true</code> to cache results and avoid re-execution on every render.</li>
+<li>The GitHub Actions workflow requires GLPK to be installed for the igraph R package dependency.</li>
+<li>The output directory is <code>docs/</code> (not the default <code>_site/</code>), which is configured for GitHub Pages publishing.</li>
+</ul>
 
 
+</section>
+</section>
 
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="forecasting,EpiNow2,Bayesian Analysis,Reproduction numbers,R,Stan" data-listing-date-sort="1762560000000" data-listing-file-modified-sort="1763315990775" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1383">
-<div class="thumbnail">
-<p><a href="./blog/epinow2-eval-guide/index.html" class="no-external"></a></p><a href="./blog/epinow2-eval-guide/index.html" class="no-external">
-<p class="card-img-top"><img src="blog/epinow2-eval-guide/index_files/figure-html/model-setup-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./blog/epinow2-eval-guide/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./blog/epinow2-eval-guide/index.html" class="no-external">How to evaluate the ‘goodness of fit’ of an EpiNow2 model run</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./blog/epinow2-eval-guide/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('forecasting'); return false;">
-forecasting
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('EpiNow2'); return false;">
-EpiNow2
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Bayesian Analysis'); return false;">
-Bayesian Analysis
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Reproduction numbers'); return false;">
-Reproduction numbers
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Stan'); return false;">
-Stan
-</div>
-</div>
-<div class="listing-description">
-<a href="./blog/epinow2-eval-guide/index.html" class="no-external">This is a quick guide on how to assess or evaluate the output of an EpiNow2 model run.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./blog/epinow2-eval-guide/index.html" class="no-external">
-<div class="listing-date">
-Nov 8, 2025
-</div>
-<div class="listing-author">
-James Mba Azam
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
