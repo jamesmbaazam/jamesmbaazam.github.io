@@ -411,7 +411,7 @@ We've demonstrated a comprehensive three-pillar approach to validating EpiNow2 R
 - [ ] Model assumptions documented (delays, priors)
 - [ ] Limitations acknowledged
 
-**When to trust your Rt estimates**: Only when all diagnostic checks pass and forecast evaluation is satisfactory. Failing diagnostics or poor forecast performance indicate model issues that must be resolved before drawing conclusions.
+**When to trust your Rt estimates**: Ideally, all diagnostic checks should pass and forecast evaluation should be satisfactory. However, in practice, minor diagnostic issues (e.g., slightly elevated Rhat < 1.1, moderate ESS values) may be acceptable if you're aware of the limitations and interpret results with appropriate caution. Serious issues (divergent transitions, Rhat > 1.1, very low ESS < 100) require investigation and likely model refinement. Document any diagnostic concerns and consider their implications for your conclusions.
 
 **When to seek help**: If diagnostics consistently fail despite tuning, or forecasts systematically miss observations, consult the Stan community forums or EpiNow2 GitHub discussions.
 

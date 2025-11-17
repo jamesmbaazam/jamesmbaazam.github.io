@@ -817,7 +817,7 @@ Comparing against a baseline model
 <li><label><input type="checkbox">Model assumptions documented (delays, priors)</label></li>
 <li><label><input type="checkbox">Limitations acknowledged</label></li>
 </ul>
-<p><strong>When to trust your Rt estimates</strong>: Only when all diagnostic checks pass and forecast evaluation is satisfactory. Failing diagnostics or poor forecast performance indicate model issues that must be resolved before drawing conclusions.</p>
+<p><strong>When to trust your Rt estimates</strong>: Ideally, all diagnostic checks should pass and forecast evaluation should be satisfactory. However, in practice, minor diagnostic issues (e.g., slightly elevated Rhat &lt; 1.1, moderate ESS values) may be acceptable if you’re aware of the limitations and interpret results with appropriate caution. Serious issues (divergent transitions, Rhat &gt; 1.1, very low ESS &lt; 100) require investigation and likely model refinement. Document any diagnostic concerns and consider their implications for your conclusions.</p>
 <p><strong>When to seek help</strong>: If diagnostics consistently fail despite tuning, or forecasts systematically miss observations, consult the Stan community forums or EpiNow2 GitHub discussions.</p>
 </section>
 </section>
