@@ -203,16 +203,36 @@ div.csl-indent {
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#running-an-example-model" id="toc-running-an-example-model" class="nav-link" data-scroll-target="#running-an-example-model">Running an example model</a>
+  <li><a href="#demonstration-epinow2-model-setup-and-execution" id="toc-demonstration-epinow2-model-setup-and-execution" class="nav-link" data-scroll-target="#demonstration-epinow2-model-setup-and-execution">Demonstration: EpiNow2 Model Setup and Execution</a>
   <ul class="collapse">
-  <li><a href="#input-preparation" id="toc-input-preparation" class="nav-link" data-scroll-target="#input-preparation">Input preparation</a></li>
-  <li><a href="#fitting-the-model" id="toc-fitting-the-model" class="nav-link" data-scroll-target="#fitting-the-model">Fitting the model</a></li>
+  <li><a href="#setup-data-and-epidemiological-parameters" id="toc-setup-data-and-epidemiological-parameters" class="nav-link" data-scroll-target="#setup-data-and-epidemiological-parameters">Setup: Data and epidemiological parameters</a></li>
+  <li><a href="#running-the-rt-estimation" id="toc-running-the-rt-estimation" class="nav-link" data-scroll-target="#running-the-rt-estimation">Running the Rt estimation</a></li>
   </ul></li>
-  <li><a href="#assessing-model-diagnostics" id="toc-assessing-model-diagnostics" class="nav-link" data-scroll-target="#assessing-model-diagnostics">Assessing model diagnostics</a></li>
-  <li><a href="#evaluating-forecast-performance" id="toc-evaluating-forecast-performance" class="nav-link" data-scroll-target="#evaluating-forecast-performance">Evaluating forecast performance</a></li>
+  <li><a href="#step-1-mcmc-diagnostics-and-convergence-checks" id="toc-step-1-mcmc-diagnostics-and-convergence-checks" class="nav-link" data-scroll-target="#step-1-mcmc-diagnostics-and-convergence-checks">Step 1: MCMC Diagnostics and Convergence Checks</a>
+  <ul class="collapse">
+  <li><a href="#key-diagnostic-metrics" id="toc-key-diagnostic-metrics" class="nav-link" data-scroll-target="#key-diagnostic-metrics">Key diagnostic metrics</a></li>
+  <li><a href="#interpreting-the-diagnostics" id="toc-interpreting-the-diagnostics" class="nav-link" data-scroll-target="#interpreting-the-diagnostics">Interpreting the diagnostics</a></li>
+  <li><a href="#visual-mcmc-diagnostics" id="toc-visual-mcmc-diagnostics" class="nav-link" data-scroll-target="#visual-mcmc-diagnostics">Visual MCMC diagnostics</a></li>
+  </ul></li>
+  <li><a href="#step-2-forecast-performance-evaluation" id="toc-step-2-forecast-performance-evaluation" class="nav-link" data-scroll-target="#step-2-forecast-performance-evaluation">Step 2: Forecast Performance Evaluation</a>
+  <ul class="collapse">
+  <li><a href="#visualizing-forecasts-against-observations" id="toc-visualizing-forecasts-against-observations" class="nav-link" data-scroll-target="#visualizing-forecasts-against-observations">Visualizing forecasts against observations</a></li>
+  <li><a href="#preparing-data-for-scoring" id="toc-preparing-data-for-scoring" class="nav-link" data-scroll-target="#preparing-data-for-scoring">Preparing data for scoring</a></li>
+  </ul></li>
   <li><a href="#interpretation-of-scores" id="toc-interpretation-of-scores" class="nav-link" data-scroll-target="#interpretation-of-scores">Interpretation of scores</a></li>
+  <li><a href="#conclusion-validation-checklist" id="toc-conclusion-validation-checklist" class="nav-link" data-scroll-target="#conclusion-validation-checklist">Conclusion: Validation Checklist</a>
+  <ul class="collapse">
+  <li><a href="#mcmc-diagnostics-pass" id="toc-mcmc-diagnostics-pass" class="nav-link" data-scroll-target="#mcmc-diagnostics-pass">✓ MCMC Diagnostics Pass</a></li>
+  <li><a href="#forecast-evaluation-complete" id="toc-forecast-evaluation-complete" class="nav-link" data-scroll-target="#forecast-evaluation-complete">✓ Forecast Evaluation Complete</a></li>
+  <li><a href="#interpretation-and-documentation" id="toc-interpretation-and-documentation" class="nav-link" data-scroll-target="#interpretation-and-documentation">✓ Interpretation and Documentation</a></li>
+  </ul></li>
   <li><a href="#future-updates" id="toc-future-updates" class="nav-link" data-scroll-target="#future-updates">Future updates</a></li>
-  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a>
+  <ul class="collapse">
+  <li><a href="#mcmc-diagnostics-and-stan" id="toc-mcmc-diagnostics-and-stan" class="nav-link" data-scroll-target="#mcmc-diagnostics-and-stan">MCMC Diagnostics and Stan</a></li>
+  <li><a href="#forecast-evaluation" id="toc-forecast-evaluation" class="nav-link" data-scroll-target="#forecast-evaluation">Forecast Evaluation</a></li>
+  <li><a href="#epinow2-documentation" id="toc-epinow2-documentation" class="nav-link" data-scroll-target="#epinow2-documentation">EpiNow2 Documentation</a></li>
+  </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -265,8 +285,27 @@ div.csl-indent {
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>This is a comprehensive guide on validating time-varying reproduction number (Rt) estimates from EpiNow2 model runs. EpiNow2 is a Bayesian framework for estimating Rt—a key epidemiological metric indicating disease transmission dynamics—and generating forecasts of case counts. Rigorous validation of these estimates is essential for reliable inference and evidence-based decision-making in infectious disease surveillance and outbreak response.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What is the Reproduction Number (Rt)?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <strong>time-varying reproduction number</strong> (Rt) represents the average number of secondary infections caused by an infected individual at time t. It’s a critical metric for understanding epidemic dynamics:</p>
+<ul>
+<li><strong>Rt &gt; 1</strong>: Epidemic is growing (each case generates more than one new case)</li>
+<li><strong>Rt = 1</strong>: Epidemic is stable (endemic equilibrium)</li>
+<li><strong>Rt &lt; 1</strong>: Epidemic is declining (heading toward extinction)</li>
+</ul>
+<p>Unlike the basic reproduction number (R0), which assumes a fully susceptible population, Rt accounts for changing conditions like interventions, behavior changes, and population immunity.</p>
+</div>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -275,7 +314,7 @@ EpiNow2 uses a <a href="https://mc-stan.org/">Stan</a> backend
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><code>{EpiNow2}</code> uses <a href="https://mc-stan.org/">Stan</a> in the backend for model specification, fitting, and inference.</p>
 <p>This means that the model fit can be assessed using the same tools and techniques used for any Stan model. The EpiNow2 package provides a convenient interface to run the models, but the underlying model is a Stan model.</p>
@@ -286,41 +325,57 @@ EpiNow2 uses a <a href="https://mc-stan.org/">Stan</a> backend
 <p>Validating EpiNow2 Rt estimates requires a three-pillar approach: (1) <strong>MCMC diagnostics</strong> to ensure the Bayesian sampler has converged and is sampling efficiently from the posterior distribution, (2) <strong>convergence checks</strong> to verify reliable parameter estimates (via metrics like Rhat and effective sample size), and (3) <strong>forecast evaluation</strong> to assess predictive performance against observed data using proper scoring rules. This guide demonstrates each component using the Stan ecosystem’s diagnostic tools (<code>bayesplot</code>, <code>posterior</code>) and the <code>scoringutils</code> package for forecast scoring.</p>
 <p>We’ll demonstrate this workflow by running an example EpiNow2 model for Rt estimation, examining MCMC diagnostics and convergence metrics, and evaluating forecast performance using proper scoring rules.</p>
 </section>
-<section id="running-an-example-model" class="level2">
-<h2 class="anchored" data-anchor-id="running-an-example-model">Running an example model</h2>
-<section id="input-preparation" class="level3">
-<h3 class="anchored" data-anchor-id="input-preparation">Input preparation</h3>
-<p>This will involve: loading required packages, setting up the model parameters, and running the model.</p>
+<section id="demonstration-epinow2-model-setup-and-execution" class="level2">
+<h2 class="anchored" data-anchor-id="demonstration-epinow2-model-setup-and-execution">Demonstration: EpiNow2 Model Setup and Execution</h2>
+<section id="setup-data-and-epidemiological-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="setup-data-and-epidemiological-parameters">Setup: Data and epidemiological parameters</h3>
+<p>To estimate time-varying Rt, EpiNow2 requires: 1. <strong>Case data</strong>: Time series of reported cases 2. <strong>Epidemiological delays</strong>: Generation time, incubation period, and reporting delays 3. <strong>Prior distributions</strong>: Initial beliefs about Rt and other parameters</p>
+<p>Let’s set up these components:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set number of cores for parallel processing.</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">mc.cores =</span> <span class="fu">min</span>(<span class="dv">4</span>, parallel<span class="sc">::</span><span class="fu">detectCores</span>() <span class="sc">-</span> <span class="dv">1</span>))</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Configure parallel processing for faster MCMC sampling</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Use at most 4 cores, leaving 1 core free for system operations</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">mc.cores =</span> <span class="fu">min</span>(<span class="dv">4</span>, parallel<span class="sc">::</span><span class="fu">detectCores</span>() <span class="sc">-</span> <span class="dv">1</span>))</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Set example generation time, incubation period, and reporting delay. In practice, these should use estimates from the literature or be estimated from data.</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>generation_time <span class="ot">&lt;-</span> <span class="fu">Gamma</span>(</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="fu">Normal</span>(<span class="fl">1.3</span>, <span class="fl">0.3</span>),</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">rate =</span> <span class="fu">Normal</span>(<span class="fl">0.37</span>, <span class="fl">0.09</span>),</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="dv">14</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>incubation_period <span class="ot">&lt;-</span> <span class="fu">LogNormal</span>(</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">meanlog =</span> <span class="fu">Normal</span>(<span class="fl">1.6</span>, <span class="fl">0.06</span>),</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">sdlog =</span> <span class="fu">Normal</span>(<span class="fl">0.4</span>, <span class="fl">0.07</span>),</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="dv">14</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>reporting_delay <span class="ot">&lt;-</span> <span class="fu">LogNormal</span>(<span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">10</span>)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Use example case data.</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>reported_cases <span class="ot">&lt;-</span> example_confirmed[<span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>]</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>cases_plots <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(reported_cases, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> confirm)) <span class="sc">+</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Confirmed cases"</span>, <span class="at">x =</span> <span class="st">"Date"</span>, <span class="at">y =</span> <span class="st">"Cases"</span>) <span class="sc">+</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>cases_plots</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define epidemiological delay distributions</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># In practice, source these from literature or estimate from data</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Generation time: time between successive infections in a transmission chain</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Using Gamma distribution with uncertainty in parameters</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>generation_time <span class="ot">&lt;-</span> <span class="fu">Gamma</span>(</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="fu">Normal</span>(<span class="fl">1.3</span>, <span class="fl">0.3</span>),    <span class="co"># Mean of ~3.5 days</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">rate =</span> <span class="fu">Normal</span>(<span class="fl">0.37</span>, <span class="fl">0.09</span>),   <span class="co"># Moderate spread</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="dv">14</span>                      <span class="co"># Maximum generation interval</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Incubation period: time from infection to symptom onset</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Using LogNormal distribution (common for incubation periods)</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>incubation_period <span class="ot">&lt;-</span> <span class="fu">LogNormal</span>(</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">meanlog =</span> <span class="fu">Normal</span>(<span class="fl">1.6</span>, <span class="fl">0.06</span>), <span class="co"># Median ~5 days</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">sdlog =</span> <span class="fu">Normal</span>(<span class="fl">0.4</span>, <span class="fl">0.07</span>),   <span class="co"># Variability in incubation</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="dv">14</span>                      <span class="co"># Maximum incubation period</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Reporting delay: time from symptom onset to case reporting</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Accounts for testing, lab processing, and reporting lags</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>reporting_delay <span class="ot">&lt;-</span> <span class="fu">LogNormal</span>(<span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">10</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Load case data</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Using first 60 days of example data to demonstrate workflow</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="co"># In practice, use your complete outbreak data</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>reported_cases <span class="ot">&lt;-</span> example_confirmed[<span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>]</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the input data</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>cases_plots <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(reported_cases, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> confirm)) <span class="sc">+</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Confirmed Cases: Input Data"</span>,</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Reported Cases"</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>))</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>cases_plots</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -330,26 +385,29 @@ EpiNow2 uses a <a href="https://mc-stan.org/">Stan</a> backend
 </div>
 </div>
 </section>
-<section id="fitting-the-model" class="level3">
-<h3 class="anchored" data-anchor-id="fitting-the-model">Fitting the model</h3>
-<p>Estimate Rt and nowcast/forecast cases by date of infection.</p>
+<section id="running-the-rt-estimation" class="level3">
+<h3 class="anchored" data-anchor-id="running-the-rt-estimation">Running the Rt estimation</h3>
+<p>Now we fit the EpiNow2 model to estimate time-varying Rt and generate forecasts:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">epinow</span>(</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> reported_cases,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">generation_time =</span> <span class="fu">gt_opts</span>(generation_time),</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">rt =</span> <span class="fu">rt_opts</span>(<span class="at">prior =</span> <span class="fu">LogNormal</span>(<span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="fl">0.1</span>)),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">delays =</span> <span class="fu">delay_opts</span>(incubation_period <span class="sc">+</span> reporting_delay)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Prior on initial Rt: LogNormal(mean=2, sd=0.1) suggests Rt ≈ 2</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">rt =</span> <span class="fu">rt_opts</span>(<span class="at">prior =</span> <span class="fu">LogNormal</span>(<span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="fl">0.1</span>)),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Combine incubation and reporting delays</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">delays =</span> <span class="fu">delay_opts</span>(incubation_period <span class="sc">+</span> reporting_delay)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Logging threshold set at INFO for the name logger
 Writing EpiNow2 logs to the console and:
-'/var/folders/vr/dn4r1_zj417drd1zr9301trw0000gp/T//RtmpMm2rHx/regional-epinow/2020-04-21.log'.
+'/var/folders/vr/dn4r1_zj417drd1zr9301trw0000gp/T//RtmpKjo8ww/regional-epinow/2020-04-21.log'.
 Logging threshold set at INFO for the name logger
 Writing EpiNow2.epinow logs to the console and:
-'/var/folders/vr/dn4r1_zj417drd1zr9301trw0000gp/T//RtmpMm2rHx/epinow/2020-04-21.log'.</code></pre>
+'/var/folders/vr/dn4r1_zj417drd1zr9301trw0000gp/T//RtmpKjo8ww/epinow/2020-04-21.log'.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the model fit</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize Rt estimates and forecasts</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This plot shows: estimated Rt over time, case nowcasts, and forecasts</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -358,12 +416,15 @@ Writing EpiNow2.epinow logs to the console and:
 </div>
 </div>
 </div>
+<p>The plot above shows three key outputs: 1. <strong>Estimated Rt trajectory</strong>: How transmission intensity changed over time 2. <strong>Infections by date of infection</strong>: Nowcast accounting for reporting delays 3. <strong>Forecast</strong>: Predicted future cases with uncertainty intervals</p>
 </section>
 </section>
-<section id="assessing-model-diagnostics" class="level2">
-<h2 class="anchored" data-anchor-id="assessing-model-diagnostics">Assessing model diagnostics</h2>
-<p>We’ll first extract the Stan fit object and compute diagnostics. The <code>epinow()</code> function returns a list of model outputs, including the Stan fit object. This is what we need to assess the model fit. Stan provides diagnostic metrics to assess the model fit, convergence, etc. which we’ll use to assess the model fit. The Stan ecosystem has a rich set of tools for diagnosing model fit, including the <code>bayesplot</code> and <code>posterior</code> packages. These tools provide a way to visualize and summarize the model diagnostics. For an indepth look at MCMC diagnostics, for example, see the bayesplot R package vignette on <a href="https://mc-stan.org/bayesplot/articles/visual-mcmc-diagnostics.html">visual MCMC diagnostics</a>. You can also do <a href="https://mc-stan.org/bayesplot/articles/graphical-ppcs.html">posterior predictive checks</a> using the <code>bayesplot</code> package.</p>
-<p>Diagnostics include:</p>
+<section id="step-1-mcmc-diagnostics-and-convergence-checks" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-mcmc-diagnostics-and-convergence-checks">Step 1: MCMC Diagnostics and Convergence Checks</h2>
+<p>Before trusting our Rt estimates, we must verify that the Bayesian MCMC sampler converged properly. EpiNow2 uses Stan for inference, giving us access to Stan’s comprehensive diagnostic toolkit via the <code>bayesplot</code> and <code>posterior</code> packages.</p>
+<section id="key-diagnostic-metrics" class="level3">
+<h3 class="anchored" data-anchor-id="key-diagnostic-metrics">Key diagnostic metrics</h3>
+<p>We evaluate convergence using several complementary diagnostics:</p>
 <ul>
 <li><strong>Divergent transitions</strong>. These should be minimized; ideally 0. Divergent transitions can be improved by tuning Stan controls like <code>adapt_delta</code>, <code>max_treedepth</code>, and <code>stepsize</code> in <code>stan_opts()</code>. If there are divergent transitions, increase <code>adapt_delta</code> (e.g., 0.95 or 0.99). See an in‑depth explanation at <a href="https://mc-stan.org/learn-stan/diagnostics-warnings.html" class="uri">https://mc-stan.org/learn-stan/diagnostics-warnings.html</a>.</li>
 <li><strong>Rhat</strong>. These should be close to 1 indicating good mixing. Rhat values should be less than 1.05 (See <code>?rstan::Rhat</code>).</li>
@@ -371,36 +432,46 @@ Writing EpiNow2.epinow logs to the console and:
 <li><strong>ESS values</strong>. These should be high; low values indicate insufficient sampling. In particular, both bulk‑ESS and tail‑ESS should be at least ~100 per chain to ensure reliable posterior quantile estimates (see <code>?rstan::ess_bulk</code>).</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> out<span class="sc">$</span>estimates<span class="sc">$</span>fit</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>np <span class="ot">&lt;-</span> bayesplot<span class="sc">::</span><span class="fu">nuts_params</span>(fit)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>divergence_data <span class="ot">&lt;-</span> <span class="fu">subset</span>(np, Parameter <span class="sc">==</span> <span class="st">"divergent__"</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>treedepth_data <span class="ot">&lt;-</span> <span class="fu">subset</span>(np, Parameter <span class="sc">==</span> <span class="st">"treedepth__"</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>posterior_summary <span class="ot">&lt;-</span> posterior<span class="sc">::</span><span class="fu">summarize_draws</span>(</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    fit, <span class="fu">c</span>(posterior<span class="sc">::</span><span class="fu">default_convergence_measures</span>(), <span class="st">"ess_basic"</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">subset</span>(variable <span class="sc">!=</span> <span class="st">"lp__"</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>fit_ess_basic <span class="ot">&lt;-</span> <span class="fu">min</span>(posterior_summary<span class="sc">$</span>ess_basic, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>fit_ess_bulk <span class="ot">&lt;-</span> <span class="fu">min</span>(posterior_summary<span class="sc">$</span>ess_bulk, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>fit_ess_tail <span class="ot">&lt;-</span> <span class="fu">min</span>(posterior_summary<span class="sc">$</span>ess_tail, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>diagnostics <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"samples"</span> <span class="ot">=</span> <span class="fu">nrow</span>(np) <span class="sc">/</span> <span class="fu">length</span>(<span class="fu">unique</span>(np<span class="sc">$</span>Parameter)),</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"max_rhat"</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">max</span>(posterior_summary<span class="sc">$</span>rhat, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">3</span>),</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"divergent_transitions"</span> <span class="ot">=</span> <span class="fu">sum</span>(divergence_data<span class="sc">$</span>Value),</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"per_divergent_transitions"</span> <span class="ot">=</span> <span class="fu">mean</span>(divergence_data<span class="sc">$</span>Value),</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"max_treedepth"</span> <span class="ot">=</span> <span class="fu">max</span>(treedepth_data<span class="sc">$</span>Value),</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ess_basic"</span> <span class="ot">=</span> fit_ess_basic,</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ess_bulk"</span> <span class="ot">=</span> fit_ess_bulk,</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ess_tail"</span> <span class="ot">=</span> fit_ess_tail</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>diagnostics[, no_at_max_treedepth <span class="sc">:</span><span class="er">=</span></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>                <span class="fu">sum</span>(treedepth_data<span class="sc">$</span>Value <span class="sc">==</span> max_treedepth)</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>][, per_at_max_treedepth <span class="sc">:</span><span class="er">=</span> no_at_max_treedepth <span class="sc">/</span> samples]</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(diagnostics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the Stan fit object from EpiNow2 output</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> out<span class="sc">$</span>estimates<span class="sc">$</span>fit</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract NUTS sampler parameters (No-U-Turn Sampler - Stan's HMC variant)</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>np <span class="ot">&lt;-</span> bayesplot<span class="sc">::</span><span class="fu">nuts_params</span>(fit)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>divergence_data <span class="ot">&lt;-</span> <span class="fu">subset</span>(np, Parameter <span class="sc">==</span> <span class="st">"divergent__"</span>)  <span class="co"># Sampling failures</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>treedepth_data <span class="ot">&lt;-</span> <span class="fu">subset</span>(np, Parameter <span class="sc">==</span> <span class="st">"treedepth__"</span>)    <span class="co"># Trajectory lengths</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute convergence metrics for all parameters</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Rhat: measures between-chain vs within-chain variance</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ESS: effective sample size (accounts for autocorrelation)</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>posterior_summary <span class="ot">&lt;-</span> posterior<span class="sc">::</span><span class="fu">summarize_draws</span>(</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    fit, <span class="fu">c</span>(posterior<span class="sc">::</span><span class="fu">default_convergence_measures</span>(), <span class="st">"ess_basic"</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">subset</span>(variable <span class="sc">!=</span> <span class="st">"lp__"</span>)  <span class="co"># Exclude log-probability</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract minimum ESS values across all parameters</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Worst-case ESS determines overall inference reliability</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>fit_ess_basic <span class="ot">&lt;-</span> <span class="fu">min</span>(posterior_summary<span class="sc">$</span>ess_basic, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>fit_ess_bulk <span class="ot">&lt;-</span> <span class="fu">min</span>(posterior_summary<span class="sc">$</span>ess_bulk, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>fit_ess_tail <span class="ot">&lt;-</span> <span class="fu">min</span>(posterior_summary<span class="sc">$</span>ess_tail, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Compile diagnostic summary table</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>diagnostics <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"samples"</span> <span class="ot">=</span> <span class="fu">nrow</span>(np) <span class="sc">/</span> <span class="fu">length</span>(<span class="fu">unique</span>(np<span class="sc">$</span>Parameter)),  <span class="co"># Total post-warmup samples</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"max_rhat"</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">max</span>(posterior_summary<span class="sc">$</span>rhat, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">3</span>),  <span class="co"># Worst Rhat</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"divergent_transitions"</span> <span class="ot">=</span> <span class="fu">sum</span>(divergence_data<span class="sc">$</span>Value),  <span class="co"># Count of divergences</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"per_divergent_transitions"</span> <span class="ot">=</span> <span class="fu">mean</span>(divergence_data<span class="sc">$</span>Value),  <span class="co"># Proportion divergent</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"max_treedepth"</span> <span class="ot">=</span> <span class="fu">max</span>(treedepth_data<span class="sc">$</span>Value),  <span class="co"># Maximum tree depth reached</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ess_basic"</span> <span class="ot">=</span> fit_ess_basic,  <span class="co"># Basic ESS</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ess_bulk"</span> <span class="ot">=</span> fit_ess_bulk,    <span class="co"># ESS for bulk of distribution</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ess_tail"</span> <span class="ot">=</span> fit_ess_tail     <span class="co"># ESS for distribution tails</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate tree depth saturation</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="co"># High proportion indicates sampler hitting computational limits</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>diagnostics[, no_at_max_treedepth <span class="sc">:</span><span class="er">=</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>                <span class="fu">sum</span>(treedepth_data<span class="sc">$</span>Value <span class="sc">==</span> max_treedepth)</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>][, per_at_max_treedepth <span class="sc">:</span><span class="er">=</span> no_at_max_treedepth <span class="sc">/</span> samples]</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(diagnostics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
@@ -447,8 +518,76 @@ Writing EpiNow2.epinow logs to the console and:
 </div>
 </div>
 </section>
-<section id="evaluating-forecast-performance" class="level2">
-<h2 class="anchored" data-anchor-id="evaluating-forecast-performance">Evaluating forecast performance</h2>
+<section id="interpreting-the-diagnostics" class="level3">
+<h3 class="anchored" data-anchor-id="interpreting-the-diagnostics">Interpreting the diagnostics</h3>
+<p>The diagnostics table above summarizes key MCMC performance metrics. For reliable Rt estimates, we should see:</p>
+<ul>
+<li><strong>max_rhat &lt; 1.05</strong>: Our example shows good convergence (Rhat values close to 1.0)</li>
+<li><strong>divergent_transitions = 0</strong>: No divergent transitions is ideal. Any divergences suggest the sampler struggled with the posterior geometry</li>
+<li><strong>ESS values &gt; 400</strong> (for 4 chains × 1000 samples): Bulk-ESS and tail-ESS should be at least 100 per chain. Higher is better for reliable inference</li>
+<li><strong>per_at_max_treedepth &lt; 0.01</strong>: Few samples hitting maximum tree depth indicates efficient sampling</li>
+</ul>
+<p>Based on these criteria, we can assess whether our Rt estimates are trustworthy.</p>
+</section>
+<section id="visual-mcmc-diagnostics" class="level3">
+<h3 class="anchored" data-anchor-id="visual-mcmc-diagnostics">Visual MCMC diagnostics</h3>
+<p>While numerical summaries are useful, visual diagnostics provide deeper insight into sampler behavior. Let’s examine trace plots and rank plots for key parameters:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract key Rt parameters for visualization</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Using a subset of timepoints for clarity</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesplot)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">color_scheme_set</span>(<span class="st">"mix-blue-red"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Trace plots show MCMC sampling behavior over iterations</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Good mixing appears as "fuzzy caterpillars" with chains overlapping</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_trace</span>(fit, <span class="at">pars =</span> <span class="fu">c</span>(<span class="st">"R[1]"</span>, <span class="st">"R[15]"</span>, <span class="st">"R[30]"</span>, <span class="st">"R[45]"</span>),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">facet_args =</span> <span class="fu">list</span>(<span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">strip.position =</span> <span class="st">"left"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/visual-diagnostics-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rank plots check for uniform distribution of ranks across chains</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Deviations from uniform indicate convergence issues</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_rank_overlay</span>(fit, <span class="at">pars =</span> <span class="fu">c</span>(<span class="st">"R[1]"</span>, <span class="st">"R[15]"</span>, <span class="st">"R[30]"</span>, <span class="st">"R[45]"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/rank-plots-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Well-mixed chains should show: - <strong>Trace plots</strong>: Overlapping “fuzzy caterpillar” patterns with no trends or stuck chains - <strong>Rank plots</strong>: Uniform distribution of ranks across all chains (no systematic patterns)</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What if diagnostics fail?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If diagnostics reveal problems (high Rhat, low ESS, divergences):</p>
+<ol type="1">
+<li><strong>Increase sampling</strong>: Use <code>stan_opts(chains = 4, iter_sampling = 4000)</code> for more samples</li>
+<li><strong>Adjust sampler settings</strong>: Increase <code>adapt_delta</code> (e.g., 0.95 or 0.99) to reduce divergences</li>
+<li><strong>Check model specification</strong>: Ensure delay distributions and priors are reasonable</li>
+<li><strong>Increase max_treedepth</strong>: Use <code>stan_opts(max_treedepth = 12)</code> if hitting limits</li>
+<li><strong>Consult Stan diagnostics guide</strong>: <a href="https://mc-stan.org/misc/warnings.html" class="uri">https://mc-stan.org/misc/warnings.html</a></li>
+</ol>
+<p><strong>Do not use</strong> Rt estimates with failing diagnostics—they may be severely biased!</p>
+</div>
+</div>
+</section>
+</section>
+<section id="step-2-forecast-performance-evaluation" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-forecast-performance-evaluation">Step 2: Forecast Performance Evaluation</h2>
 <p>Forecast performance can be evaluated by comparing the forecast of reported cases with the observed cases using Proper Scoring Rules<span class="citation" data-cites="gneiting2007strictly carvalho2016overview">(<a href="#ref-gneiting2007strictly" role="doc-biblioref">Gneiting and Raftery 2007</a>; <a href="#ref-carvalho2016overview" role="doc-biblioref">Carvalho 2016</a>)</span> such as the Continuous Ranked Probability Score (CRPS) and Weighted Interval Score (WIS). These are available via the <code>scoringutils::score()</code> function.</p>
 <p>The <code>scoringutils::score()</code> function requires a dataset that contains at least the following columns:</p>
 <ul>
@@ -461,43 +600,85 @@ Writing EpiNow2.epinow logs to the console and:
 <p>EpiNow2’s <code>epinow()</code> function returns a list of model outputs in the raw and several summarised formats for various use cases. In particular, there are time series of “infections”, “reported_cases”, “growth_rate”, and “R”, all grouped into “estimate”, “estimate based on partial data”, and “forecast”.</p>
 <p>Here, we’re interested in the “forecast” type of the “reported_cases” variable, including the median and quantiles (lower and upper bounds).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the forecasts</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>forecasts <span class="ot">&lt;-</span> out<span class="sc">$</span>estimates<span class="sc">$</span>summarised[variable <span class="sc">==</span> <span class="st">"reported_cases"</span>][type <span class="sc">==</span> <span class="st">"forecast"</span>, ] <span class="sc">%&gt;%</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(mean, sd, variable, strat, type))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the forecasts</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>forecasts <span class="ot">&lt;-</span> out<span class="sc">$</span>estimates<span class="sc">$</span>summarised[variable <span class="sc">==</span> <span class="st">"reported_cases"</span>][type <span class="sc">==</span> <span class="st">"forecast"</span>, ] <span class="sc">%&gt;%</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(mean, sd, variable, strat, type))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s also extract the corresponding subset of the observed data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract observed cases for the same period</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>obs_data <span class="ot">&lt;-</span> example_confirmed[date <span class="sc">&gt;=</span> <span class="fu">min</span>(forecasts<span class="sc">$</span>date) <span class="sc">&amp;</span> date <span class="sc">&lt;=</span> <span class="fu">max</span>(forecasts<span class="sc">$</span>date)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract observed cases for the same period</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>obs_data <span class="ot">&lt;-</span> example_confirmed[date <span class="sc">&gt;=</span> <span class="fu">min</span>(forecasts<span class="sc">$</span>date) <span class="sc">&amp;</span> date <span class="sc">&lt;=</span> <span class="fu">max</span>(forecasts<span class="sc">$</span>date)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<section id="visualizing-forecasts-against-observations" class="level3">
+<h3 class="anchored" data-anchor-id="visualizing-forecasts-against-observations">Visualizing forecasts against observations</h3>
+<p>Before scoring, let’s visualize how well our forecasts align with observed data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data for plotting</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>plot_data <span class="ot">&lt;-</span> <span class="fu">merge</span>(forecasts, obs_data, <span class="at">by =</span> <span class="st">"date"</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create forecast vs observed plot</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> date)) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Prediction intervals (90%, 50%, 20%)</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower_90, <span class="at">ymax =</span> upper_90), <span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower_50, <span class="at">ymax =</span> upper_50), <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower_20, <span class="at">ymax =</span> upper_20), <span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Median forecast</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> median), <span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Observed data</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> confirm), <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> confirm), <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"EpiNow2 Forecast vs Observed Cases"</span>,</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Shaded regions show 20%, 50%, and 90% prediction intervals"</span>,</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Reported Cases"</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/forecast-plot-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Ideally, observed values (black points) should fall mostly within the prediction intervals, especially the wider ones. Systematic deviations suggest model miscalibration.</p>
+</section>
+<section id="preparing-data-for-scoring" class="level3">
+<h3 class="anchored" data-anchor-id="preparing-data-for-scoring">Preparing data for scoring</h3>
 <p>Now, let’s combine the extracted forecasts with the observed data and clean up the quantiles into a format suitable for use with <code>scoringutils</code>. We will be cleaning them up because the <code>forecasts</code> data.table labels the quantiles as <code>lower_20</code>, <code>upper_20</code>, etc., where the number indicates the quantile level (e.g., 50% for the median), but that is not compatible with <code>scoringutils</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine forecasts with observed cases</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>eval_dt <span class="ot">&lt;-</span> <span class="fu">merge</span>(forecasts, obs_data, <span class="at">by =</span> <span class="st">"date"</span>)[, true_value <span class="sc">:</span><span class="er">=</span> confirm][, confirm <span class="sc">:</span><span class="er">=</span> <span class="cn">NULL</span>]</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt the data to long format</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>cols_to_melt <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"median"</span>, <span class="fu">grep</span>(<span class="st">"^(lower|upper)_"</span>, <span class="fu">names</span>(eval_dt), <span class="at">value =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>eval_long <span class="ot">&lt;-</span> <span class="fu">melt</span>(</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    eval_dt,</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">id.vars =</span> <span class="fu">setdiff</span>(<span class="fu">names</span>(eval_dt), cols_to_melt),</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">measure.vars =</span> cols_to_melt,</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">variable.name =</span> <span class="st">"prediction"</span>,</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">value.name =</span> <span class="st">"value"</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare the evaluation data</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>eval_long[, quantile <span class="sc">:</span><span class="er">=</span> <span class="fu">fifelse</span>(</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  prediction <span class="sc">==</span> <span class="st">"median"</span>, <span class="fl">0.5</span>,</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fifelse</span>(</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"^lower_"</span>, prediction),</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">as.numeric</span>(<span class="fu">sub</span>(<span class="st">"lower_"</span>, <span class="st">""</span>, prediction)) <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">/</span> <span class="dv">2</span>,</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fifelse</span>(</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">grepl</span>(<span class="st">"^upper_"</span>, prediction),</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>      (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">as.numeric</span>(<span class="fu">sub</span>(<span class="st">"upper_"</span>, <span class="st">""</span>, prediction)) <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">/</span> <span class="dv">2</span>,</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>      <span class="cn">NA_real_</span></span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>)][, prediction <span class="sc">:</span><span class="er">=</span> value][, value <span class="sc">:</span><span class="er">=</span> <span class="cn">NULL</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine forecasts with observed cases</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>eval_dt <span class="ot">&lt;-</span> <span class="fu">merge</span>(forecasts, obs_data, <span class="at">by =</span> <span class="st">"date"</span>)[, true_value <span class="sc">:</span><span class="er">=</span> confirm][, confirm <span class="sc">:</span><span class="er">=</span> <span class="cn">NULL</span>]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt the data to long format</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>cols_to_melt <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"median"</span>, <span class="fu">grep</span>(<span class="st">"^(lower|upper)_"</span>, <span class="fu">names</span>(eval_dt), <span class="at">value =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>eval_long <span class="ot">&lt;-</span> <span class="fu">melt</span>(</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    eval_dt,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">id.vars =</span> <span class="fu">setdiff</span>(<span class="fu">names</span>(eval_dt), cols_to_melt),</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">measure.vars =</span> cols_to_melt,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">variable.name =</span> <span class="st">"prediction"</span>,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">value.name =</span> <span class="st">"value"</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare the evaluation data</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>eval_long[, quantile <span class="sc">:</span><span class="er">=</span> <span class="fu">fifelse</span>(</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  prediction <span class="sc">==</span> <span class="st">"median"</span>, <span class="fl">0.5</span>,</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fifelse</span>(</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"^lower_"</span>, prediction),</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">as.numeric</span>(<span class="fu">sub</span>(<span class="st">"lower_"</span>, <span class="st">""</span>, prediction)) <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fifelse</span>(</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">grepl</span>(<span class="st">"^upper_"</span>, prediction),</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>      (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">as.numeric</span>(<span class="fu">sub</span>(<span class="st">"upper_"</span>, <span class="st">""</span>, prediction)) <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>      <span class="cn">NA_real_</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>)][, prediction <span class="sc">:</span><span class="er">=</span> value][, value <span class="sc">:</span><span class="er">=</span> <span class="cn">NULL</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in fifelse(grepl("^lower_", prediction), (1 - as.numeric(sub("lower_",
 : NAs introduced by coercion</code></pre>
@@ -506,9 +687,9 @@ Writing EpiNow2.epinow logs to the console and:
 <pre><code>Warning in fifelse(grepl("^upper_", prediction), (1 + as.numeric(sub("upper_",
 : NAs introduced by coercion</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the data by quantile</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setorder</span>(eval_long, quantile) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the data by quantile</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setorder</span>(eval_long, quantile) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          date true_value prediction quantile
         &lt;Date&gt;      &lt;num&gt;      &lt;num&gt;    &lt;num&gt;
@@ -526,17 +707,17 @@ Writing EpiNow2.epinow logs to the console and:
 </div>
 <p>Now we can use the <code>scoringutils</code> package to compute and summarise the scores. By default, a range of scores will be computed, including the interval_score, dispersion, underprediction, overprediction, coverage_deviation, bias, and ae_median.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mainly uses the scoringutils package</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>scored_scores <span class="ot">&lt;-</span> eval_long[, quantile_level <span class="sc">:</span><span class="er">=</span> quantile][, quantile <span class="sc">:</span><span class="er">=</span> <span class="cn">NULL</span>][, model <span class="sc">:</span><span class="er">=</span> <span class="st">"EpiNow2"</span>] <span class="sc">|&gt;</span> <span class="co"># align names to scoringutils preference</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_forecast_quantile</span>(<span class="at">observed  =</span> <span class="st">"true_value"</span>, <span class="at">predicted =</span> <span class="st">"prediction"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">score</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise_scores</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mainly uses the scoringutils package</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>scored_scores <span class="ot">&lt;-</span> eval_long[, quantile_level <span class="sc">:</span><span class="er">=</span> quantile][, quantile <span class="sc">:</span><span class="er">=</span> <span class="cn">NULL</span>][, model <span class="sc">:</span><span class="er">=</span> <span class="st">"EpiNow2"</span>] <span class="sc">|&gt;</span> <span class="co"># align names to scoringutils preference</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_forecast_quantile</span>(<span class="at">observed  =</span> <span class="st">"true_value"</span>, <span class="at">predicted =</span> <span class="st">"prediction"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">score</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise_scores</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: ! Computation for `interval_coverage_90` failed. Error: ! To compute the
   interval coverage for an interval range of "90%", the 0.05 and 0.95 quantiles
   are required.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(scored_scores, <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(scored_scores, <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
@@ -577,9 +758,20 @@ Writing EpiNow2.epinow logs to the console and:
 </div>
 </div>
 </section>
+</section>
 <section id="interpretation-of-scores" class="level2">
 <h2 class="anchored" data-anchor-id="interpretation-of-scores">Interpretation of scores</h2>
-<p>The table above provides a summary of the forecast performance by metrics. Note that it is not difficult to interpret the scores currently as they are not relative to other models. A proper comparison can only be done against other models.</p>
+<p>The table above provides a summary of the forecast performance across multiple metrics. However, interpreting these scores in isolation can be challenging, as they are not relative to other models. Proper scoring rules are most informative when comparing multiple models or against baseline forecasts.</p>
+<p>Let’s understand what each metric tells us:</p>
+<ul>
+<li><strong>interval_score</strong>: Overall forecast accuracy combining sharpness (narrow intervals) and calibration (actual coverage). Lower is better.</li>
+<li><strong>dispersion</strong>: Measures the width of prediction intervals. Lower values indicate sharper (more confident) forecasts.</li>
+<li><strong>underprediction</strong> and <strong>overprediction</strong>: Penalties for forecasts that systematically miss below or above observations.</li>
+<li><strong>coverage_deviation</strong>: Difference between nominal and empirical coverage of prediction intervals. Values near zero indicate well-calibrated intervals.</li>
+<li><strong>bias</strong>: Systematic tendency to over- or under-forecast. Values near zero are ideal.</li>
+<li><strong>ae_median</strong>: Absolute error of the median forecast. A simple point forecast accuracy metric.</li>
+</ul>
+<p>For this example run, well-performing models should show low interval scores, minimal bias, and coverage deviation close to zero</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -594,19 +786,71 @@ Comparing against a baseline model
 </div>
 </div>
 </section>
+<section id="conclusion-validation-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion-validation-checklist">Conclusion: Validation Checklist</h2>
+<p>We’ve demonstrated a comprehensive three-pillar approach to validating EpiNow2 Rt estimates. Use this checklist to assess whether your model results are reliable:</p>
+<section id="mcmc-diagnostics-pass" class="level3">
+<h3 class="anchored" data-anchor-id="mcmc-diagnostics-pass">✓ MCMC Diagnostics Pass</h3>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Rhat &lt; 1.05</strong> for all parameters (ideally &lt; 1.01)</label></li>
+<li><label><input type="checkbox"><strong>Zero divergent transitions</strong> (or &lt; 1% if unavoidable)</label></li>
+<li><label><input type="checkbox"><strong>ESS bulk and tail &gt; 400</strong> total (&gt;100 per chain minimum)</label></li>
+<li><label><input type="checkbox"><strong>Low tree depth saturation</strong> (&lt; 1% hitting max_treedepth)</label></li>
+<li><label><input type="checkbox"><strong>Trace plots</strong> show good mixing (fuzzy caterpillars)</label></li>
+<li><label><input type="checkbox"><strong>Rank plots</strong> show uniform distribution</label></li>
+</ul>
+</section>
+<section id="forecast-evaluation-complete" class="level3">
+<h3 class="anchored" data-anchor-id="forecast-evaluation-complete">✓ Forecast Evaluation Complete</h3>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Visual inspection</strong> shows forecasts align with observations</label></li>
+<li><label><input type="checkbox"><strong>Prediction intervals</strong> contain observed values at appropriate rates</label></li>
+<li><label><input type="checkbox"><strong>Scoring metrics</strong> calculated (interval score, bias, coverage)</label></li>
+<li><label><input type="checkbox"><strong>Comparison to baseline</strong> (if available) shows improvement</label></li>
+</ul>
+</section>
+<section id="interpretation-and-documentation" class="level3">
+<h3 class="anchored" data-anchor-id="interpretation-and-documentation">✓ Interpretation and Documentation</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">Rt trajectory makes epidemiological sense</label></li>
+<li><label><input type="checkbox">Uncertainty intervals are appropriate (not too narrow/wide)</label></li>
+<li><label><input type="checkbox">Model assumptions documented (delays, priors)</label></li>
+<li><label><input type="checkbox">Limitations acknowledged</label></li>
+</ul>
+<p><strong>When to trust your Rt estimates</strong>: Only when all diagnostic checks pass and forecast evaluation is satisfactory. Failing diagnostics or poor forecast performance indicate model issues that must be resolved before drawing conclusions.</p>
+<p><strong>When to seek help</strong>: If diagnostics consistently fail despite tuning, or forecasts systematically miss observations, consult the Stan community forums or EpiNow2 GitHub discussions.</p>
+</section>
+</section>
 <section id="future-updates" class="level2">
 <h2 class="anchored" data-anchor-id="future-updates">Future updates</h2>
 <p>In future updates, I will explore more advanced techniques for model diagnostics and evaluation, including posterior predictive checks, cross-validation, and more using packages like <a href="https://mc-stan.org/loo/"><code>loo</code></a>, <a href="https://mc-stan.org/shinystan/">shinystan</a>, and <code>bayesplot</code></p>
 </section>
 <section id="resources" class="level2">
 <h2 class="anchored" data-anchor-id="resources">Resources</h2>
-<p>As this is a simple and basic guide, I’ll direct you to the following resources for more in-depth information on model diagnostics and forecast evaluation.</p>
+<p>For more in-depth information on advanced model diagnostics and forecast evaluation techniques, I recommend the following resources:</p>
+<section id="mcmc-diagnostics-and-stan" class="level3">
+<h3 class="anchored" data-anchor-id="mcmc-diagnostics-and-stan">MCMC Diagnostics and Stan</h3>
 <ul>
-<li>Stan’s guide on <a href="https://mc-stan.org/learn-stan/diagnostics-warnings.html">How to Diagnose and Resolve Convergence Problems</a></li>
-<li><a href="nfidd.github.io/ueifid/">Understanding, evaluating, and improving forecasts of infectious disease burden</a> open course.</li>
-<li>scoringutils R package <a href="https://epiforecasts.io/scoringutils/">documentation</a></li>
-<li>scoringRules R package <a href="https://cran.r-project.org/web/packages/scoringRules/vignettes/article.pdf">documentation</a></li>
+<li><p><strong><a href="https://mc-stan.org/learn-stan/diagnostics-warnings.html">Stan Diagnostics Guide</a></strong>: Official guide on diagnosing and resolving MCMC convergence issues, including detailed explanations of divergences, Rhat, and ESS.</p></li>
+<li><p><strong><a href="https://mc-stan.org/bayesplot/articles/visual-mcmc-diagnostics.html">bayesplot Visual MCMC Diagnostics</a></strong>: Comprehensive tutorial on using trace plots, rank plots, and other visual diagnostics to assess MCMC performance.</p></li>
+<li><p><strong><a href="https://mc-stan.org/bayesplot/articles/graphical-ppcs.html">Posterior Predictive Checks</a></strong>: Guide to validating model fit by comparing simulated data from the posterior to observed data.</p></li>
 </ul>
+</section>
+<section id="forecast-evaluation" class="level3">
+<h3 class="anchored" data-anchor-id="forecast-evaluation">Forecast Evaluation</h3>
+<ul>
+<li><p><strong><a href="https://nfidd.github.io/ueifid/">Understanding, Evaluating, and Improving Forecasts of Infectious Disease Burden</a></strong>: Open course covering forecast methodology, proper scoring rules, and evaluation best practices specific to infectious disease applications.</p></li>
+<li><p><strong><a href="https://epiforecasts.io/scoringutils/">scoringutils R package</a></strong>: Documentation for computing and visualizing forecast scores (CRPS, WIS, interval score, etc.) with practical examples.</p></li>
+<li><p><strong><a href="https://cran.r-project.org/web/packages/scoringRules/vignettes/article.pdf">scoringRules R package</a></strong>: Theoretical foundations and implementations of proper scoring rules for probabilistic forecasts.</p></li>
+</ul>
+</section>
+<section id="epinow2-documentation" class="level3">
+<h3 class="anchored" data-anchor-id="epinow2-documentation">EpiNow2 Documentation</h3>
+<ul>
+<li><p><strong><a href="https://epiforecasts.io/EpiNow2/">EpiNow2 package website</a></strong>: Official documentation with function references, vignettes, and usage examples.</p></li>
+<li><p><strong><a href="https://github.com/epiforecasts/EpiNow2">EpiNow2 GitHub</a></strong>: Source code, issue tracker, and community discussions for troubleshooting and feature requests.</p></li>
+</ul>
+</section>
 </section>
 <section id="references" class="level2">
 
