@@ -14,7 +14,7 @@ You can find my published work on my [Google Scholar profile](https://scholar.go
 
 ```{r pubs-table, echo=FALSE, message=FALSE, warning=FALSE}
 # My scholar id
-id <- "IxRpXp8AAAAJ"
+id <- "2MopbFUAAAAJ"
 # Get the profile
 my_profile <- scholar::get_profile(id)
 # Get publications
