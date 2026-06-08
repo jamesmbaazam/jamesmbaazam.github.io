@@ -11,10 +11,10 @@ PDF, or preview each one in the tabs below.
 [⬇ Academic CV (2-page)](cv/CV_Academic_JamesAzam_2_pager.pdf){.btn .btn-primary .w-100 role="button"}
 :::
 ::: {.g-col-12 .g-col-md-4}
-[⬇ Academic CV(detailed)](cv/CV_Academic_JamesAzam.pdf){.btn .btn-primary .w-100 role="button"}
+[⬇ Academic CV (detailed)](cv/CV_Academic_JamesAzam.pdf){.btn .btn-primary .w-100 role="button"}
 :::
 ::: {.g-col-12 .g-col-md-4}
-[⬇ Non-dtailored Detailed CV](cv/CV_detailed_JamesAzam.pdf){.btn .btn-primary .w-100 role="button"}
+[⬇ Non-tailored Detailed CV](cv/CV_detailed_JamesAzam.pdf){.btn .btn-primary .w-100 role="button"}
 :::
 :::
 
