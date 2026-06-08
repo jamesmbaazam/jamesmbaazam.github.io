@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: docs
+  resources:
+    - cv/*.pdf
 
 website:
   title: "Dr. James M. Azam"
@@ -21,6 +23,8 @@ website:
         text: Expertise
       - href: publications.qmd
         text: Publications
+      - href: cv.qmd
+        text: CV
       - href: software_teaching.qmd
         text: Software & Teaching
       - href: blog.qmd
