@@ -24,6 +24,29 @@ jobs:
             libxml2-dev libssl-dev libcurl4-openssl-dev \
             build-essential
 
+      - name: Install LaTeX for CV compilation
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get install -y --no-install-recommends \
+            texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended texlive-fonts-extra
+
+      - name: Compile CVs to PDF
+        run: |
+          set -e
+          mkdir -p cv
+          compile () {
+            src="$1"; out="$2"; dir="$(dirname "$src")"
+            ( cd "$dir" && for i in 1 2; do \
+                pdflatex -interaction=nonstopmode -halt-on-error "$(basename "$src")"; \
+              done )
+            cp "${src%.tex}.pdf" "cv/$out"
+          }
+          compile CVs_JamesAzam/CV_Academic_2_pager_JamesAzam/CV_Academic_JamesAzam_2_pager.tex CV_Academic_JamesAzam_2_pager.pdf
+          compile CVs_JamesAzam/CV_Academic_JamesAzam/CV_Academic_JamesAzam.tex CV_Academic_JamesAzam.pdf
+          compile CVs_JamesAzam/CV_detailed_JamesAzam/CV_detailed_JamesAzam.tex CV_detailed_JamesAzam.pdf
+          ls -la cv
+
       - uses: quarto-dev/quarto-actions/setup@v2
         with:
           version: pre-release

@@ -1,3 +1,13 @@
 /.quarto/
 .Rproj.user
 .claude/
+
+# CV PDFs are compiled in CI (see quarto-publish.yml)
+/cv/*.pdf
+
+# LaTeX build artifacts
+CVs_JamesAzam/**/*.aux
+CVs_JamesAzam/**/*.log
+CVs_JamesAzam/**/*.out
+
+**/*.quarto_ipynb
