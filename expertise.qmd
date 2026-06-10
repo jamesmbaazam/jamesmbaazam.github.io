@@ -20,45 +20,58 @@ I hold a PhD specializing in outbreak response modeling and decision-making. My 
 
 **Key areas of expertise:**
 
-- **Compartmental modeling** to quantify intervention impacts during epidemics
-- **Real-time forecasting and nowcasting** of infections and $R_t$ using Bayesian methods with tools like [EpiNow2](https://epiforecasts.io/EpiNow2/dev/), [epinowcast](https://package.epinowcast.org/dev/), and [EpiEstim](https://mrc-ide.github.io/EpiEstim/)
-- **Reproducible pipelines** and open-source packages for outbreak analytics and model implementation
-- **Bayesian data analysis** for infectious disease problems
-- **Software development** for epidemiological applications
+- **Compartmental modeling** to model infectious disease spread and quantify the impact of interventions
+- **Statistical models (branching processes, renewal processes, Bayesian data analysis, etc)** to model early outbreak dynamics and quantify the impact of interventions:
+    - Examples: [epichains](https://scholar.google.co.za/scholar?cites=12313250973965741292&as_sdt=2005&sciodt=0,5&hl=en), [EpiNow2](https://epiforecasts.io/EpiNow2/dev/) and [epinowcast](https://package.epinowcast.org/dev/)for example
+- **Real-time forecasting and nowcasting and evaluation** of infections and $R_t$ using Bayesian methods:
+    - Examples: [EpiNow2](https://epiforecasts.io/EpiNow2/dev/), [epinowcast](https://package.epinowcast.org/dev/), [scoringutils](https://epiforecasts.io/scoringutils/)
+- **Reproducible pipelines** and open-source packages for outbreak analytics and model implementation:
+  - See our work on the [Epiverse Trace Initiative](https://epiverse-trace.github.io)
+  - I employ various practices including the extensive use tools like [renv](https://rstudio.github.io/renv/) and [GNU make](https://www.gnu.org/software/make/) in my projects. Proof is on my [Research code on GitHub](https://github.com/stars/jamesmbaazam/lists/myresearchprojects).
+- **Software development** for epidemiological applications;
+  - See my [GitHub profile](https://github.com/jamesmbaazam) and [Epiverse Trace Initiative](https://epiverse-trace.github.io)
 
-## Other Ongoing Research Projects
+## Publications
+
+You can find my published work either on:
+
+* [Google Scholar profile](https://scholar.google.co.za/citations?user=IxRpXp8AAAAJ&hl=en), or
+* [orcid](https://orcid.org/0000-0001-5782-7330)
+
+## Research Projects (work in progress)
 
 - [Evaluating the tradeoffs of using temporally aggregated data for epidemiological forecasts](https://github.com/epiforecasts/daily-vs-weekly-forecast-eval): A case study of COVID-19 in South Africa
+- [Two-strain model for assessing the impact of the emergence of new variants on control measures](https://github.com/jamesmbaazam/two_strain_orv_model): Studying the impact of the timing of variant emergence on control strategies
+- [Evaluating the performance of select statistical forecasting models on simulated data using the EpiNow2 R package](https://github.com/jamesmbaazam/benchmarking-forecasting-models)
 - [COVID-19 severity surveillance pipeline](https://github.com/SACEMA/severity-monitoring): Detecting changes in reported case fatality, case hospitalization, and hospital fatality rates
-- [Two-strain variant emergence model](https://github.com/jamesmbaazam/two_strain_orv_model): Studying the impact of the timing of variant emergence on control strategies
 
-## How I'm Sharpening My Skills
+<!-- ## How I'm Sharpening My Skills -->
 
-🖥: **Currently learning:**
+<!-- 🖥: **Currently learning:** -->
 
-  - Programming in [The Julia Porgramming Language](https://julialang.org/)
-  
-  - Forecasting principles and methods:
+<!--   - Programming in [The Julia Porgramming Language](https://julialang.org/) -->
 
-    - Book: [Forecasting: Principles and Practice (3rd ed)](https://otexts.com/fpp3/)
+<!--   - Forecasting principles and methods: -->
 
-    - Course: [Nowcasting and forecasting infectious disease dynamics](https://nfidd.github.io/nfidd/)
+<!--     - Book: [Forecasting: Principles and Practice (3rd ed)](https://otexts.com/fpp3/) -->
 
-  - Bayesian data analysis:
+<!--     - Course: [Nowcasting and forecasting infectious disease dynamics](https://nfidd.github.io/nfidd/) -->
 
-    - Book: [Statistical Rethinking](https://www.youtube.com/playlist?list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus)
+<!--   - Bayesian data analysis: -->
 
-  - Open source software development:
+<!--     - Book: [Statistical Rethinking](https://www.youtube.com/playlist?list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus) -->
 
-    - [Working in Public: The Making and Maintenance of Open Source Software](https://www.amazon.co.uk/Working-Public-Making-Maintenance-Software/dp/0578675862)
+<!--   - Open source software development: -->
 
-    - [Practical MLOps: Operationalizing Machine Learning Models](https://www.amazon.co.uk/Practical-MLOps-Operationalizing-Machine-Learning/dp/1098103017)
+<!--     - [Working in Public: The Making and Maintenance of Open Source Software](https://www.amazon.co.uk/Working-Public-Making-Maintenance-Software/dp/0578675862) -->
 
-📖: **Casual reading:**
+<!--     - [Practical MLOps: Operationalizing Machine Learning Models](https://www.amazon.co.uk/Practical-MLOps-Operationalizing-Machine-Learning/dp/1098103017) -->
 
-  - [The 5 Elements of Effective Thinking](https://www.amazon.co.uk/5-Elements-Effective-Thinking/dp/0691156662) by Edward Burger and Michael Starbird
+<!-- 📖: **Casual reading:** -->
 
-  - [The Art of Explanation: How to Communicate with Clarity and Confidence](https://www.amazon.co.uk/Art-Explanation-Communicate-Clarity-Confidence/dp/1472298446) by Ros Atkins
+<!--   - [The 5 Elements of Effective Thinking](https://www.amazon.co.uk/5-Elements-Effective-Thinking/dp/0691156662) by Edward Burger and Michael Starbird -->
+
+<!--   - [The Art of Explanation: How to Communicate with Clarity and Confidence](https://www.amazon.co.uk/Art-Explanation-Communicate-Clarity-Confidence/dp/1472298446) by Ros Atkins -->
 
 ## Potential Collaborations
 
