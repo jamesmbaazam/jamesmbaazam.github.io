@@ -22,13 +22,13 @@ I hold a PhD specializing in outbreak response modeling and decision-making. My 
 
 - **Compartmental modeling** to model infectious disease spread and quantify the impact of interventions
 - **Statistical models (branching processes, renewal processes, Bayesian data analysis, etc)** to model early outbreak dynamics and quantify the impact of interventions:
-    - Examples: [epichains](https://scholar.google.co.za/scholar?cites=12313250973965741292&as_sdt=2005&sciodt=0,5&hl=en), [EpiNow2](https://epiforecasts.io/EpiNow2/dev/) and [epinowcast](https://package.epinowcast.org/dev/)for example
+    - Examples: [epichains](https://scholar.google.co.za/scholar?cites=12313250973965741292&as_sdt=2005&sciodt=0,5&hl=en), [EpiNow2](https://epiforecasts.io/EpiNow2/dev/) and [epinowcast](https://package.epinowcast.org/dev/)
 - **Real-time forecasting and nowcasting and evaluation** of infections and $R_t$ using Bayesian methods:
     - Examples: [EpiNow2](https://epiforecasts.io/EpiNow2/dev/), [epinowcast](https://package.epinowcast.org/dev/), [scoringutils](https://epiforecasts.io/scoringutils/)
 - **Reproducible pipelines** and open-source packages for outbreak analytics and model implementation:
   - See our work on the [Epiverse Trace Initiative](https://epiverse-trace.github.io)
-  - I employ various practices including the extensive use tools like [renv](https://rstudio.github.io/renv/) and [GNU make](https://www.gnu.org/software/make/) in my projects. Proof is on my [Research code on GitHub](https://github.com/stars/jamesmbaazam/lists/myresearchprojects).
-- **Software development** for epidemiological applications;
+  - I employ various practices including the extensive use of tools like [renv](https://rstudio.github.io/renv/) and [GNU make](https://www.gnu.org/software/make/) in my projects. Examples are available in my [research code on GitHub](https://github.com/stars/jamesmbaazam/lists/myresearchprojects).
+- **Software development** for epidemiological applications:
   - See my [GitHub profile](https://github.com/jamesmbaazam) and [Epiverse Trace Initiative](https://epiverse-trace.github.io)
 
 ## Publications
@@ -36,7 +36,7 @@ I hold a PhD specializing in outbreak response modeling and decision-making. My 
 You can find my published work either on:
 
 * [Google Scholar profile](https://scholar.google.co.za/citations?user=IxRpXp8AAAAJ&hl=en), or
-* [orcid](https://orcid.org/0000-0001-5782-7330)
+* [ORCID profile](https://orcid.org/0000-0001-5782-7330)
 
 ## Research Projects (work in progress)
 
@@ -49,7 +49,7 @@ You can find my published work either on:
 
 <!-- 🖥: **Currently learning:** -->
 
-<!--   - Programming in [The Julia Porgramming Language](https://julialang.org/) -->
+<!--   - Programming in [The Julia Programming Language](https://julialang.org/) -->
 
 <!--   - Forecasting principles and methods: -->
 
