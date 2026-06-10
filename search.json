@@ -1,75 +1,5 @@
 [
   {
-    "objectID": "expertise.html",
-    "href": "expertise.html",
-    "title": "Expertise",
-    "section": "",
-    "text": "My current work centers on two key areas:\n\n\nI am analyzing the utility of wastewater surveillance for routine monitoring of multiple infectious diseases in South Africa. This work explores how environmental surveillance can complement traditional disease monitoring systems and provide early warning signals for public health action.\n\n\n\nI am developing mathematical and statistical models to map polio immunity and predict the risk of polio outbreaks across Africa. This is work in early stages."
-  },
-  {
-    "objectID": "expertise.html#current-research-focus",
-    "href": "expertise.html#current-research-focus",
-    "title": "Expertise",
-    "section": "",
-    "text": "My current work centers on two key areas:\n\n\nI am analyzing the utility of wastewater surveillance for routine monitoring of multiple infectious diseases in South Africa. This work explores how environmental surveillance can complement traditional disease monitoring systems and provide early warning signals for public health action.\n\n\n\nI am developing mathematical and statistical models to map polio immunity and predict the risk of polio outbreaks across Africa. This is work in early stages."
-  },
-  {
-    "objectID": "expertise.html#research-interests-methods",
-    "href": "expertise.html#research-interests-methods",
-    "title": "Expertise",
-    "section": "Research Interests & Methods",
-    "text": "Research Interests & Methods\nI hold a PhD specializing in outbreak response modeling and decision-making. My work focuses on developing methods and open-source tools to evaluate the impact of pharmaceutical and non-pharmaceutical interventions on the spread of vaccine-preventable diseases.\nKey areas of expertise:\n\nCompartmental modeling to quantify intervention impacts during epidemics\nReal-time forecasting and nowcasting of infections and \\(R_t\\) using Bayesian methods with tools like EpiNow2, epinowcast, and EpiEstim\nReproducible pipelines and open-source packages for outbreak analytics and model implementation\nBayesian data analysis for infectious disease problems\nSoftware development for epidemiological applications"
-  },
-  {
-    "objectID": "expertise.html#other-ongoing-research-projects",
-    "href": "expertise.html#other-ongoing-research-projects",
-    "title": "Expertise",
-    "section": "Other Ongoing Research Projects",
-    "text": "Other Ongoing Research Projects\n\nEvaluating the tradeoffs of using temporally aggregated data for epidemiological forecasts: A case study of COVID-19 in South Africa\nCOVID-19 severity surveillance pipeline: Detecting changes in reported case fatality, case hospitalization, and hospital fatality rates\nTwo-strain variant emergence model: Studying the impact of the timing of variant emergence on control strategies"
-  },
-  {
-    "objectID": "expertise.html#how-im-sharpening-my-skills",
-    "href": "expertise.html#how-im-sharpening-my-skills",
-    "title": "Expertise",
-    "section": "How I’m Sharpening My Skills",
-    "text": "How I’m Sharpening My Skills\n🖥: Currently learning:\n\nProgramming in The Julia Porgramming Language\nForecasting principles and methods:\n\nBook: Forecasting: Principles and Practice (3rd ed)\nCourse: Nowcasting and forecasting infectious disease dynamics\n\nBayesian data analysis:\n\nBook: Statistical Rethinking\n\nOpen source software development:\n\nWorking in Public: The Making and Maintenance of Open Source Software\nPractical MLOps: Operationalizing Machine Learning Models\n\n\n📖: Casual reading:\n\nThe 5 Elements of Effective Thinking by Edward Burger and Michael Starbird\nThe Art of Explanation: How to Communicate with Clarity and Confidence by Ros Atkins"
-  },
-  {
-    "objectID": "expertise.html#potential-collaborations",
-    "href": "expertise.html#potential-collaborations",
-    "title": "Expertise",
-    "section": "Potential Collaborations",
-    "text": "Potential Collaborations\nI am interested in collaborating on mathematical or statistical methods and models that advance outbreak analytics. We can also explore how to translate these innovations into practical software tools.\nPlease get in touch through any of my contacts below."
-  },
-  {
-    "objectID": "expertise.html#contact-information",
-    "href": "expertise.html#contact-information",
-    "title": "Expertise",
-    "section": "Contact Information",
-    "text": "Contact Information\nFeel free to reach out through any of these channels:\n\nLinkedIn: James Azam, PhD\nTwitter: @james_azam\nGitHub: jamesmbaazam"
-  },
-  {
-    "objectID": "publications.html",
-    "href": "publications.html",
-    "title": "Publications",
-    "section": "",
-    "text": "You can find my published work on my Google Scholar profile."
-  },
-  {
-    "objectID": "publications.html#recent-work",
-    "href": "publications.html#recent-work",
-    "title": "Publications",
-    "section": "Recent work",
-    "text": "Recent work"
-  },
-  {
-    "objectID": "publications.html#top-5-most-cited-publications",
-    "href": "publications.html#top-5-most-cited-publications",
-    "title": "Publications",
-    "section": "Top 5 most cited publications",
-    "text": "Top 5 most cited publications"
-  },
-  {
     "objectID": "software_teaching.html",
     "href": "software_teaching.html",
     "title": "Software & Teaching",
@@ -95,7 +25,7 @@
     "href": "index.html",
     "title": "Dr. James M. Azam",
     "section": "",
-    "text": "Hi there, I am a Research Fellow at the London School of Hygiene and Tropical Medicine, based at the Centre for Mathematical Modelling of Infectious Diseases (CMMID), where I work with Dr. Kathleen O’Reilly on:\n\nAnalyzing the utility of wastewater surveillance for routine monitoring of infectious diseases in South Africa\nDeveloping mathematical and statistical models to predict the risk of polio outbreaks in Africa\n\nPreviously, I was a Research Software Engineer with the Epiverse-TRACE Initiative, developing and maintaining R packages for reproducible analytics during epidemics.\nI am passionate about developing models, methods, and software that improve our understanding of disease transmission and enhance outbreak response.\n\n\n\n2022: PhD Applied Mathematics, Stellenbosch University, South Africa\n2018: MSc Mathematics, Stellenbosch University, South Africa\n2015: MSc Mathematical Sciences, African Institute for Mathematical Sciences (AIMS), Senegal\n2013: BSc Actuarial Science, Kwame Nkrumah University of Science and Technology, Ghana"
+    "text": "I am a Research Fellow at the London School of Hygiene and Tropical Medicine, based at the Centre for Mathematical Modelling of Infectious Diseases (CMMID), where I work with Dr. Kathleen O’Reilly on:\n\nAnalyzing the utility of wastewater surveillance for routine monitoring of infectious diseases in South Africa\nDeveloping mathematical and statistical models to predict the risk of polio outbreaks in Africa\n\nPreviously, I was a Research Software Engineer with the Epiverse-TRACE Initiative, developing and maintaining R packages for reproducible analytics during epidemics.\nI am passionate about developing models, methods, and software that improve our understanding of disease transmission and enhance outbreak response.\n\n\n\n2022: PhD Applied Mathematics, Stellenbosch University, South Africa\n2018: MSc Mathematics, Stellenbosch University, South Africa\n2015: MSc Mathematical Sciences, African Institute for Mathematical Sciences (AIMS), Senegal\n2013: BSc Actuarial Science, Kwame Nkrumah University of Science and Technology, Ghana"
   },
   {
     "objectID": "index.html#education",
@@ -110,6 +40,69 @@
     "title": "Blog",
     "section": "",
     "text": "How to evaluate the ‘goodness of fit’ of an EpiNow2 model run\n\n\n\nforecasting\n\nEpiNow2\n\nBayesian Analysis\n\nReproduction numbers\n\nR\n\nStan\n\n\n\n\n\n\n\n\n\nNov 8, 2025\n\n\nJames Mba Azam\n\n\n\n\n\nNo matching items\n Back to top"
+  },
+  {
+    "objectID": "cv.html",
+    "href": "cv.html",
+    "title": "CV",
+    "section": "",
+    "text": "Below are different versions of my curriculum vitae. Use the buttons to download a PDF, or preview each one in the tabs below."
+  },
+  {
+    "objectID": "cv.html#preview",
+    "href": "cv.html#preview",
+    "title": "CV",
+    "section": "Preview",
+    "text": "Preview\n\nAcademic (2-page)AcademicDetailed\n\n\nA concise two-page academic CV.\n\nThis browser does not support embedded PDFs. &lt;a href=\"cv/CV_Academic_JamesAzam_2_pager.pdf\"&gt;Download the PDF&lt;/a&gt; instead.\n\n\n\nThe standard academic CV.\n\nThis browser does not support embedded PDFs. &lt;a href=\"cv/CV_Academic_JamesAzam.pdf\"&gt;Download the PDF&lt;/a&gt; instead.\n\n\n\nA longer CV with full detail on research, teaching, and service.\n\nThis browser does not support embedded PDFs. &lt;a href=\"cv/CV_detailed_JamesAzam.pdf\"&gt;Download the PDF&lt;/a&gt; instead."
+  },
+  {
+    "objectID": "expertise.html",
+    "href": "expertise.html",
+    "title": "Expertise",
+    "section": "",
+    "text": "My current work centers on two key areas:\n\n\nI am analyzing the utility of wastewater surveillance for routine monitoring of multiple infectious diseases in South Africa. This work explores how environmental surveillance can complement traditional disease monitoring systems and provide early warning signals for public health action.\n\n\n\nI am developing mathematical and statistical models to map polio immunity and predict the risk of polio outbreaks across Africa. This is work in early stages."
+  },
+  {
+    "objectID": "expertise.html#current-research-focus",
+    "href": "expertise.html#current-research-focus",
+    "title": "Expertise",
+    "section": "",
+    "text": "My current work centers on two key areas:\n\n\nI am analyzing the utility of wastewater surveillance for routine monitoring of multiple infectious diseases in South Africa. This work explores how environmental surveillance can complement traditional disease monitoring systems and provide early warning signals for public health action.\n\n\n\nI am developing mathematical and statistical models to map polio immunity and predict the risk of polio outbreaks across Africa. This is work in early stages."
+  },
+  {
+    "objectID": "expertise.html#research-interests-methods",
+    "href": "expertise.html#research-interests-methods",
+    "title": "Expertise",
+    "section": "Research Interests & Methods",
+    "text": "Research Interests & Methods\nI hold a PhD specializing in outbreak response modeling and decision-making. My work focuses on developing methods and open-source tools to evaluate the impact of pharmaceutical and non-pharmaceutical interventions on the spread of vaccine-preventable diseases.\nKey areas of expertise:\n\nCompartmental modeling to model infectious disease spread and quantify the impact of interventions\nStatistical models (branching processes, renewal processes, Bayesian data analysis, etc) to model early outbreak dynamics and quantify the impact of interventions:\n\nExamples: epichains, EpiNow2 and epinowcast\n\nReal-time forecasting and nowcasting and evaluation of infections and \\(R_t\\) using Bayesian methods:\n\nExamples: EpiNow2, epinowcast, scoringutils\n\nReproducible pipelines and open-source packages for outbreak analytics and model implementation:\n\nSee our work on the Epiverse Trace Initiative\nI employ various practices including the extensive use of tools like renv and GNU make in my projects. Examples are available in my research code on GitHub.\n\nSoftware development for epidemiological applications:\n\nSee my GitHub profile and Epiverse Trace Initiative"
+  },
+  {
+    "objectID": "expertise.html#publications",
+    "href": "expertise.html#publications",
+    "title": "Expertise",
+    "section": "Publications",
+    "text": "Publications\nYou can find my published work either on:\n\nGoogle Scholar profile, or\nORCID profile"
+  },
+  {
+    "objectID": "expertise.html#research-projects-work-in-progress",
+    "href": "expertise.html#research-projects-work-in-progress",
+    "title": "Expertise",
+    "section": "Research Projects (work in progress)",
+    "text": "Research Projects (work in progress)\n\nEvaluating the tradeoffs of using temporally aggregated data for epidemiological forecasts: A case study of COVID-19 in South Africa\nTwo-strain model for assessing the impact of the emergence of new variants on control measures: Studying the impact of the timing of variant emergence on control strategies\nEvaluating the performance of select statistical forecasting models on simulated data using the EpiNow2 R package\nCOVID-19 severity surveillance pipeline: Detecting changes in reported case fatality, case hospitalization, and hospital fatality rates"
+  },
+  {
+    "objectID": "expertise.html#potential-collaborations",
+    "href": "expertise.html#potential-collaborations",
+    "title": "Expertise",
+    "section": "Potential Collaborations",
+    "text": "Potential Collaborations\nI am interested in collaborating on mathematical or statistical methods and models that advance outbreak analytics. We can also explore how to translate these innovations into practical software tools.\nPlease get in touch through any of my contacts below."
+  },
+  {
+    "objectID": "expertise.html#contact-information",
+    "href": "expertise.html#contact-information",
+    "title": "Expertise",
+    "section": "Contact Information",
+    "text": "Contact Information\nFeel free to reach out through any of these channels:\n\nLinkedIn: James Azam, PhD\nTwitter: @james_azam\nGitHub: jamesmbaazam"
   },
   {
     "objectID": "blog/epinow2-eval-guide/index.html",
@@ -166,68 +159,5 @@
     "title": "How to evaluate the ‘goodness of fit’ of an EpiNow2 model run",
     "section": "Resources",
     "text": "Resources\nAs this is a simple and basic guide, I’ll direct you to the following resources for more in-depth information on model diagnostics and forecast evaluation.\n\nStan’s guide on How to Diagnose and Resolve Convergence Problems\nUnderstanding, evaluating, and improving forecasts of infectious disease burden open course.\nscoringutils R package documentation\nscoringRules R package documentation"
-  },
-  {
-    "objectID": "CLAUDE.html",
-    "href": "CLAUDE.html",
-    "title": "CLAUDE.md",
-    "section": "",
-    "text": "This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.\n\n\nThis is a personal academic/professional website built with Quarto. The site showcases research, publications, open-source projects, teaching materials, and blog posts related to infectious disease modeling and epidemiological analytics.\nThe site is published at https://jamesmbaazam.github.io using GitHub Pages.\n\n\n\n\nQuarto: Static site generator for the website\nR: Primary programming language for blog posts and computational content\nrenv: R package dependency management\nGitHub Actions: CI/CD pipeline for automated publishing\n\n\n\n\n\n_quarto.yml: Main Quarto configuration file\nindex.qmd: Homepage\nblog.qmd: Blog listing page\nblog/: Individual blog posts (each in its own subdirectory with index.qmd)\n\nblog/epinow2-eval-guide/: Guide on evaluating EpiNow2 model runs\nblog/julia-sugar-vs-r/: Comparison of Julia and R syntax\n\nresearch_projects.qmd: Research and publications page\nopensource_projects.qmd: Open-source projects page\nteaching.qmd: Teaching materials page\nimages/: Static images for the site\nstyles.css: Custom CSS styles\n_extensions/: Quarto extensions (e.g., auto-dark mode)\ndocs/: Output directory for rendered site (published to GitHub Pages)\nrenv/: R package environment (managed by renv)\nrenv.lock: Locked R package dependencies\n\n\n\n\n\n\nquarto preview\n\n\n\nquarto render\n\n\n\nquarto render index.qmd\nquarto render blog/epinow2-eval-guide/index.qmd\n\n\n\nInitialize or restore R environment:\n# In R console\nrenv::restore()\nInstall new R packages:\n# In R console\ninstall.packages(\"package_name\")\nrenv::snapshot()  # Update renv.lock after installing\n\n\n\n\nBlog posts are written in Quarto markdown (.qmd) files located in subdirectories under blog/. Each post typically includes:\n\nYAML frontmatter with metadata (title, author, date, categories, ORCID)\nR code chunks (often with caching enabled via freeze: true for computationally intensive content)\nCategories include: forecasting, EpiNow2, Bayesian Analysis, Reproduction numbers, R, Stan, Julia\n\nBlog posts often use R packages like: - EpiNow2 (epidemiological nowcasting/forecasting) - data.table, dplyr (data manipulation) - ggplot2 (visualization) - bayesplot, posterior (Bayesian analysis) - scoringutils (forecast evaluation)\n\n\n\nThe site is automatically built and published to GitHub Pages on every push to main branch via .github/workflows/quarto-publish.yml. The workflow:\n\nSets up Quarto (pre-release version)\nSets up R\nRestores R environment using renv\nInstalls system dependency (GLPK for igraph package)\nRenders and publishes to gh-pages branch\n\n\n\n\n\nOutput directory: docs/ (configured in _quarto.yml)\nR version: 4.5.1 (as specified in renv.lock)\nTheme: cosmo (light), darkly (dark mode)\nAuto-dark filter: Automatically switches between light/dark themes\nSite navigation: Top navbar with Home, Research, Open-source Projects, Teaching, Blog\nSocial links: Twitter, GitHub, LinkedIn, Google Scholar, Email\n\n\n\n\n\nThe site uses renv for R package management. Always run renv::restore() when setting up a new environment.\nBlog posts with computationally intensive code use freeze: true to cache results and avoid re-execution on every render.\nThe GitHub Actions workflow requires GLPK to be installed for the igraph R package dependency.\nThe output directory is docs/ (not the default _site/), which is configured for GitHub Pages publishing."
-  },
-  {
-    "objectID": "CLAUDE.html#project-overview",
-    "href": "CLAUDE.html#project-overview",
-    "title": "CLAUDE.md",
-    "section": "",
-    "text": "This is a personal academic/professional website built with Quarto. The site showcases research, publications, open-source projects, teaching materials, and blog posts related to infectious disease modeling and epidemiological analytics.\nThe site is published at https://jamesmbaazam.github.io using GitHub Pages."
-  },
-  {
-    "objectID": "CLAUDE.html#tech-stack",
-    "href": "CLAUDE.html#tech-stack",
-    "title": "CLAUDE.md",
-    "section": "",
-    "text": "Quarto: Static site generator for the website\nR: Primary programming language for blog posts and computational content\nrenv: R package dependency management\nGitHub Actions: CI/CD pipeline for automated publishing"
-  },
-  {
-    "objectID": "CLAUDE.html#repository-structure",
-    "href": "CLAUDE.html#repository-structure",
-    "title": "CLAUDE.md",
-    "section": "",
-    "text": "_quarto.yml: Main Quarto configuration file\nindex.qmd: Homepage\nblog.qmd: Blog listing page\nblog/: Individual blog posts (each in its own subdirectory with index.qmd)\n\nblog/epinow2-eval-guide/: Guide on evaluating EpiNow2 model runs\nblog/julia-sugar-vs-r/: Comparison of Julia and R syntax\n\nresearch_projects.qmd: Research and publications page\nopensource_projects.qmd: Open-source projects page\nteaching.qmd: Teaching materials page\nimages/: Static images for the site\nstyles.css: Custom CSS styles\n_extensions/: Quarto extensions (e.g., auto-dark mode)\ndocs/: Output directory for rendered site (published to GitHub Pages)\nrenv/: R package environment (managed by renv)\nrenv.lock: Locked R package dependencies"
-  },
-  {
-    "objectID": "CLAUDE.html#development-commands",
-    "href": "CLAUDE.html#development-commands",
-    "title": "CLAUDE.md",
-    "section": "",
-    "text": "quarto preview\n\n\n\nquarto render\n\n\n\nquarto render index.qmd\nquarto render blog/epinow2-eval-guide/index.qmd\n\n\n\nInitialize or restore R environment:\n# In R console\nrenv::restore()\nInstall new R packages:\n# In R console\ninstall.packages(\"package_name\")\nrenv::snapshot()  # Update renv.lock after installing"
-  },
-  {
-    "objectID": "CLAUDE.html#blog-post-structure",
-    "href": "CLAUDE.html#blog-post-structure",
-    "title": "CLAUDE.md",
-    "section": "",
-    "text": "Blog posts are written in Quarto markdown (.qmd) files located in subdirectories under blog/. Each post typically includes:\n\nYAML frontmatter with metadata (title, author, date, categories, ORCID)\nR code chunks (often with caching enabled via freeze: true for computationally intensive content)\nCategories include: forecasting, EpiNow2, Bayesian Analysis, Reproduction numbers, R, Stan, Julia\n\nBlog posts often use R packages like: - EpiNow2 (epidemiological nowcasting/forecasting) - data.table, dplyr (data manipulation) - ggplot2 (visualization) - bayesplot, posterior (Bayesian analysis) - scoringutils (forecast evaluation)"
-  },
-  {
-    "objectID": "CLAUDE.html#publishing-workflow",
-    "href": "CLAUDE.html#publishing-workflow",
-    "title": "CLAUDE.md",
-    "section": "",
-    "text": "The site is automatically built and published to GitHub Pages on every push to main branch via .github/workflows/quarto-publish.yml. The workflow:\n\nSets up Quarto (pre-release version)\nSets up R\nRestores R environment using renv\nInstalls system dependency (GLPK for igraph package)\nRenders and publishes to gh-pages branch"
-  },
-  {
-    "objectID": "CLAUDE.html#key-configuration-details",
-    "href": "CLAUDE.html#key-configuration-details",
-    "title": "CLAUDE.md",
-    "section": "",
-    "text": "Output directory: docs/ (configured in _quarto.yml)\nR version: 4.5.1 (as specified in renv.lock)\nTheme: cosmo (light), darkly (dark mode)\nAuto-dark filter: Automatically switches between light/dark themes\nSite navigation: Top navbar with Home, Research, Open-source Projects, Teaching, Blog\nSocial links: Twitter, GitHub, LinkedIn, Google Scholar, Email"
-  },
-  {
-    "objectID": "CLAUDE.html#important-notes",
-    "href": "CLAUDE.html#important-notes",
-    "title": "CLAUDE.md",
-    "section": "",
-    "text": "The site uses renv for R package management. Always run renv::restore() when setting up a new environment.\nBlog posts with computationally intensive code use freeze: true to cache results and avoid re-execution on every render.\nThe GitHub Actions workflow requires GLPK to be installed for the igraph R package dependency.\nThe output directory is docs/ (not the default _site/), which is configured for GitHub Pages publishing."
   }
 ]

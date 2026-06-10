@@ -9,7 +9,7 @@
 <link>https://jamesmbaazam.github.io/blog.html</link>
 <atom:link href="https://jamesmbaazam.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Learnings from my day to day experiences</description>
-<generator>quarto-1.9.11</generator>
+<generator>quarto-1.10.9</generator>
 <lastBuildDate>Sat, 08 Nov 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>How to evaluate the ‘goodness of fit’ of an EpiNow2 model run</title>
@@ -970,7 +970,7 @@ font-style: inherit;">3</span>)</span></code></pre></div></div>
 
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-carvalho2016overview" class="csl-entry">
 Carvalho, Arthur. 2016. <span>“An Overview of Applications of Proper Scoring Rules.”</span> <em>Decision Analysis</em> 13 (4): 223–42.
 </div>
