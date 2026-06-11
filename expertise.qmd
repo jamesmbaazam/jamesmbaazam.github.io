@@ -4,7 +4,7 @@ toc: true
 ---
 
 ::: {.lead}
-I build the methods, models, and open-source software (See [here](software.qmd)) that help public health teams understand disease transmission and respond to outbreaks. I hold a PhD in outbreak-response modelling and decision-making, with a focus on quantifying the impact of pharmaceutical and non-pharmaceutical interventions against vaccine-preventable diseases.
+I build the methods, models, and open-source software (see [here](software.qmd)) that help public health teams understand disease transmission and respond to outbreaks. I hold a PhD in outbreak-response modelling and decision-making, with a focus on quantifying the impact of pharmaceutical and non-pharmaceutical interventions against vaccine-preventable diseases.
 :::
 
 ## What I do
@@ -18,9 +18,8 @@ I build the methods, models, and open-source software (See [here](software.qmd))
 
 Mechanistic models of infectious disease spread to quantify the impact of interventions. Examples of my work include:
 
-- [Benefits of measles vaccination outside the cold chain for outbreak response](https://www.sciencedirect.com/science/article/pii/S0264410X21011014){.badge .text-bg-light}
-- [Outbreak-response modelling in vaccine-preventable diseases: differences in practice between collaboration types](https://doi.org/10.1016/j.epidem.2023.100720){.badge .text-bg-light}
-- [Outbreak-response intervention models: a systematic review protocol](https://bmjopen.bmj.com/content/10/10/e036172.abstract){.badge .text-bg-light}
+- [Benefits of measles vaccination outside the cold chain for outbreak response](https://www.sciencedirect.com/science/article/pii/S0264410X21011014)
+- [A review of differences in practices between outbreak response modelling team types](https://doi.org/10.1016/j.epidem.2023.100720)
 :::
 :::
 :::
@@ -32,9 +31,9 @@ Mechanistic models of infectious disease spread to quantify the impact of interv
 
 Branching and renewal processes and Bayesian inference for early-outbreak dynamics.
 
-- [epichains](https://epiverse-trace.github.io/epichains/){.badge .text-bg-light}
-- [EpiNow2](https://epiforecasts.io/EpiNow2/dev/){.badge .text-bg-light}
-- [epinowcast](https://package.epinowcast.org/dev/){.badge .text-bg-light}
+- [epichains](https://epiverse-trace.github.io/epichains/)
+- [EpiNow2](https://epiforecasts.io/EpiNow2/dev/)
+- [epinowcast](https://package.epinowcast.org/dev/)
 :::
 :::
 :::
@@ -46,9 +45,9 @@ Branching and renewal processes and Bayesian inference for early-outbreak dynami
 
 Real-time estimation, forecasting, and evaluation of infections and $R_t$ using Bayesian methods.
 
-- [EpiNow2](https://epiforecasts.io/EpiNow2/dev/){.badge .text-bg-light}
-- [epinowcast](https://package.epinowcast.org/dev/){.badge .text-bg-light}
-- [scoringutils](https://epiforecasts.io/scoringutils/){.badge .text-bg-light}
+- [EpiNow2](https://epiforecasts.io/EpiNow2/dev/)
+- [epinowcast](https://package.epinowcast.org/dev/)
+- [scoringutils](https://epiforecasts.io/scoringutils/)
 :::
 :::
 :::
@@ -60,10 +59,10 @@ Real-time estimation, forecasting, and evaluation of infections and $R_t$ using 
 
 Open-source R packages and reproducible analytics pipelines for outbreak analytics.
 
-- [Epiverse-TRACE](https://epiverse-trace.github.io){.badge .text-bg-light}
-- [renv](https://rstudio.github.io/renv/){.badge .text-bg-light}
-- [GNU make](https://www.gnu.org/software/make/){.badge .text-bg-light}
-- [Git and GitHub](https://github.com/jamesmbaazam){.badge .text-bg-light}
+- [Epiverse-TRACE](https://epiverse-trace.github.io)
+- [renv](https://rstudio.github.io/renv/)
+- [GNU make](https://www.gnu.org/software/make/)
+- [Git and GitHub](https://github.com/jamesmbaazam)
 :::
 :::
 :::
