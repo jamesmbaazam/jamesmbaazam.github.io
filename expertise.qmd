@@ -4,7 +4,9 @@ toc: true
 ---
 
 ::: {.lead}
-I build the methods, models, and open-source software (see [here](software.qmd)) that help public health teams understand disease transmission and respond to outbreaks. I hold a PhD in outbreak-response modelling and decision-making, with a focus on quantifying the impact of pharmaceutical and non-pharmaceutical interventions against vaccine-preventable diseases.
+I build health data science methods, models, and open-source software that help public health teams understand disease transmission and respond to outbreaks.
+
+I hold a PhD in outbreak response modelling and decision-making, with a focus on quantifying the impact of pharmaceutical and non-pharmaceutical interventions against vaccine-preventable diseases.
 :::
 
 ## What I do
@@ -71,10 +73,10 @@ Open-source R packages and reproducible analytics pipelines for outbreak analyti
 
 ## Current research
 
-In my Research Fellow role at the London School of Hygiene & Tropical Medicine, I am working on two main projects:
+In my Research Fellow role at the London School of Hygiene & Tropical Medicine, I am working on two [Gates Foundation funded](https://www.gatesfoundation.org) projects:
 
-- **Polio outbreak risk modelling** — mathematical and statistical models to map polio immunity and predict outbreak risk across Africa.
-- **Wastewater-based surveillance** — assessing the utility of environmental surveillance for routine monitoring of multiple infectious diseases in South Africa, and as an early-warning signal for public health action.
+- **Polio outbreak risk modelling** — Using spatial machine learning to predict and map polio outbreak risks to support the [Global Polio Eradication Initiative](https://polioeradication.org).
+- **Wastewater-based surveillance** — assessing the utility of environmental surveillance for routine monitoring of multiple infectious diseases in South Africa, and as an early-warning signal for public health action. This project is led by [South Africa's National Institute for Communicable Diseases](https://nicd-wastewater-genomics.github.io)
 
 ## Other ongoing projects
 
@@ -102,10 +104,9 @@ I serve as a peer reviewer for several journals, including *Scientific Reports*,
 ## Let's collaborate
 
 ::: {.callout-note appearance="simple"}
-I'm interested in collaborating on mathematical and statistical methods that advance outbreak analytics — and on translating them into practical software tools.
+I'm interested in collaborating on mathematical and statistical methods that advance outbreak analytics and health data science, and on translating them into practical software tools.
 
-Get in touch: [james.m.azam@gmail.com](mailto:james.m.azam@gmail.com) ·
-[LinkedIn](https://www.linkedin.com/in/james-azam-phd-6b5b00176/) ·
-[GitHub](https://github.com/jamesmbaazam) ·
-[Twitter](https://twitter.com/james_azam)
+Get in touch: [Email](mailto:james.m.azam@gmail.com) |
+[LinkedIn](https://www.linkedin.com/in/james-azam-phd-6b5b00176/) |
+[GitHub](https://github.com/jamesmbaazam)
 :::

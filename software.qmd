@@ -18,7 +18,7 @@ Explore all my code on [GitHub](https://github.com/jamesmbaazam). I also review 
 ![](images/epichains_logo.svg){.card-logo}
 
 ::: {.card-head}
-[epichains]{.card-title-text} [Author]{.role-badge .role-author}
+[epichains]{.card-title-text} [Lead Author]{.role-badge .role-author}
 :::
 [Epiverse-TRACE]{.card-community}
 
@@ -63,7 +63,7 @@ Flexible, efficient nowcasting to gain situational awareness during outbreaks fr
 ![](images/primarycensored_logo.png){.card-logo}
 
 ::: {.card-head}
-[primarycensored]{.card-title-text} [Author]{.role-badge .role-author}
+[primarycensored]{.card-title-text} [Co-Author]{.role-badge .role-author}
 :::
 [epinowcast]{.card-community}
 
@@ -75,6 +75,8 @@ Primary event censored distributions for fitting delay and reporting distributio
 
 ::: {.g-col-12 .g-col-md-6}
 ::: {.feature-card}
+![](images/scoringutils_logo.png){.card-logo}
+
 ::: {.card-head}
 [scoringutils]{.card-title-text} [Contributor]{.role-badge .role-contributor}
 :::
@@ -88,6 +90,8 @@ Tools for scoring and evaluating probabilistic forecasts using proper scoring ru
 
 ::: {.g-col-12 .g-col-md-6}
 ::: {.feature-card}
+![](images/data_carpentries_logo.png){.card-logo}
+
 ::: {.card-head}
 [R for Ecologists]{.card-title-text} [Past co-maintainer]{.role-badge .role-past}
 :::
@@ -104,9 +108,9 @@ Co-maintained the Data Carpentry lesson on *Data Analysis and Visualization in R
 ## Work with me
 
 ::: {.callout-note appearance="simple"}
-I'm available for **open-source development**, **code and package review**, and **research-software consulting** for epidemiological applications.
+I'm available for **open-source development**, **code and package review**, and **research software development consulting** for health data science applications.
 
-Get in touch: [james.m.azam@gmail.com](mailto:james.m.azam@gmail.com) ·
-[GitHub](https://github.com/jamesmbaazam) ·
-[LinkedIn](https://www.linkedin.com/in/james-azam-phd-6b5b00176/)
+Get in touch: [Email](mailto:james.m.azam@gmail.com) |
+[LinkedIn](https://www.linkedin.com/in/james-azam-phd-6b5b00176/) |
+[GitHub](https://github.com/jamesmbaazam)
 :::

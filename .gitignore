@@ -11,3 +11,6 @@ CVs_JamesAzam/**/*.log
 CVs_JamesAzam/**/*.out
 
 **/*.quarto_ipynb
+
+# Stray Quarto render artifacts (site output lives in docs/)
+/blog_files/
