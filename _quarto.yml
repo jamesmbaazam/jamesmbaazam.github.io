@@ -28,8 +28,8 @@ website:
       - href: blog.qmd
         text: Blog
     tools:
-      - icon: twitter
-        href: https://twitter.com/james_azam
+      - icon: bluesky
+        href: https://bsky.app/profile/jamesazam.bsky.social
       - icon: github
         href: https://github.com/jamesmbaazam
       - icon: linkedin
@@ -38,7 +38,6 @@ website:
         href: https://scholar.google.co.za/citations?user=IxRpXp8AAAAJ&hl=en
       - icon: email
         href: james.m.azam@gmail.com
-  twitter-card: true
   open-graph: true
 
 format:
