@@ -21,7 +21,7 @@ I teach infectious-disease modelling and reproducible research — from short co
 ::: {.g-col-12 .g-col-sm-4}
 ::: {.feature-card}
 [36,000+]{.stat-number}
-[views on a single tutorial](https://www.youtube.com/watch?v=WWz8yrxNB74){.stat-label}
+[Views on a single YouTube tutorial](https://www.youtube.com/watch?v=WWz8yrxNB74){.stat-label}
 :::
 :::
 
@@ -111,7 +111,5 @@ I am a **facilitator and reviewer** on the Epi Training Kit, an open-access, fiv
 ::: {.callout-note appearance="simple"}
 I'm available to **teach, facilitate, and develop training** in infectious-disease modelling and reproducible research.
 
-Get in touch: [james.m.azam@gmail.com](mailto:james.m.azam@gmail.com) ·
-[YouTube](https://www.youtube.com/channel/UC2T5okssLdyVrMWHG1BBZnw) ·
-[LinkedIn](https://www.linkedin.com/in/james-azam-phd-6b5b00176/)
+Get in touch: [Email](mailto:james.m.azam@gmail.com) | [LinkedIn](https://www.linkedin.com/in/james-azam-phd-6b5b00176/)
 :::
