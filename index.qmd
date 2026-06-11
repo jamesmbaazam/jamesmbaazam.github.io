@@ -32,7 +32,7 @@ Previously, I was a [Research Software Engineer](https://www.nature.com/articles
 - [2013]{.tl-year} [BSc, Actuarial Science]{.tl-degree} · [Kwame Nkrumah University of Science and Technology, Ghana]{.tl-place}
 :::
 
-# CV
+## CV
 
 ::: {.hero-actions}
 [⬇ Download My CV](cv/CV_detailed_JamesAzam.pdf){.btn .btn-outline-primary role="button"}

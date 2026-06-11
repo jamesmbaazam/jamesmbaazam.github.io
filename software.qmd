@@ -1,6 +1,7 @@
 ---
 title: "Software"
 toc: true
+image: images/EpiNow2_logo.png
 ---
 
 ::: {.lead}
