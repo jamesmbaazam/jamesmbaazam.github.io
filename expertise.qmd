@@ -1,92 +1,112 @@
 ---
 title: "Expertise"
+toc: true
 ---
 
-## Curriculum Vitae
+::: {.lead}
+I build the methods, models, and open-source software (See [here](software.qmd)) that help public health teams understand disease transmission and respond to outbreaks. I hold a PhD in outbreak-response modelling and decision-making, with a focus on quantifying the impact of pharmaceutical and non-pharmaceutical interventions against vaccine-preventable diseases.
+:::
 
-[Download my detailed CV](cv/CV_detailed_JamesAzam.pdf).
+## What I do
 
-## Current Research Focus
+::: {.grid}
 
-My current work centers on two key areas:
+::: {.g-col-12}
+::: {.card .h-100}
+::: {.card-body}
+[Compartmental modelling]{.h5 .card-title}
 
-### Wastewater-Based Surveillance for Infectious Diseases
+Mechanistic models of infectious disease spread to quantify the impact of interventions. Examples of my work include:
 
-I am analyzing the utility of wastewater surveillance for routine monitoring of multiple infectious diseases in South Africa. This work explores how environmental surveillance can complement traditional disease monitoring systems and provide early warning signals for public health action.
+- [Benefits of measles vaccination outside the cold chain for outbreak response](https://www.sciencedirect.com/science/article/pii/S0264410X21011014){.badge .text-bg-light}
+- [Outbreak-response modelling in vaccine-preventable diseases: differences in practice between collaboration types](https://doi.org/10.1016/j.epidem.2023.100720){.badge .text-bg-light}
+- [Outbreak-response intervention models: a systematic review protocol](https://bmjopen.bmj.com/content/10/10/e036172.abstract){.badge .text-bg-light}
+:::
+:::
+:::
 
-### Polio Outbreak Risk Modeling
+::: {.g-col-12}
+::: {.card .h-100}
+::: {.card-body}
+[Stochastic & Bayesian models]{.h5 .card-title}
 
-I am developing mathematical and statistical models to map polio immunity and predict the risk of polio outbreaks across Africa. This is work in early stages.
+Branching and renewal processes and Bayesian inference for early-outbreak dynamics.
 
-## Research Interests & Methods
+- [epichains](https://epiverse-trace.github.io/epichains/){.badge .text-bg-light}
+- [EpiNow2](https://epiforecasts.io/EpiNow2/dev/){.badge .text-bg-light}
+- [epinowcast](https://package.epinowcast.org/dev/){.badge .text-bg-light}
+:::
+:::
+:::
 
-I hold a PhD specializing in outbreak response modeling and decision-making. My work focuses on developing methods and open-source tools to evaluate the impact of pharmaceutical and non-pharmaceutical interventions on the spread of vaccine-preventable diseases.
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100}
+::: {.card-body}
+[Forecasting & nowcasting]{.h5 .card-title}
 
-**Key areas of expertise:**
+Real-time estimation, forecasting, and evaluation of infections and $R_t$ using Bayesian methods.
 
-- **Compartmental modeling** to model infectious disease spread and quantify the impact of interventions
-- **Statistical models (branching processes, renewal processes, Bayesian data analysis, etc)** to model early outbreak dynamics and quantify the impact of interventions:
-    - Examples: [epichains](https://scholar.google.co.za/scholar?cites=12313250973965741292&as_sdt=2005&sciodt=0,5&hl=en), [EpiNow2](https://epiforecasts.io/EpiNow2/dev/) and [epinowcast](https://package.epinowcast.org/dev/)
-- **Real-time forecasting and nowcasting and evaluation** of infections and $R_t$ using Bayesian methods:
-    - Examples: [EpiNow2](https://epiforecasts.io/EpiNow2/dev/), [epinowcast](https://package.epinowcast.org/dev/), [scoringutils](https://epiforecasts.io/scoringutils/)
-- **Reproducible pipelines** and open-source packages for outbreak analytics and model implementation:
-  - See our work on the [Epiverse Trace Initiative](https://epiverse-trace.github.io)
-  - I employ various practices including the extensive use of tools like [renv](https://rstudio.github.io/renv/) and [GNU make](https://www.gnu.org/software/make/) in my projects. Examples are available in my [research code on GitHub](https://github.com/stars/jamesmbaazam/lists/myresearchprojects).
-- **Software development** for epidemiological applications:
-  - See my [GitHub profile](https://github.com/jamesmbaazam) and [Epiverse Trace Initiative](https://epiverse-trace.github.io)
+- [EpiNow2](https://epiforecasts.io/EpiNow2/dev/){.badge .text-bg-light}
+- [epinowcast](https://package.epinowcast.org/dev/){.badge .text-bg-light}
+- [scoringutils](https://epiforecasts.io/scoringutils/){.badge .text-bg-light}
+:::
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100}
+::: {.card-body}
+[Reproducible software & pipelines]{.h5 .card-title}
+
+Open-source R packages and reproducible analytics pipelines for outbreak analytics.
+
+- [Epiverse-TRACE](https://epiverse-trace.github.io){.badge .text-bg-light}
+- [renv](https://rstudio.github.io/renv/){.badge .text-bg-light}
+- [GNU make](https://www.gnu.org/software/make/){.badge .text-bg-light}
+- [Git and GitHub](https://github.com/jamesmbaazam){.badge .text-bg-light}
+:::
+:::
+:::
+
+:::
+
+## Current research
+
+In my Research Fellow role at the London School of Hygiene & Tropical Medicine, I am working on two main projects:
+
+- **Polio outbreak risk modelling** — mathematical and statistical models to map polio immunity and predict outbreak risk across Africa.
+- **Wastewater-based surveillance** — assessing the utility of environmental surveillance for routine monitoring of multiple infectious diseases in South Africa, and as an early-warning signal for public health action.
+
+## Other ongoing projects
+
+- [Temporally aggregated data for epidemiological forecasts](https://github.com/epiforecasts/daily-vs-weekly-forecast-eval) — evaluating the tradeoffs of daily vs. weekly data, a COVID-19 case study in South Africa.
+- [Two-strain model for emerging variants](https://github.com/jamesmbaazam/two_strain_orv_model) — how the timing of variant emergence affects control strategies.
+- [Benchmarking forecasting models](https://github.com/jamesmbaazam/benchmarking-forecasting-models) — performance of statistical forecasting models on simulated data with EpiNow2.
+- [COVID-19 severity surveillance pipeline](https://github.com/SACEMA/severity-monitoring) — detecting changes in reported case-fatality, case-hospitalisation, and hospital-fatality rates.
+
+## Perspectives on improving science
+
+Alongside my technical work, I publish peer reviewed articles on how research itself can be made more inclusive, more relevant, and better connected to policy:
+
+- [Rebalancing power in infectious disease modelling](https://doi.org/10.1371/journal.pgph.0006220) — *PLOS Global Public Health* (2026). Why disease modelling should be led from, and grounded in, the low- and middle-income settings whose policies it informs — especially as AI tools risk widening existing inequities.
+- [Recommendations for empowering early-career researchers to improve research culture and practice](https://doi.org/10.1371/journal.pbio.3001680) — *PLOS Biology* (2022). Consensus recommendations from an international group of early-career researchers on driving systemic change in how science is done.
+- [How scholars perceive attitudes to science in policymaking in South Africa](https://doi.org/10.17159/sajs.2021/7948) — *South African Journal of Science* (2021). Opening a discussion on bridging the gap between research and policy.
 
 ## Publications
 
-You can find my published work either on:
+Browse my full publication record on [Google Scholar](https://scholar.google.co.za/citations?user=IxRpXp8AAAAJ&hl=en) or [ORCID](https://orcid.org/0000-0001-5782-7330).
 
-* [Google Scholar profile](https://scholar.google.co.za/citations?user=IxRpXp8AAAAJ&hl=en), or
-* [ORCID profile](https://orcid.org/0000-0001-5782-7330)
+## Peer review
 
-## Research Projects (work in progress)
+I serve as a peer reviewer for several journals, including *Scientific Reports*, Springer Nature's *Bulletin of Mathematical Biology*, *PLOS Global Public Health*, and the *Journal of Open-Source Software*.
 
-- [Evaluating the tradeoffs of using temporally aggregated data for epidemiological forecasts](https://github.com/epiforecasts/daily-vs-weekly-forecast-eval): A case study of COVID-19 in South Africa
-- [Two-strain model for assessing the impact of the emergence of new variants on control measures](https://github.com/jamesmbaazam/two_strain_orv_model): Studying the impact of the timing of variant emergence on control strategies
-- [Evaluating the performance of select statistical forecasting models on simulated data using the EpiNow2 R package](https://github.com/jamesmbaazam/benchmarking-forecasting-models)
-- [COVID-19 severity surveillance pipeline](https://github.com/SACEMA/severity-monitoring): Detecting changes in reported case fatality, case hospitalization, and hospital fatality rates
+## Let's collaborate
 
-<!-- ## How I'm Sharpening My Skills -->
+::: {.callout-note appearance="simple"}
+I'm interested in collaborating on mathematical and statistical methods that advance outbreak analytics — and on translating them into practical software tools.
 
-<!-- 🖥: **Currently learning:** -->
-
-<!--   - Programming in [The Julia Programming Language](https://julialang.org/) -->
-
-<!--   - Forecasting principles and methods: -->
-
-<!--     - Book: [Forecasting: Principles and Practice (3rd ed)](https://otexts.com/fpp3/) -->
-
-<!--     - Course: [Nowcasting and forecasting infectious disease dynamics](https://nfidd.github.io/nfidd/) -->
-
-<!--   - Bayesian data analysis: -->
-
-<!--     - Book: [Statistical Rethinking](https://www.youtube.com/playlist?list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus) -->
-
-<!--   - Open source software development: -->
-
-<!--     - [Working in Public: The Making and Maintenance of Open Source Software](https://www.amazon.co.uk/Working-Public-Making-Maintenance-Software/dp/0578675862) -->
-
-<!--     - [Practical MLOps: Operationalizing Machine Learning Models](https://www.amazon.co.uk/Practical-MLOps-Operationalizing-Machine-Learning/dp/1098103017) -->
-
-<!-- 📖: **Casual reading:** -->
-
-<!--   - [The 5 Elements of Effective Thinking](https://www.amazon.co.uk/5-Elements-Effective-Thinking/dp/0691156662) by Edward Burger and Michael Starbird -->
-
-<!--   - [The Art of Explanation: How to Communicate with Clarity and Confidence](https://www.amazon.co.uk/Art-Explanation-Communicate-Clarity-Confidence/dp/1472298446) by Ros Atkins -->
-
-## Potential Collaborations
-
-I am interested in collaborating on mathematical or statistical methods and models that advance outbreak analytics. We can also explore how to translate these innovations into practical software tools.
-
-Please get in touch through any of my contacts below.
-
-## Contact Information
-
-Feel free to reach out through any of these channels:
-
-* **LinkedIn:** [James Azam, PhD](https://www.linkedin.com/in/james-azam-phd-6b5b00176/)
-* **Twitter:** [@james_azam](https://twitter.com/james_azam)
-* **GitHub:** [jamesmbaazam](https://github.com/jamesmbaazam)
+Get in touch: [james.m.azam@gmail.com](mailto:james.m.azam@gmail.com) ·
+[LinkedIn](https://www.linkedin.com/in/james-azam-phd-6b5b00176/) ·
+[GitHub](https://github.com/jamesmbaazam) ·
+[Twitter](https://twitter.com/james_azam)
+:::
