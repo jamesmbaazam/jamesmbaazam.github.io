@@ -29,6 +29,20 @@ code, pre, kbd, samp, .sourceCode {
   font-family: "IBM Plex Mono", SFMono-Regular, Menlo, Consolas, monospace;
 }
 
+/* Outline-primary buttons (e.g. "Download my CV") — use the vivid accent
+   so they stay visible and clearly clickable in both light and dark mode,
+   and fill solid on hover. */
+.btn-outline-primary {
+  --bs-btn-color: var(--accent);
+  --bs-btn-border-color: var(--accent);
+  --bs-btn-hover-bg: var(--accent);
+  --bs-btn-hover-border-color: var(--accent);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-active-bg: var(--accent);
+  --bs-btn-active-border-color: var(--accent);
+  --bs-btn-active-color: #fff;
+}
+
 /* ---------------------------------------------------------------------------
    Feature cards (software packages, teaching themes)
    Uses Bootstrap CSS variables so they adapt to light (cosmo) and dark (darkly).

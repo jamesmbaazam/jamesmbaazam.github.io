@@ -11,7 +11,7 @@
     "href": "expertise.html",
     "title": "Expertise",
     "section": "",
-    "text": "I build the methods, models, and open-source software (see here) that help public health teams understand disease transmission and respond to outbreaks. I hold a PhD in outbreak-response modelling and decision-making, with a focus on quantifying the impact of pharmaceutical and non-pharmaceutical interventions against vaccine-preventable diseases."
+    "text": "I build health data science methods, models, and open-source software that help public health teams understand disease transmission and respond to outbreaks.\nI hold a PhD in outbreak response modelling and decision-making, with a focus on quantifying the impact of pharmaceutical and non-pharmaceutical interventions against vaccine-preventable diseases."
   },
   {
     "objectID": "expertise.html#what-i-do",
@@ -25,7 +25,7 @@
     "href": "expertise.html#current-research",
     "title": "Expertise",
     "section": "Current research",
-    "text": "Current research\nIn my Research Fellow role at the London School of Hygiene & Tropical Medicine, I am working on two main projects:\n\nPolio outbreak risk modelling — mathematical and statistical models to map polio immunity and predict outbreak risk across Africa.\nWastewater-based surveillance — assessing the utility of environmental surveillance for routine monitoring of multiple infectious diseases in South Africa, and as an early-warning signal for public health action."
+    "text": "Current research\nIn my Research Fellow role at the London School of Hygiene & Tropical Medicine, I am working on two Gates Foundation funded projects:\n\nPolio outbreak risk modelling — Using spatial machine learning to predict and map polio outbreak risks to support the Global Polio Eradication Initiative.\nWastewater-based surveillance — assessing the utility of environmental surveillance for routine monitoring of multiple infectious diseases in South Africa, and as an early-warning signal for public health action. This project is led by South Africa’s National Institute for Communicable Diseases"
   },
   {
     "objectID": "expertise.html#other-ongoing-projects",
@@ -60,7 +60,7 @@
     "href": "expertise.html#lets-collaborate",
     "title": "Expertise",
     "section": "Let’s collaborate",
-    "text": "Let’s collaborate\n\n\n\n\n\n\nI’m interested in collaborating on mathematical and statistical methods that advance outbreak analytics — and on translating them into practical software tools.\nGet in touch: james.m.azam@gmail.com · LinkedIn · GitHub · Twitter"
+    "text": "Let’s collaborate\n\n\n\n\n\n\nI’m interested in collaborating on mathematical and statistical methods that advance outbreak analytics and health data science, and on translating them into practical software tools.\nGet in touch: Email | LinkedIn | GitHub"
   },
   {
     "objectID": "teaching.html",
@@ -102,7 +102,7 @@
     "href": "teaching.html#work-with-me",
     "title": "Teaching & Outreach",
     "section": "Work with me",
-    "text": "Work with me\n\n\n\n\n\n\nI’m available to teach, facilitate, and develop training in infectious-disease modelling and reproducible research.\nGet in touch: Email | LinkedIn"
+    "text": "Work with me\n\n\n\n\n\n\nI’m available to teach, facilitate, and develop training in infectious disease modelling, health data science, and reproducible workflows.\nGet in touch: Email | LinkedIn | GitHub"
   },
   {
     "objectID": "index.html",
@@ -193,13 +193,13 @@
     "href": "software.html#open-source-projects-i-build-and-contribute-to",
     "title": "Software",
     "section": "Open source projects I build and contribute to",
-    "text": "Open source projects I build and contribute to\n\n\n\n\n\nepichains Author\n\nEpiverse-TRACE\nMethods for analysing the size and length of infectious disease transmission chains, building on and succeeding bpmodels.\nDocs · GitHub\n\n\n\n\n\n\nEpiNow2 Co-maintainer · 2022–2025\n\nepiforecasts\nEstimates the time-varying reproduction number, growth rate, and doubling time from case data using Bayesian methods.\nDocs · GitHub\n\n\n\n\n\n\nepinowcast Contributor\n\nepinowcast\nFlexible, efficient nowcasting to gain situational awareness during outbreaks from incomplete and delayed epidemiological reporting.\nDocs · GitHub\n\n\n\n\n\n\nprimarycensored Author\n\nepinowcast\nPrimary event censored distributions for fitting delay and reporting distributions while correctly accounting for censoring and truncation.\nDocs · GitHub\n\n\n\n\n\nscoringutils Contributor\n\nepiforecasts\nTools for scoring and evaluating probabilistic forecasts using proper scoring rules.\nDocs · GitHub\n\n\n\n\n\nR for Ecologists Past co-maintainer\n\nThe Carpentries\nCo-maintained the Data Carpentry lesson on Data Analysis and Visualization in R for Ecologists.\nLesson · GitHub"
+    "text": "Open source projects I build and contribute to\n\n\n\n\n\nepichains Lead Author\n\nEpiverse-TRACE\nMethods for analysing the size and length of infectious disease transmission chains, building on and succeeding bpmodels.\nDocs · GitHub\n\n\n\n\n\n\nEpiNow2 Co-maintainer · 2022–2025\n\nepiforecasts\nEstimates the time-varying reproduction number, growth rate, and doubling time from case data using Bayesian methods.\nDocs · GitHub\n\n\n\n\n\n\nepinowcast Contributor\n\nepinowcast\nFlexible, efficient nowcasting to gain situational awareness during outbreaks from incomplete and delayed epidemiological reporting.\nDocs · GitHub\n\n\n\n\n\n\nprimarycensored Co-Author\n\nepinowcast\nPrimary event censored distributions for fitting delay and reporting distributions while correctly accounting for censoring and truncation.\nDocs · GitHub\n\n\n\n\n\nscoringutils Contributor\n\nepiforecasts\nTools for scoring and evaluating probabilistic forecasts using proper scoring rules.\nDocs · GitHub\n\n\n\n\n\nR for Ecologists Past co-maintainer\n\nThe Carpentries\nCo-maintained the Data Carpentry lesson on Data Analysis and Visualization in R for Ecologists.\nLesson · GitHub"
   },
   {
     "objectID": "software.html#work-with-me",
     "href": "software.html#work-with-me",
     "title": "Software",
     "section": "Work with me",
-    "text": "Work with me\n\n\n\n\n\n\nI’m available for open-source development, code and package review, and research-software consulting for epidemiological applications.\nGet in touch: james.m.azam@gmail.com · GitHub · LinkedIn"
+    "text": "Work with me\n\n\n\n\n\n\nI’m available for open-source development, code and package review, and research software development consulting for health data science applications.\nGet in touch: Email | LinkedIn | GitHub"
   }
 ]
