@@ -1,27 +1,85 @@
-::: {.grid}
+---
+toc: false
+---
 
-::: {.g-col-4}
-![](images/picture.jpg){fig-align="left"}
+::: {.grid .hero}
+
+::: {.g-col-12 .g-col-md-4}
+![](images/picture.jpg){.avatar fig-alt="Photo of James Mba Azam"}
 :::
 
-::: {.g-col-8}
-I am a Research Fellow at the London School of Hygiene and Tropical Medicine, based at the [Centre for Mathematical Modelling of Infectious Diseases (CMMID)](https://www.lshtm.ac.uk/research/centres/centre-mathematical-modelling-infectious-diseases), where I work with [Dr. Kathleen O'Reilly](https://www.lshtm.ac.uk/aboutus/people/oreilly.kathleen) on:
+::: {.g-col-12 .g-col-md-8}
+# James M. Azam, PhD {.hero-name}
 
-* **Analyzing the utility of wastewater surveillance** for routine monitoring of infectious diseases in South Africa
+[Infectious Disease Modeller · Research Software Engineer · Educator]{.hero-tagline}
 
-* **Developing mathematical and statistical models** to predict the risk of polio outbreaks in Africa
+::: {.feature-card}
+I am a Research Fellow at the London School of Hygiene and Tropical Medicine, based at the [Centre for Mathematical Modelling of Infectious Diseases (CMMID)](https://www.lshtm.ac.uk/research/centres/centre-mathematical-modelling-infectious-diseases), where I work with [Dr. Kathleen O'Reilly](https://www.lshtm.ac.uk/aboutus/people/oreilly.kathleen) on modelling the spatial spread and control of infectious diseases, including polio and measles.
 
-Previously, I was a [Research Software Engineer](https://www.nature.com/articles/d41586-022-01516-2) with the [Epiverse-TRACE Initiative](https://github.com/epiverse-trace), developing and maintaining R packages for reproducible analytics during epidemics.
+Previously, I was a [Research Software Engineer](https://www.nature.com/articles/d41586-022-01516-2) with the [Epiverse-TRACE Initiative](https://github.com/epiverse-trace), developing and maintaining R packages such as [epichains](https://epiverse-trace.github.io/epichains/) and [EpiNow2](https://epiforecasts.io/EpiNow2/dev/) for reproducible analytics during epidemics.
+:::
 
-I am passionate about developing models, methods, and software that improve our understanding of disease transmission and enhance outbreak response.
+:::
+
+:::
 
 ## Education
 
-* **2022**: PhD Applied Mathematics, Stellenbosch University, South Africa
-* **2018**: MSc Mathematics, Stellenbosch University, South Africa
-* **2015**: MSc Mathematical Sciences, African Institute for Mathematical Sciences (AIMS), Senegal
-* **2013**: BSc Actuarial Science, Kwame Nkrumah University of Science and Technology, Ghana
+::: {.timeline}
+- [2022]{.tl-year} [PhD, Applied Mathematics]{.tl-degree} · [Stellenbosch University, South Africa]{.tl-place}
+- [2018]{.tl-year} [MSc, Mathematics]{.tl-degree} · [Stellenbosch University, South Africa]{.tl-place}
+- [2015]{.tl-year} [MSc, Mathematical Sciences]{.tl-degree} · [African Institute for Mathematical Sciences (AIMS), Senegal]{.tl-place}
+- [2013]{.tl-year} [BSc, Actuarial Science]{.tl-degree} · [Kwame Nkrumah University of Science and Technology, Ghana]{.tl-place}
+:::
 
+# CV
+
+::: {.hero-actions}
+[⬇ Download My CV](cv/CV_detailed_JamesAzam.pdf){.btn .btn-outline-primary role="button"}
+:::
+
+## Explore
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-3}
+::: {.feature-card}
+[Expertise]{.card-title-text}
+
+My research focus, methods, publications, and peer review.
+
+[[Learn more →](expertise.qmd)]{.card-links}
+:::
+:::
+
+::: {.g-col-12 .g-col-md-3}
+::: {.feature-card}
+[Software]{.card-title-text}
+
+Open-source R packages I build and maintain for outbreak analytics.
+
+[[Learn more →](software.qmd)]{.card-links}
+:::
+:::
+
+::: {.g-col-12 .g-col-md-3}
+::: {.feature-card}
+[Teaching]{.card-title-text}
+
+Courses, tutorials, and training in modelling and reproducible research.
+
+[[Learn more →](teaching.qmd)]{.card-links}
+:::
+:::
+
+::: {.g-col-12 .g-col-md-3}
+::: {.feature-card}
+[Blog]{.card-title-text}
+
+Blogposts on technical concepts.
+
+[[Learn more →](blog.qmd)]{.card-links}
+:::
 :::
 
 :::
