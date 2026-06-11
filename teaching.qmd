@@ -28,7 +28,7 @@ I teach various topics in infectious disease modelling, health data science, and
 ::: {.g-col-12 .g-col-sm-4}
 ::: {.feature-card}
 [2]{.stat-number}
-[Cohorts of Modelling for Pandemic Preparedness and Responses short course (2024–2025)]{.stat-label}
+[Cohorts of the Modelling for Pandemic Preparedness and Responses Modular Short course (2024–2025)]{.stat-label}
 :::
 :::
 
