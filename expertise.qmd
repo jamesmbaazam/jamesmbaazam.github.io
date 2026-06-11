@@ -2,6 +2,10 @@
 title: "Expertise"
 ---
 
+## Curriculum Vitae
+
+[Download my detailed CV](cv/CV_detailed_JamesAzam.pdf).
+
 ## Current Research Focus
 
 My current work centers on two key areas:

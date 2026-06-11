@@ -21,8 +21,6 @@ website:
         text: About me
       - href: expertise.qmd
         text: Expertise
-      - href: cv.qmd
-        text: CV
       - href: software_teaching.qmd
         text: Software & Teaching
       - href: blog.qmd
