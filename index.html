@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.9">
+<meta name="generator" content="quarto-1.10.11">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -39,11 +39,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-5198e99e68e02f6ba92128fbf88417ab.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-5947b73a06bce04bf1d622ae23e1ec5b.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-20723c260624149940944109bbec0d15.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-94b323657c735dfe3b1bf6ebb2c33a55.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/quarto-contrib/quarto-auto-dark-mode-1.0.0/auto-dark-mode.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-bba5ebae505b5c03f3f0d8040a416a6b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ef329cdfec84d61f1b09d4029da25417.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -77,12 +78,170 @@ ul.task-list li input[type="checkbox"] {
 <meta property="og:title" content="Dr.&nbsp;James M. Azam">
 <meta property="og:image" content="https://jamesmbaazam.github.io/images/picture.jpg">
 <meta property="og:site_name" content="Dr.&nbsp;James M. Azam">
-<meta name="twitter:title" content="Dr.&nbsp;James M. Azam">
-<meta name="twitter:image" content="https://jamesmbaazam.github.io/images/picture.jpg">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image:alt" content="Photo of James Mba Azam">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const darkModeDefault = authorPrefersDark;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -101,19 +260,19 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">About me</span></a>
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./expertise.html"> 
 <span class="menu-text">Expertise</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./cv.html"> 
-<span class="menu-text">CV</span></a>
+    <a class="nav-link" href="./software.html"> 
+<span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./software_teaching.html"> 
-<span class="menu-text">Software &amp; Teaching</span></a>
+    <a class="nav-link" href="./teaching.html"> 
+<span class="menu-text">Teaching</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./blog.html"> 
@@ -128,11 +287,12 @@ ul.task-list li input[type="checkbox"] {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools tools-wide">
-    <a href="https://twitter.com/james_azam" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
+    <a href="https://bsky.app/profile/jamesazam.bsky.social" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-bluesky"></i></a>
     <a href="https://github.com/jamesmbaazam" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
     <a href="https://www.linkedin.com/in/james-azam-phd-6b5b00176/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
     <a href="https://scholar.google.co.za/citations?user=IxRpXp8AAAAJ&amp;hl=en" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-googlescholar"></i></a>
     <a href="./james.m.azam@gmail.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-email"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -146,48 +306,96 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
 
-<div class="grid">
-<div class="g-col-4">
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="images/picture.jpg" class="img-fluid quarto-figure quarto-figure-left figure-img"></p>
-</figure>
+
+<div class="grid hero">
+<div class="g-col-12 g-col-md-4">
+<p><img src="images/picture.jpg" class="avatar img-fluid" alt="Photo of James Mba Azam"></p>
 </div>
+<section id="james-m.-azam-phd" class="level1 hero-name g-col-12 g-col-md-8">
+<h1 class="hero-name">James M. Azam, PhD</h1>
+<p><span class="hero-tagline">Infectious Disease Modeller · Research Software Engineer · Educator</span></p>
+<div class="feature-card">
+<p>I am a Research Fellow at the London School of Hygiene and Tropical Medicine, based at the <a href="https://www.lshtm.ac.uk/research/centres/centre-mathematical-modelling-infectious-diseases">Centre for Mathematical Modelling of Infectious Diseases (CMMID)</a>, where I work with <a href="https://www.lshtm.ac.uk/aboutus/people/oreilly.kathleen">Dr.&nbsp;Kathleen O’Reilly</a> on modelling the spatial spread and control of infectious diseases, including polio and measles.</p>
+<p>Previously, I was a <a href="https://www.nature.com/articles/d41586-022-01516-2">Research Software Engineer</a> with the <a href="https://github.com/epiverse-trace">Epiverse-TRACE Initiative</a>, developing and maintaining R packages such as <a href="https://epiverse-trace.github.io/epichains/">epichains</a> and <a href="https://epiforecasts.io/EpiNow2/dev/">EpiNow2</a> for reproducible analytics during epidemics.</p>
 </div>
-<div class="g-col-8">
-<p>I am a Research Fellow at the London School of Hygiene and Tropical Medicine, based at the <a href="https://www.lshtm.ac.uk/research/centres/centre-mathematical-modelling-infectious-diseases">Centre for Mathematical Modelling of Infectious Diseases (CMMID)</a>, where I work with <a href="https://www.lshtm.ac.uk/aboutus/people/oreilly.kathleen">Dr.&nbsp;Kathleen O’Reilly</a> on:</p>
-<ul>
-<li><p><strong>Analyzing the utility of wastewater surveillance</strong> for routine monitoring of infectious diseases in South Africa</p></li>
-<li><p><strong>Developing mathematical and statistical models</strong> to predict the risk of polio outbreaks in Africa</p></li>
-</ul>
-<p>Previously, I was a <a href="https://www.nature.com/articles/d41586-022-01516-2">Research Software Engineer</a> with the <a href="https://github.com/epiverse-trace">Epiverse-TRACE Initiative</a>, developing and maintaining R packages for reproducible analytics during epidemics.</p>
-<p>I am passionate about developing models, methods, and software that improve our understanding of disease transmission and enhance outbreak response.</p>
-<section id="education" class="level2">
-<h2 class="anchored" data-anchor-id="education">Education</h2>
-<ul>
-<li><strong>2022</strong>: PhD Applied Mathematics, Stellenbosch University, South Africa</li>
-<li><strong>2018</strong>: MSc Mathematics, Stellenbosch University, South Africa</li>
-<li><strong>2015</strong>: MSc Mathematical Sciences, African Institute for Mathematical Sciences (AIMS), Senegal</li>
-<li><strong>2013</strong>: BSc Actuarial Science, Kwame Nkrumah University of Science and Technology, Ghana</li>
-</ul>
 </section>
 </div>
+<section id="education" class="level2">
+<h2 class="anchored" data-anchor-id="education">Education</h2>
+<div class="timeline">
+<ul>
+<li><span class="tl-year">2022</span> <span class="tl-degree">PhD, Applied Mathematics</span> · <span class="tl-place">Stellenbosch University, South Africa</span></li>
+<li><span class="tl-year">2018</span> <span class="tl-degree">MSc, Mathematics</span> · <span class="tl-place">Stellenbosch University, South Africa</span></li>
+<li><span class="tl-year">2015</span> <span class="tl-degree">MSc, Mathematical Sciences</span> · <span class="tl-place">African Institute for Mathematical Sciences (AIMS), Senegal</span></li>
+<li><span class="tl-year">2013</span> <span class="tl-degree">BSc, Actuarial Science</span> · <span class="tl-place">Kwame Nkrumah University of Science and Technology, Ghana</span></li>
+</ul>
+</div>
+</section>
+<section id="cv" class="level2">
+<h2 class="anchored" data-anchor-id="cv">CV</h2>
+<div class="hero-actions">
+<p><a href="cv/CV_detailed_JamesAzam.pdf" class="btn btn-outline-primary" role="button">⬇ Download My CV</a></p>
+</div>
+</section>
+<section id="explore" class="level2">
+<h2 class="anchored" data-anchor-id="explore">Explore</h2>
+<div class="grid">
+<div class="g-col-12 g-col-md-3">
+<div class="feature-card">
+<p><span class="card-title-text">Expertise</span></p>
+<p>My research focus, methods, publications, and peer review.</p>
+<p><span class="card-links"><a href="./expertise.html">Learn more →</a></span></p>
+</div>
+</div>
+<div class="g-col-12 g-col-md-3">
+<div class="feature-card">
+<p><span class="card-title-text">Software</span></p>
+<p>Open-source R packages I build and maintain for outbreak analytics.</p>
+<p><span class="card-links"><a href="./software.html">Learn more →</a></span></p>
+</div>
+</div>
+<div class="g-col-12 g-col-md-3">
+<div class="feature-card">
+<p><span class="card-title-text">Teaching</span></p>
+<p>Courses, tutorials, and training in modelling and reproducible research.</p>
+<p><span class="card-links"><a href="./teaching.html">Learn more →</a></span></p>
+</div>
+</div>
+<div class="g-col-12 g-col-md-3">
+<div class="feature-card">
+<p><span class="card-title-text">Blog</span></p>
+<p>Blogposts on technical concepts.</p>
+<p><span class="card-links"><a href="./blog.html">Learn more →</a></span></p>
+</div>
+</div>
 </div>
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

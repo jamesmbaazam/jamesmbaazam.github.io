@@ -1,108 +1,87 @@
 [
   {
-    "objectID": "software_teaching.html",
-    "href": "software_teaching.html",
-    "title": "Software & Teaching",
-    "section": "",
-    "text": "Below is a summary of my open source contributions. Find my GitHub page here.\nI also review open-source R code and packages for journals like the Journal of Open Source Software.\nDo reach out if you need my services."
-  },
-  {
-    "objectID": "software_teaching.html#open-source-software",
-    "href": "software_teaching.html#open-source-software",
-    "title": "Software & Teaching",
-    "section": "Open-Source Software",
-    "text": "Open-Source Software\n\n\n  \n\n\nI lead and contribute to several open-source communities developing R packages for outbreak analytics. You can explore all my code on GitHub.\n\nEpiverse TRACE\nDuring my time as a Research Software Engineer with the Epiverse-TRACE Initiative, I:\n\nDeveloped epichains as a successor of bpmodels for analyzing the distribution of the size and length of transmission chains\nCo-maintained EpiNow2 for estimating the time-varying reproduction number, growth rate, and doubling time using Bayesian methods\n\n\n\nepiforecasts community\nI contribute to:\n\nEpiNow2: Estimates the time-varying reproduction number, growth rate, and doubling time using a range of open-source tools and Bayesian methods\nscoringutils: Tools for scoring and assessing predictions\n\n\n\nepinowcast community\nI contribute to:\n\nepinowcast: Provides flexible and efficient methods for gaining situational awareness during outbreaks using currently available epidemiological observations and the reporting patterns of historical observations\n\n\n\nThe Carpentries\nI briefly co-maintained the Carpentries course on Data Analysis and Visualization in R for Ecologists"
-  },
-  {
-    "objectID": "software_teaching.html#teaching-outreach",
-    "href": "software_teaching.html#teaching-outreach",
-    "title": "Software & Teaching",
-    "section": "Teaching & Outreach",
-    "text": "Teaching & Outreach\n\nCurrent Teaching\nI am the lead facilitator for the Modelling for Pandemic Preparedness and Response (MPPR) modular shortcourse hosted by The German-West African Centre for Global Health and Pandemic Prevention (G-WAC) at the College of Health Sciences, Kwame Nkrumah University of Science and Technology (KNUST), Kumasi, Ghana.\nCourse Objectives/Learning Outcomes:\nAt the end of the course, participants are expected to:\n\nUnderstand the concepts of infectious disease transmission and control\nEnhance knowledge about data sources, data access, and data curation in (West) Africa\nDesign, implement and use context-specific mathematical models using the R programming language\nImprove knowledge of communication about modeling output\nBecome part of a network of disease modelers with an interest in West Africa\n\nWe have successfully delivered two iterations of this course in 2024 and 2025.\nI also maintain a YouTube channel with over 3,500 subscribers, featuring tutorials like this Mendeley tutorial with over 36,000 views.\n\n\nTeaching Competencies\n\nMathematical/statistical/dynamical modeling of infectious diseases\n\nIntroduction to Compartmental Models including methods for estimating the basic reproduction number. See example materials.\nModel fitting techniques. See example materials.\nBasics of branching process models for infectious disease modelling\nIntroduction to Bayesian Models for Infectious Disease Forecasting\nDeveloping generative Bayesian models for forecasting infectious diseases\nForecast evaluation using metrics such as Proper Scoring Rules\n\nReproducible data analysis workflows\n\nR programming from the basics to advanced topics (package development, object-oriented programming)\nResearch software/code development best practices\nGit/GitHub from the basics to intermediate/advanced (merging and rebasing, cherry-picking, etc.)\nR package development using software engineering industry standards\nPipeline orchestration with GNU make and the targets R package\nReproducible environments and research code portability (docker, renv, etc)\n\nEvidence synthesis\n\nSystematic/scoping review methods and free automation tools like Rayyan. See my YouTube tutorials\n\nThesis and journal article writing techniques\n\n\n\nPrevious Teaching Experience\n\nShort course on Introduction to R: Management, Exploration, and Communication of Data at the DSI-NRF Centre of Excellence in Epidemiological Modelling and Analysis (SACEMA) at Stellenbosch University, South Africa"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Dr. James M. Azam",
+    "title": "James M. Azam, PhD",
     "section": "",
-    "text": "I am a Research Fellow at the London School of Hygiene and Tropical Medicine, based at the Centre for Mathematical Modelling of Infectious Diseases (CMMID), where I work with Dr. Kathleen O’Reilly on:\n\nAnalyzing the utility of wastewater surveillance for routine monitoring of infectious diseases in South Africa\nDeveloping mathematical and statistical models to predict the risk of polio outbreaks in Africa\n\nPreviously, I was a Research Software Engineer with the Epiverse-TRACE Initiative, developing and maintaining R packages for reproducible analytics during epidemics.\nI am passionate about developing models, methods, and software that improve our understanding of disease transmission and enhance outbreak response.\n\n\n\n2022: PhD Applied Mathematics, Stellenbosch University, South Africa\n2018: MSc Mathematics, Stellenbosch University, South Africa\n2015: MSc Mathematical Sciences, African Institute for Mathematical Sciences (AIMS), Senegal\n2013: BSc Actuarial Science, Kwame Nkrumah University of Science and Technology, Ghana"
+    "text": "Infectious Disease Modeller · Research Software Engineer · Educator\n\nI am a Research Fellow at the London School of Hygiene and Tropical Medicine, based at the Centre for Mathematical Modelling of Infectious Diseases (CMMID), where I work with Dr. Kathleen O’Reilly on modelling the spatial spread and control of infectious diseases, including polio and measles.\nPreviously, I was a Research Software Engineer with the Epiverse-TRACE Initiative, developing and maintaining R packages such as epichains and EpiNow2 for reproducible analytics during epidemics."
   },
   {
     "objectID": "index.html#education",
     "href": "index.html#education",
-    "title": "Dr. James M. Azam",
-    "section": "",
-    "text": "2022: PhD Applied Mathematics, Stellenbosch University, South Africa\n2018: MSc Mathematics, Stellenbosch University, South Africa\n2015: MSc Mathematical Sciences, African Institute for Mathematical Sciences (AIMS), Senegal\n2013: BSc Actuarial Science, Kwame Nkrumah University of Science and Technology, Ghana"
+    "title": "James M. Azam, PhD",
+    "section": "Education",
+    "text": "Education\n\n\n2022 PhD, Applied Mathematics · Stellenbosch University, South Africa\n2018 MSc, Mathematics · Stellenbosch University, South Africa\n2015 MSc, Mathematical Sciences · African Institute for Mathematical Sciences (AIMS), Senegal\n2013 BSc, Actuarial Science · Kwame Nkrumah University of Science and Technology, Ghana"
   },
   {
-    "objectID": "blog.html",
-    "href": "blog.html",
-    "title": "Blog",
-    "section": "",
-    "text": "How to evaluate the ‘goodness of fit’ of an EpiNow2 model run\n\n\n\nforecasting\n\nEpiNow2\n\nBayesian Analysis\n\nReproduction numbers\n\nR\n\nStan\n\n\n\n\n\n\n\n\n\nNov 8, 2025\n\n\nJames Mba Azam\n\n\n\n\n\nNo matching items\n Back to top"
+    "objectID": "index.html#cv",
+    "href": "index.html#cv",
+    "title": "James M. Azam, PhD",
+    "section": "CV",
+    "text": "CV\n\n⬇ Download My CV"
   },
   {
-    "objectID": "cv.html",
-    "href": "cv.html",
-    "title": "CV",
-    "section": "",
-    "text": "Below are different versions of my curriculum vitae. Use the buttons to download a PDF, or preview each one in the tabs below."
-  },
-  {
-    "objectID": "cv.html#preview",
-    "href": "cv.html#preview",
-    "title": "CV",
-    "section": "Preview",
-    "text": "Preview\n\nAcademic (2-page)AcademicDetailed\n\n\nA concise two-page academic CV.\n\nThis browser does not support embedded PDFs. &lt;a href=\"cv/CV_Academic_JamesAzam_2_pager.pdf\"&gt;Download the PDF&lt;/a&gt; instead.\n\n\n\nThe standard academic CV.\n\nThis browser does not support embedded PDFs. &lt;a href=\"cv/CV_Academic_JamesAzam.pdf\"&gt;Download the PDF&lt;/a&gt; instead.\n\n\n\nA longer CV with full detail on research, teaching, and service.\n\nThis browser does not support embedded PDFs. &lt;a href=\"cv/CV_detailed_JamesAzam.pdf\"&gt;Download the PDF&lt;/a&gt; instead."
+    "objectID": "index.html#explore",
+    "href": "index.html#explore",
+    "title": "James M. Azam, PhD",
+    "section": "Explore",
+    "text": "Explore\n\n\n\nExpertise\nMy research focus, methods, publications, and peer review.\nLearn more →\n\n\n\n\nSoftware\nOpen-source R packages I build and maintain for outbreak analytics.\nLearn more →\n\n\n\n\nTeaching\nCourses, tutorials, and training in modelling and reproducible research.\nLearn more →\n\n\n\n\nBlog\nBlogposts on technical concepts.\nLearn more →"
   },
   {
     "objectID": "expertise.html",
     "href": "expertise.html",
     "title": "Expertise",
     "section": "",
-    "text": "My current work centers on two key areas:\n\n\nI am analyzing the utility of wastewater surveillance for routine monitoring of multiple infectious diseases in South Africa. This work explores how environmental surveillance can complement traditional disease monitoring systems and provide early warning signals for public health action.\n\n\n\nI am developing mathematical and statistical models to map polio immunity and predict the risk of polio outbreaks across Africa. This is work in early stages."
+    "text": "I build health data science methods, models, and open-source software that help public health teams understand disease transmission and respond to outbreaks.\nI hold a PhD in outbreak response modelling and decision-making, with a focus on quantifying the impact of pharmaceutical and non-pharmaceutical interventions against vaccine-preventable diseases."
   },
   {
-    "objectID": "expertise.html#current-research-focus",
-    "href": "expertise.html#current-research-focus",
+    "objectID": "expertise.html#what-i-do",
+    "href": "expertise.html#what-i-do",
     "title": "Expertise",
-    "section": "",
-    "text": "My current work centers on two key areas:\n\n\nI am analyzing the utility of wastewater surveillance for routine monitoring of multiple infectious diseases in South Africa. This work explores how environmental surveillance can complement traditional disease monitoring systems and provide early warning signals for public health action.\n\n\n\nI am developing mathematical and statistical models to map polio immunity and predict the risk of polio outbreaks across Africa. This is work in early stages."
+    "section": "What I do",
+    "text": "What I do\n\n\n\n\nCompartmental modelling\nMechanistic models of infectious disease spread to quantify the impact of interventions. Examples of my work include:\n\nBenefits of measles vaccination outside the cold chain for outbreak response\nA review of differences in practices between outbreak response modelling team types\n\n\n\n\n\n\n\nStochastic & Bayesian models\nBranching and renewal processes and Bayesian inference for early-outbreak dynamics.\n\nepichains\nEpiNow2\nepinowcast\n\n\n\n\n\n\n\nForecasting & nowcasting\nReal-time estimation, forecasting, and evaluation of infections and \\(R_t\\) using Bayesian methods.\n\nEpiNow2\nepinowcast\nscoringutils\n\n\n\n\n\n\n\nReproducible software & pipelines\nOpen-source R packages and reproducible analytics pipelines for outbreak analytics.\n\nEpiverse-TRACE\nrenv\nGNU make\nGit and GitHub"
   },
   {
-    "objectID": "expertise.html#research-interests-methods",
-    "href": "expertise.html#research-interests-methods",
+    "objectID": "expertise.html#current-research",
+    "href": "expertise.html#current-research",
     "title": "Expertise",
-    "section": "Research Interests & Methods",
-    "text": "Research Interests & Methods\nI hold a PhD specializing in outbreak response modeling and decision-making. My work focuses on developing methods and open-source tools to evaluate the impact of pharmaceutical and non-pharmaceutical interventions on the spread of vaccine-preventable diseases.\nKey areas of expertise:\n\nCompartmental modeling to model infectious disease spread and quantify the impact of interventions\nStatistical models (branching processes, renewal processes, Bayesian data analysis, etc) to model early outbreak dynamics and quantify the impact of interventions:\n\nExamples: epichains, EpiNow2 and epinowcast\n\nReal-time forecasting and nowcasting and evaluation of infections and \\(R_t\\) using Bayesian methods:\n\nExamples: EpiNow2, epinowcast, scoringutils\n\nReproducible pipelines and open-source packages for outbreak analytics and model implementation:\n\nSee our work on the Epiverse Trace Initiative\nI employ various practices including the extensive use of tools like renv and GNU make in my projects. Examples are available in my research code on GitHub.\n\nSoftware development for epidemiological applications:\n\nSee my GitHub profile and Epiverse Trace Initiative"
+    "section": "Current research",
+    "text": "Current research\nIn my Research Fellow role at the London School of Hygiene & Tropical Medicine, I am working on two Gates Foundation funded projects:\n\nPolio outbreak risk modelling — Using spatial machine learning to predict and map polio outbreak risks to support the Global Polio Eradication Initiative.\nWastewater-based surveillance — assessing the utility of environmental surveillance for routine monitoring of multiple infectious diseases in South Africa, and as an early-warning signal for public health action. This project is led by South Africa’s National Institute for Communicable Diseases"
+  },
+  {
+    "objectID": "expertise.html#other-ongoing-projects",
+    "href": "expertise.html#other-ongoing-projects",
+    "title": "Expertise",
+    "section": "Other ongoing projects",
+    "text": "Other ongoing projects\n\nTemporally aggregated data for epidemiological forecasts — evaluating the tradeoffs of daily vs. weekly data, a COVID-19 case study in South Africa.\nTwo-strain model for emerging variants — how the timing of variant emergence affects control strategies.\nBenchmarking forecasting models — performance of statistical forecasting models on simulated data with EpiNow2.\nCOVID-19 severity surveillance pipeline — detecting changes in reported case-fatality, case-hospitalisation, and hospital-fatality rates."
+  },
+  {
+    "objectID": "expertise.html#perspectives-on-improving-science",
+    "href": "expertise.html#perspectives-on-improving-science",
+    "title": "Expertise",
+    "section": "Perspectives on improving science",
+    "text": "Perspectives on improving science\nAlongside my technical work, I publish peer reviewed articles on how research itself can be made more inclusive, more relevant, and better connected to policy:\n\nRebalancing power in infectious disease modelling — PLOS Global Public Health (2026). Why disease modelling should be led from, and grounded in, the low- and middle-income settings whose policies it informs — especially as AI tools risk widening existing inequities.\nRecommendations for empowering early-career researchers to improve research culture and practice — PLOS Biology (2022). Consensus recommendations from an international group of early-career researchers on driving systemic change in how science is done.\nHow scholars perceive attitudes to science in policymaking in South Africa — South African Journal of Science (2021). Opening a discussion on bridging the gap between research and policy."
   },
   {
     "objectID": "expertise.html#publications",
     "href": "expertise.html#publications",
     "title": "Expertise",
     "section": "Publications",
-    "text": "Publications\nYou can find my published work either on:\n\nGoogle Scholar profile, or\nORCID profile"
+    "text": "Publications\nBrowse my full publication record on Google Scholar or ORCID."
   },
   {
-    "objectID": "expertise.html#research-projects-work-in-progress",
-    "href": "expertise.html#research-projects-work-in-progress",
+    "objectID": "expertise.html#peer-review",
+    "href": "expertise.html#peer-review",
     "title": "Expertise",
-    "section": "Research Projects (work in progress)",
-    "text": "Research Projects (work in progress)\n\nEvaluating the tradeoffs of using temporally aggregated data for epidemiological forecasts: A case study of COVID-19 in South Africa\nTwo-strain model for assessing the impact of the emergence of new variants on control measures: Studying the impact of the timing of variant emergence on control strategies\nEvaluating the performance of select statistical forecasting models on simulated data using the EpiNow2 R package\nCOVID-19 severity surveillance pipeline: Detecting changes in reported case fatality, case hospitalization, and hospital fatality rates"
+    "section": "Peer review",
+    "text": "Peer review\nI serve as a peer reviewer for several journals, including Scientific Reports, Springer Nature’s Bulletin of Mathematical Biology, PLOS Global Public Health, and the Journal of Open-Source Software."
   },
   {
-    "objectID": "expertise.html#potential-collaborations",
-    "href": "expertise.html#potential-collaborations",
+    "objectID": "expertise.html#lets-collaborate",
+    "href": "expertise.html#lets-collaborate",
     "title": "Expertise",
-    "section": "Potential Collaborations",
-    "text": "Potential Collaborations\nI am interested in collaborating on mathematical or statistical methods and models that advance outbreak analytics. We can also explore how to translate these innovations into practical software tools.\nPlease get in touch through any of my contacts below."
-  },
-  {
-    "objectID": "expertise.html#contact-information",
-    "href": "expertise.html#contact-information",
-    "title": "Expertise",
-    "section": "Contact Information",
-    "text": "Contact Information\nFeel free to reach out through any of these channels:\n\nLinkedIn: James Azam, PhD\nTwitter: @james_azam\nGitHub: jamesmbaazam"
+    "section": "Let’s collaborate",
+    "text": "Let’s collaborate\n\n\n\n\n\n\nI’m interested in collaborating on mathematical and statistical methods that advance outbreak analytics and health data science, and on translating them into practical software tools.\nGet in touch: Email | LinkedIn | GitHub"
   },
   {
     "objectID": "blog/epinow2-eval-guide/index.html",
@@ -159,5 +138,75 @@
     "title": "How to evaluate the ‘goodness of fit’ of an EpiNow2 model run",
     "section": "Resources",
     "text": "Resources\nAs this is a simple and basic guide, I’ll direct you to the following resources for more in-depth information on model diagnostics and forecast evaluation.\n\nStan’s guide on How to Diagnose and Resolve Convergence Problems\nUnderstanding, evaluating, and improving forecasts of infectious disease burden open course.\nscoringutils R package documentation\nscoringRules R package documentation"
+  },
+  {
+    "objectID": "software.html",
+    "href": "software.html",
+    "title": "Software",
+    "section": "",
+    "text": "I build and maintain open-source R software for outbreak analytics — tools that help epidemiologists analyse transmission, estimate key quantities, and forecast in real time.\nExplore all my code on GitHub. I also review open-source research software for the Journal of Open Source Software (JOSS)."
+  },
+  {
+    "objectID": "software.html#open-source-projects-i-build-and-contribute-to",
+    "href": "software.html#open-source-projects-i-build-and-contribute-to",
+    "title": "Software",
+    "section": "Open source projects I build and contribute to",
+    "text": "Open source projects I build and contribute to\n\n\n\n\n\nepichains Lead Author\n\nEpiverse-TRACE\nMethods for analysing the size and length of infectious disease transmission chains, building on and succeeding bpmodels.\nDocs · GitHub\n\n\n\n\n\n\nEpiNow2 Co-maintainer · 2022–2025\n\nepiforecasts\nEstimates the time-varying reproduction number, growth rate, and doubling time from case data using Bayesian methods.\nDocs · GitHub\n\n\n\n\n\n\nepinowcast Contributor\n\nepinowcast\nFlexible, efficient nowcasting to gain situational awareness during outbreaks from incomplete and delayed epidemiological reporting.\nDocs · GitHub\n\n\n\n\n\n\nprimarycensored Co-Author\n\nepinowcast\nPrimary event censored distributions for fitting delay and reporting distributions while correctly accounting for censoring and truncation.\nDocs · GitHub\n\n\n\n\n\n\nscoringutils Contributor\n\nepiforecasts\nTools for scoring and evaluating probabilistic forecasts using proper scoring rules.\nDocs · GitHub\n\n\n\n\n\n\nR for Ecologists Past co-maintainer\n\nThe Carpentries\nCo-maintained the Data Carpentry lesson on Data Analysis and Visualization in R for Ecologists.\nLesson · GitHub"
+  },
+  {
+    "objectID": "software.html#work-with-me",
+    "href": "software.html#work-with-me",
+    "title": "Software",
+    "section": "Work with me",
+    "text": "Work with me\n\n\n\n\n\n\nI’m available for open-source development, code and package review, and research software development consulting for health data science applications.\nGet in touch: Email | LinkedIn | GitHub"
+  },
+  {
+    "objectID": "teaching.html",
+    "href": "teaching.html",
+    "title": "Teaching & Outreach",
+    "section": "",
+    "text": "I teach various topics in infectious disease modelling, health data science, and reproducible workflows, and research tools, from in-person courses to tutorials watched by tens of thousands online."
+  },
+  {
+    "objectID": "teaching.html#reach",
+    "href": "teaching.html#reach",
+    "title": "Teaching & Outreach",
+    "section": "Reach",
+    "text": "Reach\n\n\n\n3,600+ YouTube Subscribers\n\n\n\n\n328.8K Cumulative Views (YouTube Tutorials)\n\n\n\n\n2 Cohorts of the Modelling for Pandemic Preparedness and Responses Modular Short course (2024–2025)"
+  },
+  {
+    "objectID": "teaching.html#key-courses",
+    "href": "teaching.html#key-courses",
+    "title": "Teaching & Outreach",
+    "section": "Key courses",
+    "text": "Key courses\n\n\n\n\nModelling for Pandemic Preparedness and Response (MPPR)\nMy role: Lead facilitator · Host: G-WAC at KNUST, Ghana · Delivered: 2024 & 2025\nA modular short course hosted by the German–West African Centre for Global Health and Pandemic Prevention (G-WAC) at the College of Health Sciences, Kwame Nkrumah University of Science and Technology (KNUST), Kumasi, Ghana. By the end of the course, participants can:\n\nUnderstand the concepts of infectious disease transmission and control\nAccess, curate, and reason about data sources in (West) Africa\nDesign, implement, and use context-specific mathematical models in R\nCommunicate modelling output effectively\nJoin a network of disease modellers focused on West Africa\n\n\n\n\n\n\n\nEpi Training Kit — Infectious Disease Modelling for Africa\nMy role: Facilitator & reviewer · Format: Free, open-access, 5-part online course in R · Focus: African context with a gender lens\nDeveloped by Pontificia Universidad Javeriana and powered by data.org. Enrol in each part:\n\nIntroduction to Infectious Disease Modelling for Public Health — epidemic theory, SIR and SEIR models, incidence versus prevalence, and key epidemic parameters.\nGeneral Epidemiology Applied to Infectious Diseases — incidence and prevalence, relative risk and odds ratios, study designs, and diagnostic testing.\nIntroduction to Statistics and Probability for Infectious Diseases — descriptive statistics, probability distributions, statistical inference, and reasoning about uncertainty.\nEpidemiological Parameters — core parameters (transmission, delays, severity, and more), estimation methods, and R tools for accessing them.\nBuilding a Simple Deterministic Model — building a deterministic SIR-type model in R, using the 2016 Zika outbreak as a case study to evaluate interventions."
+  },
+  {
+    "objectID": "teaching.html#what-i-teach",
+    "href": "teaching.html#what-i-teach",
+    "title": "Teaching & Outreach",
+    "section": "What I teach",
+    "text": "What I teach\n\n\n\nInfectious disease modelling\n\nCompartmental models and estimating the basic reproduction number (materials)\nModel fitting techniques (materials)\nBranching process models for early outbreaks\nBayesian models for infectious disease forecasting\nGenerative Bayesian forecasting models\nForecast evaluation with proper scoring rules\n\n\n\n\n\nReproducible workflows\n\nR programming, from basics to advanced (package development, OOP)\nResearch software and code development best practices\nGit and GitHub, from basics to merging, rebasing, and cherry-picking\nR package development to industry standards\nPipeline orchestration with GNU make and targets\nReproducible environments with Docker and renv\n\n\n\n\n\nEvidence synthesis & writing\n\nSystematic and scoping review methods\nFree automation tools such as Rayyan (tutorials)\nThesis and journal article writing techniques"
+  },
+  {
+    "objectID": "teaching.html#previous-teaching",
+    "href": "teaching.html#previous-teaching",
+    "title": "Teaching & Outreach",
+    "section": "Previous teaching",
+    "text": "Previous teaching\n\nShort course on Introduction to R: Management, Exploration, and Communication of Data at the DSI-NRF Centre of Excellence in Epidemiological Modelling and Analysis (SACEMA), Stellenbosch University, South Africa"
+  },
+  {
+    "objectID": "teaching.html#work-with-me",
+    "href": "teaching.html#work-with-me",
+    "title": "Teaching & Outreach",
+    "section": "Work with me",
+    "text": "Work with me\n\n\n\n\n\n\nI’m available to teach, facilitate, and develop training in infectious disease modelling, health data science, and reproducible workflows.\nGet in touch: Email | LinkedIn | GitHub"
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Blog",
+    "section": "",
+    "text": "How to evaluate the ‘goodness of fit’ of an EpiNow2 model run\n\n\n\nforecasting\n\nEpiNow2\n\nBayesian Analysis\n\nReproduction numbers\n\nR\n\nStan\n\n\n\n\n\n\n\n\n\nNov 8, 2025\n\n\nJames Mba Azam\n\n\n\n\n\nNo matching items\n Back to top"
   }
 ]

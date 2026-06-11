@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.9">
+<meta name="generator" content="quarto-1.10.11">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -39,11 +39,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-5198e99e68e02f6ba92128fbf88417ab.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-5947b73a06bce04bf1d622ae23e1ec5b.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-20723c260624149940944109bbec0d15.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-94b323657c735dfe3b1bf6ebb2c33a55.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/quarto-contrib/quarto-auto-dark-mode-1.0.0/auto-dark-mode.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-bba5ebae505b5c03f3f0d8040a416a6b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ef329cdfec84d61f1b09d4029da25417.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,12 +107,169 @@ window.Quarto = {
 <meta property="og:title" content="Expertise – Dr.&nbsp;James M. Azam">
 <meta property="og:description" content="Learnings from my day to day experiences">
 <meta property="og:site_name" content="Dr.&nbsp;James M. Azam">
-<meta name="twitter:title" content="Expertise – Dr.&nbsp;James M. Azam">
-<meta name="twitter:description" content="Learnings from my day to day experiences">
-<meta name="twitter:card" content="summary">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const darkModeDefault = authorPrefersDark;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -130,19 +288,19 @@ window.Quarto = {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="./index.html"> 
-<span class="menu-text">About me</span></a>
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./expertise.html" aria-current="page"> 
 <span class="menu-text">Expertise</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./cv.html"> 
-<span class="menu-text">CV</span></a>
+    <a class="nav-link" href="./software.html"> 
+<span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./software_teaching.html"> 
-<span class="menu-text">Software &amp; Teaching</span></a>
+    <a class="nav-link" href="./teaching.html"> 
+<span class="menu-text">Teaching</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./blog.html"> 
@@ -157,11 +315,12 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools tools-wide">
-    <a href="https://twitter.com/james_azam" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
+    <a href="https://bsky.app/profile/jamesazam.bsky.social" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-bluesky"></i></a>
     <a href="https://github.com/jamesmbaazam" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
     <a href="https://www.linkedin.com/in/james-azam-phd-6b5b00176/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
     <a href="https://scholar.google.co.za/citations?user=IxRpXp8AAAAJ&amp;hl=en" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-googlescholar"></i></a>
     <a href="./james.m.azam@gmail.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-email"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -180,21 +339,19 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#current-research-focus" id="toc-current-research-focus" class="nav-link active" data-scroll-target="#current-research-focus">Current Research Focus</a>
-  <ul class="collapse">
-  <li><a href="#wastewater-based-surveillance-for-infectious-diseases" id="toc-wastewater-based-surveillance-for-infectious-diseases" class="nav-link" data-scroll-target="#wastewater-based-surveillance-for-infectious-diseases">Wastewater-Based Surveillance for Infectious Diseases</a></li>
-  <li><a href="#polio-outbreak-risk-modeling" id="toc-polio-outbreak-risk-modeling" class="nav-link" data-scroll-target="#polio-outbreak-risk-modeling">Polio Outbreak Risk Modeling</a></li>
-  </ul></li>
-  <li><a href="#research-interests-methods" id="toc-research-interests-methods" class="nav-link" data-scroll-target="#research-interests-methods">Research Interests &amp; Methods</a></li>
+  <li><a href="#what-i-do" id="toc-what-i-do" class="nav-link active" data-scroll-target="#what-i-do">What I do</a></li>
+  <li><a href="#current-research" id="toc-current-research" class="nav-link" data-scroll-target="#current-research">Current research</a></li>
+  <li><a href="#other-ongoing-projects" id="toc-other-ongoing-projects" class="nav-link" data-scroll-target="#other-ongoing-projects">Other ongoing projects</a></li>
+  <li><a href="#perspectives-on-improving-science" id="toc-perspectives-on-improving-science" class="nav-link" data-scroll-target="#perspectives-on-improving-science">Perspectives on improving science</a></li>
   <li><a href="#publications" id="toc-publications" class="nav-link" data-scroll-target="#publications">Publications</a></li>
-  <li><a href="#research-projects-work-in-progress" id="toc-research-projects-work-in-progress" class="nav-link" data-scroll-target="#research-projects-work-in-progress">Research Projects (work in progress)</a></li>
-  <li><a href="#potential-collaborations" id="toc-potential-collaborations" class="nav-link" data-scroll-target="#potential-collaborations">Potential Collaborations</a></li>
-  <li><a href="#contact-information" id="toc-contact-information" class="nav-link" data-scroll-target="#contact-information">Contact Information</a></li>
+  <li><a href="#peer-review" id="toc-peer-review" class="nav-link" data-scroll-target="#peer-review">Peer review</a></li>
+  <li><a href="#lets-collaborate" id="toc-lets-collaborate" class="nav-link" data-scroll-target="#lets-collaborate">Let’s collaborate</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -215,87 +372,114 @@ window.Quarto = {
 </header>
 
 
-<section id="current-research-focus" class="level2">
-<h2 class="anchored" data-anchor-id="current-research-focus">Current Research Focus</h2>
-<p>My current work centers on two key areas:</p>
-<section id="wastewater-based-surveillance-for-infectious-diseases" class="level3">
-<h3 class="anchored" data-anchor-id="wastewater-based-surveillance-for-infectious-diseases">Wastewater-Based Surveillance for Infectious Diseases</h3>
-<p>I am analyzing the utility of wastewater surveillance for routine monitoring of multiple infectious diseases in South Africa. This work explores how environmental surveillance can complement traditional disease monitoring systems and provide early warning signals for public health action.</p>
+<div class="lead">
+<p>I build health data science methods, models, and open-source software that help public health teams understand disease transmission and respond to outbreaks.</p>
+<p>I hold a PhD in outbreak response modelling and decision-making, with a focus on quantifying the impact of pharmaceutical and non-pharmaceutical interventions against vaccine-preventable diseases.</p>
+</div>
+<section id="what-i-do" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-do">What I do</h2>
+<div class="grid">
+<div class="g-col-12">
+<div class="card h-100">
+<div class="card-body">
+<p><span class="h5 card-title">Compartmental modelling</span></p>
+<p>Mechanistic models of infectious disease spread to quantify the impact of interventions. Examples of my work include:</p>
+<ul>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S0264410X21011014">Benefits of measles vaccination outside the cold chain for outbreak response</a></li>
+<li><a href="https://doi.org/10.1016/j.epidem.2023.100720">A review of differences in practices between outbreak response modelling team types</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="g-col-12">
+<div class="card h-100">
+<div class="card-body">
+<p><span class="h5 card-title">Stochastic &amp; Bayesian models</span></p>
+<p>Branching and renewal processes and Bayesian inference for early-outbreak dynamics.</p>
+<ul>
+<li><a href="https://epiverse-trace.github.io/epichains/">epichains</a></li>
+<li><a href="https://epiforecasts.io/EpiNow2/dev/">EpiNow2</a></li>
+<li><a href="https://package.epinowcast.org/dev/">epinowcast</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100">
+<div class="card-body">
+<p><span class="h5 card-title">Forecasting &amp; nowcasting</span></p>
+<p>Real-time estimation, forecasting, and evaluation of infections and <span class="math inline">\(R_t\)</span> using Bayesian methods.</p>
+<ul>
+<li><a href="https://epiforecasts.io/EpiNow2/dev/">EpiNow2</a></li>
+<li><a href="https://package.epinowcast.org/dev/">epinowcast</a></li>
+<li><a href="https://epiforecasts.io/scoringutils/">scoringutils</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100">
+<div class="card-body">
+<p><span class="h5 card-title">Reproducible software &amp; pipelines</span></p>
+<p>Open-source R packages and reproducible analytics pipelines for outbreak analytics.</p>
+<ul>
+<li><a href="https://epiverse-trace.github.io">Epiverse-TRACE</a></li>
+<li><a href="https://rstudio.github.io/renv/">renv</a></li>
+<li><a href="https://www.gnu.org/software/make/">GNU make</a></li>
+<li><a href="https://github.com/jamesmbaazam">Git and GitHub</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 </section>
-<section id="polio-outbreak-risk-modeling" class="level3">
-<h3 class="anchored" data-anchor-id="polio-outbreak-risk-modeling">Polio Outbreak Risk Modeling</h3>
-<p>I am developing mathematical and statistical models to map polio immunity and predict the risk of polio outbreaks across Africa. This is work in early stages.</p>
+<section id="current-research" class="level2">
+<h2 class="anchored" data-anchor-id="current-research">Current research</h2>
+<p>In my Research Fellow role at the London School of Hygiene &amp; Tropical Medicine, I am working on two <a href="https://www.gatesfoundation.org">Gates Foundation funded</a> projects:</p>
+<ul>
+<li><strong>Polio outbreak risk modelling</strong> — Using spatial machine learning to predict and map polio outbreak risks to support the <a href="https://polioeradication.org">Global Polio Eradication Initiative</a>.</li>
+<li><strong>Wastewater-based surveillance</strong> — assessing the utility of environmental surveillance for routine monitoring of multiple infectious diseases in South Africa, and as an early-warning signal for public health action. This project is led by <a href="https://nicd-wastewater-genomics.github.io">South Africa’s National Institute for Communicable Diseases</a></li>
+</ul>
 </section>
+<section id="other-ongoing-projects" class="level2">
+<h2 class="anchored" data-anchor-id="other-ongoing-projects">Other ongoing projects</h2>
+<ul>
+<li><a href="https://github.com/epiforecasts/daily-vs-weekly-forecast-eval">Temporally aggregated data for epidemiological forecasts</a> — evaluating the tradeoffs of daily vs.&nbsp;weekly data, a COVID-19 case study in South Africa.</li>
+<li><a href="https://github.com/jamesmbaazam/two_strain_orv_model">Two-strain model for emerging variants</a> — how the timing of variant emergence affects control strategies.</li>
+<li><a href="https://github.com/jamesmbaazam/benchmarking-forecasting-models">Benchmarking forecasting models</a> — performance of statistical forecasting models on simulated data with EpiNow2.</li>
+<li><a href="https://github.com/SACEMA/severity-monitoring">COVID-19 severity surveillance pipeline</a> — detecting changes in reported case-fatality, case-hospitalisation, and hospital-fatality rates.</li>
+</ul>
 </section>
-<section id="research-interests-methods" class="level2">
-<h2 class="anchored" data-anchor-id="research-interests-methods">Research Interests &amp; Methods</h2>
-<p>I hold a PhD specializing in outbreak response modeling and decision-making. My work focuses on developing methods and open-source tools to evaluate the impact of pharmaceutical and non-pharmaceutical interventions on the spread of vaccine-preventable diseases.</p>
-<p><strong>Key areas of expertise:</strong></p>
+<section id="perspectives-on-improving-science" class="level2">
+<h2 class="anchored" data-anchor-id="perspectives-on-improving-science">Perspectives on improving science</h2>
+<p>Alongside my technical work, I publish peer reviewed articles on how research itself can be made more inclusive, more relevant, and better connected to policy:</p>
 <ul>
-<li><strong>Compartmental modeling</strong> to model infectious disease spread and quantify the impact of interventions</li>
-<li><strong>Statistical models (branching processes, renewal processes, Bayesian data analysis, etc)</strong> to model early outbreak dynamics and quantify the impact of interventions:
-<ul>
-<li>Examples: <a href="https://scholar.google.co.za/scholar?cites=12313250973965741292&amp;as_sdt=2005&amp;sciodt=0,5&amp;hl=en">epichains</a>, <a href="https://epiforecasts.io/EpiNow2/dev/">EpiNow2</a> and <a href="https://package.epinowcast.org/dev/">epinowcast</a></li>
-</ul></li>
-<li><strong>Real-time forecasting and nowcasting and evaluation</strong> of infections and <span class="math inline">\(R_t\)</span> using Bayesian methods:
-<ul>
-<li>Examples: <a href="https://epiforecasts.io/EpiNow2/dev/">EpiNow2</a>, <a href="https://package.epinowcast.org/dev/">epinowcast</a>, <a href="https://epiforecasts.io/scoringutils/">scoringutils</a></li>
-</ul></li>
-<li><strong>Reproducible pipelines</strong> and open-source packages for outbreak analytics and model implementation:
-<ul>
-<li>See our work on the <a href="https://epiverse-trace.github.io">Epiverse Trace Initiative</a></li>
-<li>I employ various practices including the extensive use of tools like <a href="https://rstudio.github.io/renv/">renv</a> and <a href="https://www.gnu.org/software/make/">GNU make</a> in my projects. Examples are available in my <a href="https://github.com/stars/jamesmbaazam/lists/myresearchprojects">research code on GitHub</a>.</li>
-</ul></li>
-<li><strong>Software development</strong> for epidemiological applications:
-<ul>
-<li>See my <a href="https://github.com/jamesmbaazam">GitHub profile</a> and <a href="https://epiverse-trace.github.io">Epiverse Trace Initiative</a></li>
-</ul></li>
+<li><a href="https://doi.org/10.1371/journal.pgph.0006220">Rebalancing power in infectious disease modelling</a> — <em>PLOS Global Public Health</em> (2026). Why disease modelling should be led from, and grounded in, the low- and middle-income settings whose policies it informs — especially as AI tools risk widening existing inequities.</li>
+<li><a href="https://doi.org/10.1371/journal.pbio.3001680">Recommendations for empowering early-career researchers to improve research culture and practice</a> — <em>PLOS Biology</em> (2022). Consensus recommendations from an international group of early-career researchers on driving systemic change in how science is done.</li>
+<li><a href="https://doi.org/10.17159/sajs.2021/7948">How scholars perceive attitudes to science in policymaking in South Africa</a> — <em>South African Journal of Science</em> (2021). Opening a discussion on bridging the gap between research and policy.</li>
 </ul>
 </section>
 <section id="publications" class="level2">
 <h2 class="anchored" data-anchor-id="publications">Publications</h2>
-<p>You can find my published work either on:</p>
-<ul>
-<li><a href="https://scholar.google.co.za/citations?user=IxRpXp8AAAAJ&amp;hl=en">Google Scholar profile</a>, or</li>
-<li><a href="https://orcid.org/0000-0001-5782-7330">ORCID profile</a></li>
-</ul>
+<p>Browse my full publication record on <a href="https://scholar.google.co.za/citations?user=IxRpXp8AAAAJ&amp;hl=en">Google Scholar</a> or <a href="https://orcid.org/0000-0001-5782-7330">ORCID</a>.</p>
 </section>
-<section id="research-projects-work-in-progress" class="level2">
-<h2 class="anchored" data-anchor-id="research-projects-work-in-progress">Research Projects (work in progress)</h2>
-<ul>
-<li><a href="https://github.com/epiforecasts/daily-vs-weekly-forecast-eval">Evaluating the tradeoffs of using temporally aggregated data for epidemiological forecasts</a>: A case study of COVID-19 in South Africa</li>
-<li><a href="https://github.com/jamesmbaazam/two_strain_orv_model">Two-strain model for assessing the impact of the emergence of new variants on control measures</a>: Studying the impact of the timing of variant emergence on control strategies</li>
-<li><a href="https://github.com/jamesmbaazam/benchmarking-forecasting-models">Evaluating the performance of select statistical forecasting models on simulated data using the EpiNow2 R package</a></li>
-<li><a href="https://github.com/SACEMA/severity-monitoring">COVID-19 severity surveillance pipeline</a>: Detecting changes in reported case fatality, case hospitalization, and hospital fatality rates</li>
-</ul>
-<!-- ## How I'm Sharpening My Skills -->
-<!-- 🖥: **Currently learning:** -->
-<!--   - Programming in [The Julia Programming Language](https://julialang.org/) -->
-<!--   - Forecasting principles and methods: -->
-<!--     - Book: [Forecasting: Principles and Practice (3rd ed)](https://otexts.com/fpp3/) -->
-<!--     - Course: [Nowcasting and forecasting infectious disease dynamics](https://nfidd.github.io/nfidd/) -->
-<!--   - Bayesian data analysis: -->
-<!--     - Book: [Statistical Rethinking](https://www.youtube.com/playlist?list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus) -->
-<!--   - Open source software development: -->
-<!--     - [Working in Public: The Making and Maintenance of Open Source Software](https://www.amazon.co.uk/Working-Public-Making-Maintenance-Software/dp/0578675862) -->
-<!--     - [Practical MLOps: Operationalizing Machine Learning Models](https://www.amazon.co.uk/Practical-MLOps-Operationalizing-Machine-Learning/dp/1098103017) -->
-<!-- 📖: **Casual reading:** -->
-<!--   - [The 5 Elements of Effective Thinking](https://www.amazon.co.uk/5-Elements-Effective-Thinking/dp/0691156662) by Edward Burger and Michael Starbird -->
-<!--   - [The Art of Explanation: How to Communicate with Clarity and Confidence](https://www.amazon.co.uk/Art-Explanation-Communicate-Clarity-Confidence/dp/1472298446) by Ros Atkins -->
+<section id="peer-review" class="level2">
+<h2 class="anchored" data-anchor-id="peer-review">Peer review</h2>
+<p>I serve as a peer reviewer for several journals, including <em>Scientific Reports</em>, Springer Nature’s <em>Bulletin of Mathematical Biology</em>, <em>PLOS Global Public Health</em>, and the <em>Journal of Open-Source Software</em>.</p>
 </section>
-<section id="potential-collaborations" class="level2">
-<h2 class="anchored" data-anchor-id="potential-collaborations">Potential Collaborations</h2>
-<p>I am interested in collaborating on mathematical or statistical methods and models that advance outbreak analytics. We can also explore how to translate these innovations into practical software tools.</p>
-<p>Please get in touch through any of my contacts below.</p>
-</section>
-<section id="contact-information" class="level2">
-<h2 class="anchored" data-anchor-id="contact-information">Contact Information</h2>
-<p>Feel free to reach out through any of these channels:</p>
-<ul>
-<li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/james-azam-phd-6b5b00176/">James Azam, PhD</a></li>
-<li><strong>Twitter:</strong> <a href="https://twitter.com/james_azam"><span class="citation" data-cites="james_azam">@james_azam</span></a></li>
-<li><strong>GitHub:</strong> <a href="https://github.com/jamesmbaazam">jamesmbaazam</a></li>
-</ul>
+<section id="lets-collaborate" class="level2">
+<h2 class="anchored" data-anchor-id="lets-collaborate">Let’s collaborate</h2>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>I’m interested in collaborating on mathematical and statistical methods that advance outbreak analytics and health data science, and on translating them into practical software tools.</p>
+<p>Get in touch: <a href="mailto:james.m.azam@gmail.com">Email</a> | <a href="https://www.linkedin.com/in/james-azam-phd-6b5b00176/">LinkedIn</a> | <a href="https://github.com/jamesmbaazam">GitHub</a></p>
+</div>
+</div>
+</div>
 
 
 </section>
@@ -303,6 +487,19 @@ window.Quarto = {
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
