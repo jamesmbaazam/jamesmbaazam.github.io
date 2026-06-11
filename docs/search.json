@@ -74,7 +74,7 @@
     "href": "teaching.html#reach",
     "title": "Teaching & Outreach",
     "section": "Reach",
-    "text": "Reach\n\n\n\n3,600+ YouTube Subscribers\n\n\n\n\n328.8K Cumulative Views (YouTube Tutorials)\n\n\n\n\n2 Cohorts of Modelling for Pandemic Preparedness and Responses short course (2024–2025)"
+    "text": "Reach\n\n\n\n3,600+ YouTube Subscribers\n\n\n\n\n328.8K Cumulative Views (YouTube Tutorials)\n\n\n\n\n2 Cohorts of the Modelling for Pandemic Preparedness and Responses Modular Short course (2024–2025)"
   },
   {
     "objectID": "teaching.html#key-courses",
@@ -193,7 +193,7 @@
     "href": "software.html#open-source-projects-i-build-and-contribute-to",
     "title": "Software",
     "section": "Open source projects I build and contribute to",
-    "text": "Open source projects I build and contribute to\n\n\n\n\n\nepichains Lead Author\n\nEpiverse-TRACE\nMethods for analysing the size and length of infectious disease transmission chains, building on and succeeding bpmodels.\nDocs · GitHub\n\n\n\n\n\n\nEpiNow2 Co-maintainer · 2022–2025\n\nepiforecasts\nEstimates the time-varying reproduction number, growth rate, and doubling time from case data using Bayesian methods.\nDocs · GitHub\n\n\n\n\n\n\nepinowcast Contributor\n\nepinowcast\nFlexible, efficient nowcasting to gain situational awareness during outbreaks from incomplete and delayed epidemiological reporting.\nDocs · GitHub\n\n\n\n\n\n\nprimarycensored Co-Author\n\nepinowcast\nPrimary event censored distributions for fitting delay and reporting distributions while correctly accounting for censoring and truncation.\nDocs · GitHub\n\n\n\n\n\n\nscoringutils Contributor\n\nepiforecasts\nTools for scoring and evaluating probabilistic forecasts using proper scoring rules.\nDocs · GitHub\n\n\n\n\n\nR for Ecologists Past co-maintainer\n\nThe Carpentries\nCo-maintained the Data Carpentry lesson on Data Analysis and Visualization in R for Ecologists.\nLesson · GitHub"
+    "text": "Open source projects I build and contribute to\n\n\n\n\n\nepichains Lead Author\n\nEpiverse-TRACE\nMethods for analysing the size and length of infectious disease transmission chains, building on and succeeding bpmodels.\nDocs · GitHub\n\n\n\n\n\n\nEpiNow2 Co-maintainer · 2022–2025\n\nepiforecasts\nEstimates the time-varying reproduction number, growth rate, and doubling time from case data using Bayesian methods.\nDocs · GitHub\n\n\n\n\n\n\nepinowcast Contributor\n\nepinowcast\nFlexible, efficient nowcasting to gain situational awareness during outbreaks from incomplete and delayed epidemiological reporting.\nDocs · GitHub\n\n\n\n\n\n\nprimarycensored Co-Author\n\nepinowcast\nPrimary event censored distributions for fitting delay and reporting distributions while correctly accounting for censoring and truncation.\nDocs · GitHub\n\n\n\n\n\n\nscoringutils Contributor\n\nepiforecasts\nTools for scoring and evaluating probabilistic forecasts using proper scoring rules.\nDocs · GitHub\n\n\n\n\n\n\nR for Ecologists Past co-maintainer\n\nThe Carpentries\nCo-maintained the Data Carpentry lesson on Data Analysis and Visualization in R for Ecologists.\nLesson · GitHub"
   },
   {
     "objectID": "software.html#work-with-me",
