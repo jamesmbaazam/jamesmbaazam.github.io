@@ -18,11 +18,13 @@ website:
       - href: index.xml
     left:
       - href: index.qmd
-        text: About me
+        text: Home
       - href: expertise.qmd
         text: Expertise
-      - href: software_teaching.qmd
-        text: Software & Teaching
+      - href: software.qmd
+        text: Software
+      - href: teaching.qmd
+        text: Teaching
       - href: blog.qmd
         text: Blog
     tools:

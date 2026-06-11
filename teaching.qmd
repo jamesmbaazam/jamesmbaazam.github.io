@@ -1,0 +1,105 @@
+---
+title: "Teaching & Outreach"
+toc: true
+---
+
+::: {.lead}
+I teach infectious-disease modelling and reproducible research — from short courses to tutorials watched by tens of thousands online.
+:::
+
+## Reach
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-sm-4}
+::: {.stat-card}
+[3,500+]{.stat-number}
+[YouTube subscribers](https://www.youtube.com/channel/UC2T5okssLdyVrMWHG1BBZnw){.stat-label}
+:::
+:::
+
+::: {.g-col-12 .g-col-sm-4}
+::: {.stat-card}
+[36,000+]{.stat-number}
+[views on a single tutorial](https://www.youtube.com/watch?v=WWz8yrxNB74){.stat-label}
+:::
+:::
+
+::: {.g-col-12 .g-col-sm-4}
+::: {.stat-card}
+[2 cohorts]{.stat-number}
+[Modelling for Pandemic Preparedness and Responses short course, 2024–2025]{.stat-label}
+:::
+:::
+
+:::
+
+## Flagship course: MPPR
+
+::: {.callout-note appearance="simple" title="Modelling for Pandemic Preparedness and Response"}
+I am the **lead facilitator** for the Modelling for Pandemic Preparedness and Response (MPPR) modular short course, hosted by the [German–West African Centre for Global Health and Pandemic Prevention (G-WAC)](https://g-wac.org/) at the College of Health Sciences, Kwame Nkrumah University of Science and Technology (KNUST), Kumasi, Ghana. Two cohorts have been delivered, in 2024 and 2025.
+
+**By the end of the course, participants can:**
+
+- Understand the concepts of infectious disease transmission and control
+- Access, curate, and reason about data sources in (West) Africa
+- Design, implement, and use context-specific mathematical models in R
+- Communicate modelling output effectively
+- Join a network of disease modellers focused on West Africa
+:::
+
+## What I teach
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-4}
+::: {.feature-card}
+[Infectious disease modelling]{.card-title-text}
+
+- Compartmental models and estimating the basic reproduction number ([materials](https://jamesmbaazam.github.io/intro-to-idd-modelling/))
+- Model fitting techniques ([materials](https://jamesmbaazam.github.io/mppr_intro_to_model_fitting/#/title-slide))
+- Branching process models for early outbreaks
+- Bayesian models for infectious disease forecasting
+- Generative Bayesian forecasting models
+- Forecast evaluation with proper scoring rules
+:::
+:::
+
+::: {.g-col-12 .g-col-md-4}
+::: {.feature-card}
+[Reproducible workflows]{.card-title-text}
+
+- R programming, from basics to advanced (package development, OOP)
+- Research software and code development best practices
+- Git and GitHub, from basics to merging, rebasing, and cherry-picking
+- R package development to industry standards
+- Pipeline orchestration with [GNU make](https://www.gnu.org/software/make/) and [targets](https://books.ropensci.org/targets/)
+- Reproducible environments with [Docker](https://www.docker.com/) and [renv](https://rstudio.github.io/renv/)
+:::
+:::
+
+::: {.g-col-12 .g-col-md-4}
+::: {.feature-card}
+[Evidence synthesis & writing]{.card-title-text}
+
+- Systematic and scoping review methods
+- Free automation tools such as Rayyan ([tutorials](https://www.youtube.com/watch?v=wyybhi4iL_M&list=PL_JK9Yk5mzB5sz8TIqv8dat5pf-ouMeyK))
+- Thesis and journal article writing techniques
+:::
+:::
+
+:::
+
+## Previous teaching
+
+- Short course on [Introduction to R: Management, Exploration, and Communication of Data](https://www.sacema.org/opportunities/short-courses/) at the DSI-NRF Centre of Excellence in Epidemiological Modelling and Analysis (SACEMA), Stellenbosch University, South Africa
+
+## Work with me
+
+::: {.callout-note appearance="simple"}
+I'm available to **teach, facilitate, and develop training** in infectious-disease modelling and reproducible research.
+
+Get in touch: [james.m.azam@gmail.com](mailto:james.m.azam@gmail.com) ·
+[YouTube](https://www.youtube.com/channel/UC2T5okssLdyVrMWHG1BBZnw) ·
+[LinkedIn](https://www.linkedin.com/in/james-azam-phd-6b5b00176/)
+:::
