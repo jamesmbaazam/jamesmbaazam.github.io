@@ -98,7 +98,7 @@ The site is automatically built and published to GitHub Pages on every push to `
 - **Theme**: cosmo (light), darkly (dark mode)
 - **Auto-dark filter**: Automatically switches between light/dark themes
 - **Site navigation**: Top navbar with Home, Research, Open-source Projects, Teaching, Blog
-- **Social links**: Twitter, GitHub, LinkedIn, Google Scholar, Email
+- **Social links**: Bluesky, GitHub, LinkedIn, Google Scholar, Email
 
 ## Important Notes
 
