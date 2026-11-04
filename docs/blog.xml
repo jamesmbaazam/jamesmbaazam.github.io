@@ -10,7 +10,286 @@
 <atom:link href="https://jamesmbaazam.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Learnings from my day to day experiences</description>
 <generator>quarto-1.9.37</generator>
-<lastBuildDate>Sat, 08 Nov 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 04 Nov 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>A Visual Guide to Precision-Recall Curves for Imbalanced Classification</title>
+  <dc:creator>James Mba Azam</dc:creator>
+  <link>https://jamesmbaazam.github.io/blog/pr-curve-guide/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>A common problem in machine learning classification is class imbalance: one class, often the one we care about (a disease case, a fraud, an outbreak), is far rarer than the other <span class="citation" data-cites="japkowicz2002class guo2008class ali2013classification abd2013review">(Japkowicz and Stephen 2002; Guo et al. 2008; Ali et al. 2013; Abd Elrahman and Abraham 2013)</span>. In these cases the receiver operating characteristic (ROC) curve, which plots the true positive rate against the false positive rate across thresholds, can look excellent even when a model produces mostly false alarms. The precision-recall (PR) curve, which plots precision against recall, is more informative because it focuses on the rare class and gives no credit for correctly predicting the abundant one <span class="citation" data-cites="saito2015precision">(Saito and Rehmsmeier 2015)</span>.</p>
+<p>This article explores how the PR curve behaves under class imbalance, and gives guidance on reading it and avoiding common pitfalls. Every figure comes from a short script in <a href="scripts"><code>scripts/</code></a> that uses synthetic data, so you can change the parameters and see what happens.</p>
+<p><strong>Quick start</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pip</span> install <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-r</span> requirements.txt</span>
+<span id="cb1-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">python</span> scripts/run_all.py        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># regenerates every figure in figures/</span></span>
+<span id="cb1-3"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">python</span> scripts/fig03_baseline.py <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># or run a single figure</span></span></code></pre></div></div>
+<blockquote class="blockquote">
+<p><strong>About the data.</strong> All figures use a toy “binormal” model: negatives score ~ N(0, 1) and positives score ~ N(d, 1), where <code>d</code> sets how separable the classes are. It’s simple on purpose, so the only things changing between plots are the ones being discussed. Numbers quoted below come from these simulations, not from real datasets.</p>
+</blockquote>
+<hr>
+<section id="measuring-classifier-performance" class="level2">
+<h2 class="anchored" data-anchor-id="measuring-classifier-performance">Measuring classifier performance</h2>
+<p>A binary classifier gives each case a score, and a decision threshold turns that score into a “positive” or “negative” prediction. Comparing the predictions with the truth sorts every case into one of four cells of a confusion matrix <span class="citation" data-cites="powers2020evaluation">(Powers 2020)</span>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 34%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;"><strong>Actually positive</strong></th>
+<th style="text-align: center;"><strong>Actually negative</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Predicted positive</strong></td>
+<td style="text-align: center;">True positive (TP)</td>
+<td style="text-align: center;">False positive (FP)</td>
+</tr>
+<tr class="even">
+<td><strong>Predicted negative</strong></td>
+<td style="text-align: center;">False negative (FN)</td>
+<td style="text-align: center;">True negative (TN)</td>
+</tr>
+</tbody>
+</table>
+<p>The common evaluation measures are ratios of these counts <span class="citation" data-cites="powers2020evaluation">(Powers 2020)</span>:</p>
+<ul>
+<li><strong>Recall</strong> (also called sensitivity or true positive rate, TPR) = TP / (TP + FN): of the real positives, how many were caught.</li>
+<li><strong>Precision</strong> (also called positive predictive value) = TP / (TP + FP): of the cases flagged, how many were real.</li>
+<li><strong>False positive rate (FPR)</strong> = FP / (FP + TN): of the real negatives, how many were wrongly flagged. Specificity is 1 − FPR.</li>
+<li><strong>Accuracy</strong> = (TP + TN) / (TP + FP + FN + TN): the share of all predictions that were correct.</li>
+<li><strong>F-beta score</strong> = (1 + β²) × precision × recall / (β² × precision + recall): a weighted harmonic mean of precision and recall, which is high only when both are. The parameter β sets how many times more important recall is than precision. Common choices are:
+<ul>
+<li><strong>F1</strong> (β = 1) = 2 × precision × recall / (precision + recall) weights the two equally.</li>
+<li><strong>F2</strong> (β = 2) weights recall more heavily, which suits settings where missing a real positive is costlier than a false alarm, such as screening for a serious disease.</li>
+<li><strong>F0.5</strong> (β = 0.5) weights precision more heavily, which suits settings where false alarms are costly, such as when each flagged case triggers an expensive follow-up.</li>
+</ul></li>
+</ul>
+<p>Each of these is computed at one threshold. Sweeping the threshold from strict to lenient traces out a curve. The <strong>ROC curve</strong> plots TPR (recall) against FPR, and the <strong>PR curve</strong> plots precision against recall. Summary scores condense a curve into one number: ROC AUC is the area under the ROC curve, and average precision (AP) summarises the PR curve.</p>
+<p>The denominators differ. Recall depends only on the real positives, FPR only on the real negatives, and precision on the cases flagged, which mix both classes. That difference matters when one class is rare.</p>
+<hr>
+</section>
+<section id="why-not-just-use-roc" class="level2">
+<h2 class="anchored" data-anchor-id="why-not-just-use-roc">1. Why not just use ROC?</h2>
+<p>With 1% positives, this model gets an ROC AUC of 0.96, which looks excellent. Its average precision is 0.47, and the PR curve shows precision falling steadily as recall rises.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jamesmbaazam.github.io/blog/pr-curve-guide/figures/01_roc_vs_pr.png" class="img-fluid figure-img"></p>
+<figcaption>ROC vs PR</figcaption>
+</figure>
+</div>
+<p>The cause is the denominator. ROC uses the false positive rate, FP / (FP + TN). With 9,900 negatives in the denominator, many false alarms still give a small rate. Precision has no such cushion.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jamesmbaazam.github.io/blog/pr-curve-guide/figures/02_why_roc_hides_fp.png" class="img-fluid figure-img"></p>
+<figcaption>Why ROC hides false positives</figcaption>
+</figure>
+</div>
+<p>At this one threshold, the FPR is only 2%, but 225 false alarms are mixed in with 69 real hits, so only 23% of alerts are correct.</p>
+<p><em>Script: <a href="scripts/fig01_roc_vs_pr.py"><code>fig01_roc_vs_pr.py</code></a>, <a href="scripts/fig02_why_roc_hides_fp.py"><code>fig02_why_roc_hides_fp.py</code></a></em></p>
+<hr>
+</section>
+<section id="the-baseline-is-the-prevalence-not-0.5" class="level2">
+<h2 class="anchored" data-anchor-id="the-baseline-is-the-prevalence-not-0.5">2. The baseline is the prevalence, not 0.5</h2>
+<p>A random classifier draws a horizontal line at precision = positive rate. The three curves below come from classifiers of identical quality; only the class balance differs.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jamesmbaazam.github.io/blog/pr-curve-guide/figures/03_baseline_is_prevalence.png" class="img-fluid figure-img"></p>
+<figcaption>Baseline equals prevalence</figcaption>
+</figure>
+</div>
+<p>So a precision of 0.30 can be a strong result at 1% prevalence (30x chance) and a poor one at 50%. Always draw the baseline on your plot, and judge the curve by how far it sits above it.</p>
+<p><em>Script: <a href="scripts/fig03_baseline.py"><code>fig03_baseline.py</code></a></em></p>
+<hr>
+</section>
+<section id="reading-the-shape" class="level2">
+<h2 class="anchored" data-anchor-id="reading-the-shape">3. Reading the shape</h2>
+<p>Top-right is best. The shape tells you what trade-off you’re facing.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jamesmbaazam.github.io/blog/pr-curve-guide/figures/04_curve_shapes.png" class="img-fluid figure-img"></p>
+<figcaption>Curve shapes</figcaption>
+</figure>
+</div>
+<ul>
+<li><strong>Steep decline:</strong> every extra bit of recall costs many false alarms. Typical for hard problems.</li>
+<li><strong>High plateau, then a cliff:</strong> a subset of positives is separated cleanly, so high-precision, low-recall use cases are feasible.</li>
+<li><strong>Jagged left edge:</strong> at very high thresholds only a few predictions are being judged, so a single mistake swings precision. Don’t over-read this region.</li>
+</ul>
+<p>The curve is not guaranteed to be monotonic, unlike ROC.</p>
+<p><em>Script: <a href="scripts/fig04_curve_shapes.py"><code>fig04_curve_shapes.py</code></a></em></p>
+<hr>
+</section>
+<section id="summarising-with-average-precision-ap" class="level2">
+<h2 class="anchored" data-anchor-id="summarising-with-average-precision-ap">4. Summarising with average precision (AP)</h2>
+<p>AP is the area under the PR curve, computed as a step-wise sum (<code>sklearn.metrics.average_precision_score</code>).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jamesmbaazam.github.io/blog/pr-curve-guide/figures/05_ap_vs_trapezoid.png" class="img-fluid figure-img"></p>
+<figcaption>AP vs trapezoid</figcaption>
+</figure>
+</div>
+<p>Linear interpolation between PR points (<code>auc(recall, precision)</code>) describes operating points you can’t actually reach, so it’s a biased estimate. The scikit-learn docs warn it can be too optimistic. In this small example it comes out lower (0.449 vs 0.516), so the safe summary is: prefer the step-wise version and don’t treat the two as interchangeable.</p>
+<p>Also remember that AP is only meaningful relative to prevalence. An AP of 0.20 is excellent at 1% prevalence and mediocre at 30%, and APs aren’t comparable across datasets with different balance.</p>
+<p><em>Script: <a href="scripts/fig05_ap_vs_trapezoid.py"><code>fig05_ap_vs_trapezoid.py</code></a></em></p>
+<hr>
+</section>
+<section id="picking-a-threshold" class="level2">
+<h2 class="anchored" data-anchor-id="picking-a-threshold">5. Picking a threshold</h2>
+<ol type="1">
+<li>Decide what matters operationally: a minimum recall, or a minimum precision.</li>
+<li>Find that point on the curve and read off the threshold.</li>
+<li>Check the other axis. If it’s unacceptable, you need a better model or a relaxed constraint, not a different threshold.</li>
+<li>Choose the threshold on a validation set; report on a held-out test set.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jamesmbaazam.github.io/blog/pr-curve-guide/figures/06_threshold_picking.png" class="img-fluid figure-img"></p>
+<figcaption>Threshold picking</figcaption>
+</figure>
+</div>
+<p>Here, requiring 80% recall at 2% prevalence forces a threshold of about 1.58 and leaves precision at about 22%.</p>
+<p><em>Script: <a href="scripts/fig06_threshold_picking.py"><code>fig06_threshold_picking.py</code></a></em></p>
+<hr>
+</section>
+<section id="worked-example-what-two-operating-points-mean" class="level2">
+<h2 class="anchored" data-anchor-id="worked-example-what-two-operating-points-mean">6. Worked example: what two operating points mean</h2>
+<p>Same model (2% prevalence), two thresholds, shown as alerts per 1,000 cases.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jamesmbaazam.github.io/blog/pr-curve-guide/figures/11_worked_example.png" class="img-fluid figure-img"></p>
+<figcaption>Worked example</figcaption>
+</figure>
+</div>
+<p>At 60% recall you review about 27 alerts and 12 are real. At 85% recall you catch 5 more real positives but review about 99 alerts. Whether that’s worth it depends on the cost of a miss versus the cost of reviewing a false alarm. The curve helps you make that call, which a single AUC cannot.</p>
+<p><em>Script: <a href="scripts/fig11_worked_example.py"><code>fig11_worked_example.py</code></a></em></p>
+<hr>
+</section>
+<section id="pitfalls" class="level2">
+<h2 class="anchored" data-anchor-id="pitfalls">7. Pitfalls</h2>
+<section id="prevalence-shift" class="level3">
+<h3 class="anchored" data-anchor-id="prevalence-shift">Prevalence shift</h3>
+<p>Precision depends on class balance; recall doesn’t. If production prevalence differs from your evaluation set (for example, because you undersampled negatives), recompute or reweight precision using the true prior.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jamesmbaazam.github.io/blog/pr-curve-guide/figures/07_prevalence_shift.png" class="img-fluid figure-img"></p>
+<figcaption>Prevalence shift</figcaption>
+</figure>
+</div>
+<p>The same model and threshold has 79% recall everywhere, but precision is about 23% at 2% prevalence and about 3% at 0.2%.</p>
+<p><em>Script: <a href="scripts/fig07_prevalence_shift.py"><code>fig07_prevalence_shift.py</code></a></em></p>
+</section>
+<section id="resampling-distorts-probabilities" class="level3">
+<h3 class="anchored" data-anchor-id="resampling-distorts-probabilities">Resampling distorts probabilities</h3>
+<p>A common way to deal with class imbalance is to rebalance the training data. The Synthetic Minority Over-sampling Technique (SMOTE) oversamples the rare class by creating synthetic cases, each placed at a random point on the line between a minority case and one of its nearest minority-class neighbours <span class="citation" data-cites="chawlaSMOTESyntheticMinority2002">(Chawla et al. 2002)</span>. Undersampling does the opposite by discarding some of the abundant class. Either way, the training data no longer has the natural class distribution. This shifts the model’s predicted probabilities, so thresholds chosen on a resampled validation set won’t transfer.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jamesmbaazam.github.io/blog/pr-curve-guide/figures/08_resampling_calibration.png" class="img-fluid figure-img"></p>
+<figcaption>Resampling calibration</figcaption>
+</figure>
+</div>
+<p>After undersampling negatives, the model predicts 0.77 for a group of cases of which only about 20% are positive. Evaluate on data with the natural class distribution.</p>
+<p><em>Script: <a href="scripts/fig08_resampling_calibration.py"><code>fig08_resampling_calibration.py</code></a></em></p>
+</section>
+<section id="small-positive-counts" class="level3">
+<h3 class="anchored" data-anchor-id="small-positive-counts">Small positive counts</h3>
+<p>With few positives the curve is noisy. Use cross-validation or bootstrap bands, and report how many positives you have.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jamesmbaazam.github.io/blog/pr-curve-guide/figures/09_small_sample_noise.png" class="img-fluid figure-img"></p>
+<figcaption>Small sample noise</figcaption>
+</figure>
+</div>
+<p><em>Script: <a href="scripts/fig09_small_sample_noise.py"><code>fig09_small_sample_noise.py</code></a></em></p>
+</section>
+<section id="comparing-models" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-models">Comparing models</h3>
+<p>A curve that dominates another everywhere is clearly better. When curves cross, the better model depends on which recall range you care about, and a single AP number hides that.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jamesmbaazam.github.io/blog/pr-curve-guide/figures/10_model_comparison.png" class="img-fluid figure-img"></p>
+<figcaption>Model comparison</figcaption>
+</figure>
+</div>
+<p><em>Script: <a href="scripts/fig10_model_comparison.py"><code>fig10_model_comparison.py</code></a></em></p>
+</section>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<ul>
+<li>Accuracy vs.&nbsp;precision vs.&nbsp;recall in machine learning: what’s the difference?. <a href="https://www.evidentlyai.com/classification-metrics/accuracy-precision-recall">Link</a></li>
+<li>Precision and recall at K in ranking and recommendations. <a href="https://www.evidentlyai.com/ranking-metrics/precision-recall-at-k">Link</a></li>
+<li>Classification: Accuracy, recall, precision, and related metrics by Google Machine Learning for Engineers. <a href="https://developers.google.com/machine-learning/crash-course/classification/accuracy-precision-recall">Link</a></li>
+<li>Accuracy vs.&nbsp;Precision vs.&nbsp;Recall in Machine Learning: What is the Difference? by Encord. <a href="https://encord.com/blog/classification-metrics-accuracy-precision-recall/">Link</a></li>
+<li>Animations with receiver operating characteristic and precision-recall curves by Dariya Sydykova. <a href="https://github.com/dariyasydykova/open_projects/tree/master">Link</a></li>
+<li>ROC vs precision-and-recall curves on Cross Validated. <a href="https://stats.stackexchange.com/questions/7207/roc-vs-precision-and-recall-curves">Link</a></li>
+<li>The Relationship Between Precision-Recall and ROC Curves. <a href="https://mark.goadrich.com/articles/davisgoadrichcamera2.pdf">Link</a></li>
+</ul>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-abd2013review" class="csl-entry">
+Abd Elrahman, Shaza M, and Ajith Abraham. 2013. <span>“A Review of Class Imbalance Problem.”</span> <em>Journal of Network and Innovative Computing</em> 1: 9–9.
+</div>
+<div id="ref-ali2013classification" class="csl-entry">
+Ali, Aida, Siti Mariyam Shamsuddin, and Anca L Ralescu. 2013. <span>“Classification with Class Imbalance Problem.”</span> <em>Int. J. Advance Soft Compu. Appl</em> 5 (3): 176–204.
+</div>
+<div id="ref-chawlaSMOTESyntheticMinority2002" class="csl-entry">
+Chawla, N. V., K. W. Bowyer, L. O. Hall, and W. P. Kegelmeyer. 2002. <span>“<span>SMOTE</span>: <span>Synthetic Minority Over</span>-Sampling <span>Technique</span>.”</span> <em>Journal of Artificial Intelligence Research</em> 16 (June): 321–57. <a href="https://doi.org/10.1613/jair.953">https://doi.org/10.1613/jair.953</a>.
+</div>
+<div id="ref-guo2008class" class="csl-entry">
+Guo, Xinjian, Yilong Yin, Cailing Dong, Gongping Yang, and Guangtong Zhou. 2008. <span>“On the Class Imbalance Problem.”</span> <em>2008 Fourth International Conference on Natural Computation</em> 4: 192–201.
+</div>
+<div id="ref-japkowicz2002class" class="csl-entry">
+Japkowicz, Nathalie, and Shaju Stephen. 2002. <span>“The Class Imbalance Problem: A Systematic Study.”</span> <em>Intelligent Data Analysis</em> 6 (5): 429–49.
+</div>
+<div id="ref-powers2020evaluation" class="csl-entry">
+Powers, David MW. 2020. <span>“Evaluation: From Precision, Recall and f-Measure to ROC, Informedness, Markedness and Correlation.”</span> <em>arXiv Preprint arXiv:2010.16061</em>.
+</div>
+<div id="ref-saito2015precision" class="csl-entry">
+Saito, Takaya, and Marc Rehmsmeier. 2015. <span>“The Precision-Recall Plot Is More Informative Than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets.”</span> <em>PloS One</em> 10 (3): e0118432.
+</div>
+</div>
+</section>
+<section id="license" class="level2">
+<h2 class="anchored" data-anchor-id="license">License</h2>
+<p>MIT. See <a href="LICENSE">LICENSE</a>.</p>
+</section>
+<section id="credit" class="level2">
+<h2 class="anchored" data-anchor-id="credit">Credit</h2>
+<p>This article was generated with Claude, with the author’s oversight and guidance.</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>machine learning</category>
+  <category>classification</category>
+  <category>python</category>
+  <guid>https://jamesmbaazam.github.io/blog/pr-curve-guide/</guid>
+  <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>How to evaluate the ‘goodness of fit’ of an EpiNow2 model run</title>
   <dc:creator>James Mba Azam</dc:creator>

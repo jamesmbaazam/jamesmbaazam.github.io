@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/blog/pr-curve-guide/index.html",
       "/blog/epinow2-eval-guide/index.html"
     ]
   }
