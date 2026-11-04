@@ -7,7 +7,7 @@ name: Render and Publish
 
 jobs:
   build-deploy:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     permissions:
       contents: write
       pages: write
@@ -55,6 +55,12 @@ jobs:
       - uses: r-lib/actions/setup-r@v2
 
       - uses: r-lib/actions/setup-renv@v2
+        env:
+          # Pin to a dated Posit snapshot (the last green build) instead of the
+          # moving "latest" repo that setup-r exports, which served an rstan
+          # binary that fails to load (undefined TBB symbol).
+          RSPM: https://packagemanager.posit.co/cran/__linux__/noble/2026-06-11
+          RENV_CONFIG_REPOS_OVERRIDE: https://packagemanager.posit.co/cran/__linux__/noble/2026-06-11
 
       - name: Render & Publish to GitHub Pages
         uses: quarto-dev/quarto-actions/publish@v2
