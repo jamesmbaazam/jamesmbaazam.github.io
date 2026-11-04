@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://jamesmbaazam.github.io/index.html</loc>
-    <lastmod>2026-06-11T13:59:58.971Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jamesmbaazam.github.io/expertise.html</loc>
-    <lastmod>2026-06-11T13:59:58.965Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jamesmbaazam.github.io/blog/epinow2-eval-guide/index.html</loc>
-    <lastmod>2026-06-11T13:59:58.874Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jamesmbaazam.github.io/software.html</loc>
-    <lastmod>2026-06-11T13:59:58.972Z</lastmod>
-  </url>
-  <url>
     <loc>https://jamesmbaazam.github.io/teaching.html</loc>
-    <lastmod>2026-06-11T13:59:58.972Z</lastmod>
+    <lastmod>2026-11-04T13:50:52.014Z</lastmod>
   </url>
   <url>
     <loc>https://jamesmbaazam.github.io/blog.html</loc>
-    <lastmod>2026-06-11T13:59:58.873Z</lastmod>
+    <lastmod>2026-11-04T13:50:51.899Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jamesmbaazam.github.io/expertise.html</loc>
+    <lastmod>2026-11-04T13:50:52.008Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jamesmbaazam.github.io/blog/pr-curve-guide/index.html</loc>
+    <lastmod>2026-11-04T13:50:51.979Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jamesmbaazam.github.io/blog/epinow2-eval-guide/index.html</loc>
+    <lastmod>2026-11-04T13:50:51.900Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jamesmbaazam.github.io/software.html</loc>
+    <lastmod>2026-11-04T13:50:52.014Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jamesmbaazam.github.io/index.html</loc>
+    <lastmod>2026-11-04T13:50:52.012Z</lastmod>
   </url>
 </urlset>
