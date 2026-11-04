@@ -286,7 +286,9 @@ Saito, Takaya, and Marc Rehmsmeier. 2015. <span>“The Precision-Recall Plot Is 
 <a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
   <category>machine learning</category>
   <category>classification</category>
-  <category>python</category>
+  <category>model evaluation</category>
+  <category>class imbalance</category>
+  <category>precision-recall</category>
   <guid>https://jamesmbaazam.github.io/blog/pr-curve-guide/</guid>
   <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
 </item>
